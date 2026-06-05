@@ -12,3 +12,6 @@ Thumbs.db
 
 # Local server / misc
 .cache/
+
+# Claude Code local settings
+.claude/settings.local.json
