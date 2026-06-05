@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /ai-context.html
+
+# Sitemap: https://www.nymamar.com/sitemap.xml

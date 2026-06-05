@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 40" role="img" aria-label="NymaMar">
+  <g fill="#111111">
+    <!-- mark: a minimal horizon / hull line -->
+    <path d="M2 27 q9 -8 18 0 q9 8 18 0" fill="none" stroke="#1A2E44" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="20" cy="13" r="2.4" fill="#1A2E44"/>
+    <!-- wordmark -->
+    <text x="50" y="28" font-family="Cormorant Garamond, Georgia, serif" font-size="27" font-weight="500" letter-spacing="1.5">NYMA<tspan fill="#1A2E44">MAR</tspan></text>
+  </g>
+</svg>

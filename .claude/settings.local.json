@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git --version)",
+      "mcp__2cb07655-89ff-4fe2-a411-141c6e6c5226__notion-fetch",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(curl -s -o /dev/null -w '%{http_code} %{content_type}' __TRACKED_VAR__?w=100)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
