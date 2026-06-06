@@ -1,78 +1,75 @@
 # NymaMar — Website Mockup
 
-A minimal, editorial **maritime** website mockup for **NymaMar**, a Greece-based ship-management and representation company. This static build is the design reference to finalise *before* rebuilding the site in **Squarespace** (Utica / Fluid Engine template).
+A **bold, modern maritime** website mockup for **NymaMar** — an Athens-based team of Greek shipping professionals acting as a "stepping stone" for the industry. This static build is the design reference to finalise *before* rebuilding the site in **Squarespace** (Fluid Engine).
 
-It follows the design system recorded in the Notion *Squarespace Build Log — NymaMar*.
+All page copy is the **client-approved content** from the Notion *"Website Content — Pages for NymaMar Review"* pages.
 
 ---
 
 ## How to view it
 
-It's plain HTML/CSS/JS — no build step, no installation.
+Plain HTML/CSS/JS — no build step.
 
-- **Easiest:** double-click `index.html` to open it in your browser.
-- Or, for a more accurate preview (so the contact form and fonts behave), run a tiny local server from this folder:
+- **Easiest:** double-click `index.html`.
+- For an accurate preview (fonts, form), run a tiny local server from this folder and open <http://localhost:8000>:
   ```
   python3 -m http.server 8000
   ```
-  then open <http://localhost:8000>.
 
 ## Pages
 
-| File | Page | Slug (for Squarespace) |
-|------|------|------------------------|
+| File | Page | Slug (Squarespace) |
+|------|------|--------------------|
 | `index.html` | Home | `/` |
-| `who-we-are.html` | Who We Are | `/who-we-are` |
-| `what-we-do.html` | What We Do | `/what-we-do` |
+| `who-we-are.html` | About | `/who-we-are` |
 | `services.html` | Services | `/services` |
 | `contact.html` | Contact | `/contact` |
 | `ai-context.html` | AI Context (unlinked, `noindex`) | `/ai-context` |
 
-Navigation order matches the build log: **Home · Who We Are · What We Do · Services · Contact**.
+Nav: **Home · About · Services · Contact** (plus a "Get in touch" button).
 
-## Design system (matches the build log)
+## What NymaMar does (for context)
 
-- **Headings:** Cormorant Garamond, weight 300, letter-spacing −0.02em (H1 5rem · H2 3.2rem · H3 2.2rem · H4 1.6rem)
-- **Body / UI:** DM Sans 400, line-height 1.8
-- **Buttons:** DM Sans 500, letter-spacing 0.02em, **square corners** (radius 0)
-- **Palette:** Background `#F8F7F4` · Text `#111111` · Navy `#1A2E44` · Warm rule `#E8E4DC` · White `#FFFFFF`
+People- and expertise-led maritime company. Five service areas: **Mentoring & Coaching**, **Academic & Industry Engagement**, **Environmental & Decarbonization**, **Representations**, and **Technical Management**. Values: Respect, Empathy, Trust, Dependability, Determination — rooted in *philotimo*.
 
-All tokens live at the top of `css/styles.css` under `:root` — change them in one place.
+## Design system — "Bold Modern Maritime"
+
+- **Headings:** Cormorant Garamond (500)  ·  **Body/UI:** DM Sans (400/500/600/700)
+- **Accent:** strong maritime blue `#0C5FA6` (buttons, labels, links)
+- **Palette:** bg `#F4F6F9` · paper `#FFFFFF` · ink `#15202B` · navy `#112A43` · rule `#DCE2E8`
+- **Buttons:** bold, square corners, blue fill / outline / ghost variants
+- **Type-led, uppercase section labels** with an accent rule
+
+All tokens live at the top of `css/styles.css` (`:root`).
 
 ## Built-in behaviours
 
-- Sticky header that is transparent over the hero and turns solid on scroll
-- Animated **scroll indicator** — colour switches (white on dark / navy on light), fades as you scroll, reverses near the page bottom; **excluded** from Contact and AI-Context pages (per build log)
-- Reveal-on-scroll animations, mobile menu, mockup contact form
-- Fully responsive (desktop / tablet / mobile)
+- Cinematic full-screen hero with slow **Ken Burns** image zoom
+- Sticky header (transparent over hero → solid on scroll) + mobile menu
+- **Image-backed service cards** with hover zoom + reveal
+- **Full-bleed imagery** on every page (heroes, statement band, showcase gallery)
+- Scroll-reveal animations, animated stat-counter helper, animated scroll indicator
+  (excluded on Contact & AI-Context, per the build log)
+- Fully responsive (desktop / tablet / mobile), verified zero horizontal overflow
 
-## ⚠️ Placeholders to confirm with the client
+## ⚠️ Open items to confirm with the client
 
-These mirror the open items in the build log — search the code for `TODO` / `NOTE`:
+Search the code for `TODO` / `NOTE`:
 
-- **Contact email** `email@nymamar.com` is a placeholder — confirm the real address.
-- **LinkedIn URL** not yet provided.
-- **Team bios** skipped for v1 — section is built and ready to populate (`who-we-are.html`).
-- **Representation partners** — placeholder section in `services.html`; needs company names/descriptions/logos.
-- **BCA logo/name** — do **not** use until written confirmation from BCA.
-- **Logo** — `assets/logo.svg` is a placeholder wordmark; replace with the client's `nyma_logo_horizontal.png` when supplied.
-- **Hero photography** — currently editorial Unsplash maritime images (free, commercial licence). Swap for brand photography when available.
-
-## Photography
-
-Images are hot-linked from Unsplash (free, commercial licence). To make the site fully self-contained, download them into `assets/` and update the `src` paths. Sources used:
-
-- Hero / cargo ship aerial — `unsplash.com/s/photos/cargo-ship`
-- Engine room — `unsplash.com/s/photos/ship-engine`
-- Port aerial — `unsplash.com/s/photos/shipping-port-aerial`
+- **Partner college name/logo:** approved copy names *Business College of Athens (BCA)*, but its use is **pending BCA's confirmation** — currently shown as "a leading Athens-based business college." Swap back once confirmed.
+- **Services "Environmental & Decarbonization":** Notion titles this section *"Efficient Management Representations"* (a likely copy/paste error). Shown here with the content-accurate heading — please confirm.
+- **Team bios** — optional for v1; placeholder section ready (`who-we-are.html`).
+- **Representation partners** — placeholder; needs company names/descriptions/logos (`services.html`).
+- **Contact email** `email@nymamar.com` is still a placeholder (address & landline are real). **LinkedIn** to be provided.
+- **Logo** — `assets/logo.svg` is a placeholder wordmark; replace with the real logo when supplied.
+- **Photography** — editorial Unsplash images (free, commercial licence); swap for brand photography later.
 
 ## Moving this into Squarespace
 
-1. Set the **fonts, colours and heading sizes** above in *Design → Site Styles*.
-2. Recreate each page section with Fluid Engine blocks, using this mockup as the visual target.
-3. Use a **Form Block** for the contact form; the HTML form here is a non-functional mockup.
-4. Paste the scroll-indicator script into *Settings → Advanced → Code Injection → Footer* (logic is in `js/main.js`).
-5. Keep `/ai-context` **unlinked** and inject a `noindex` tag (already in the HTML head here).
+1. Set fonts, colours and heading sizes in *Design → Site Styles*.
+2. Recreate each section with Fluid Engine blocks, using this mockup as the visual target.
+3. Use a **Form Block** for the contact form (Name, Company, Email, Subject dropdown, Message).
+4. Keep `/ai-context` unlinked with a `noindex` tag (already in the HTML).
 
 ---
 

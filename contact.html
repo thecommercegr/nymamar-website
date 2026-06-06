@@ -4,78 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — NymaMar</title>
-  <meta name="description" content="Get in touch with NymaMar to discuss ship management, crewing, environmental compliance or representation for your fleet." />
+  <meta name="description" content="Get in touch with NymaMar in Athens, Greece — technical management, mentoring & coaching, environmental, academic or representations." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/logo.svg" />
 </head>
 <body data-no-indicator>
 
-  <header class="site-header is-solid">
-    <a class="brand" href="index.html" aria-label="NymaMar home">
-      <img class="logo logo--default" src="assets/logo.svg" alt="NymaMar" />
-    </a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="NymaMar home"><img class="logo logo--default" src="assets/logo.svg" alt="NymaMar" /></a>
     <nav class="nav" aria-label="Primary">
       <a href="index.html">Home</a>
-      <a href="who-we-are.html">Who We Are</a>
-      <a href="what-we-do.html">What We Do</a>
+      <a href="who-we-are.html">About</a>
       <a href="services.html">Services</a>
       <a href="contact.html" class="active">Contact</a>
+      <a href="contact.html" class="btn btn-secondary">Get in touch</a>
     </nav>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
-  <section class="section" style="padding-top:clamp(8rem,16vh,11rem);">
-    <div class="wrap" style="max-width:60ch;">
-      <span class="eyebrow">Contact</span>
-      <h1>Let's talk about your fleet.</h1>
-      <p class="lede" style="margin-top:1rem; color:#555;">Tell us a little about your vessel and what you need. We read every message and reply personally.</p>
+  <!-- Page hero -->
+  <section class="page-hero" data-dark-zone style="min-height:48vh;">
+    <div class="page-hero__media"><img src="https://images.unsplash.com/photo-1585713181935-d5f622cc2415?q=80&w=2200&auto=format&fit=crop" alt="Cargo ship at sea" fetchpriority="high" /></div>
+    <div class="wrap">
+      <span class="eyebrow on-dark">Contact</span>
+      <h1>Let's talk.</h1>
+      <p class="lede">Whether you have a specific project in mind, want to explore a partnership, or simply want to learn more about what we do — we'd love to hear from you.</p>
     </div>
   </section>
 
-  <section class="section--tight" style="padding-bottom:clamp(4.5rem,9vw,9rem);">
+  <section class="section section--paper">
     <div class="wrap contact-grid">
 
-      <!-- Form (mockup — wire to Squarespace Form Block on build) -->
+      <!-- Form (mockup — wire to a Squarespace Form Block on build) -->
       <form class="contact-form" data-contact-form novalidate>
         <div class="field">
-          <label for="name">Name</label>
+          <label for="name">Name *</label>
           <input type="text" id="name" name="name" autocomplete="name" required />
         </div>
         <div class="field">
-          <label for="company">Company</label>
+          <label for="company">Company (optional)</label>
           <input type="text" id="company" name="company" autocomplete="organization" />
         </div>
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email">Email *</label>
           <input type="email" id="email" name="email" autocomplete="email" required />
         </div>
         <div class="field">
-          <label for="message">How can we help?</label>
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option>Technical Management</option>
+            <option>Mentoring &amp; Coaching</option>
+            <option>Environmental</option>
+            <option>Academic</option>
+            <option>Representations</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message *</label>
           <textarea id="message" name="message" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Send message</button>
-        <p data-form-note hidden style="margin-top:1rem; color:var(--navy);">Thank you — this is a mockup form. On the live Squarespace site this will deliver to your inbox.</p>
+        <button type="submit" class="btn btn-primary">Send message <span class="arw">→</span></button>
+        <p data-form-note hidden style="margin-top:1rem; color:var(--blue);">Thank you — this is a mockup form. On the live Squarespace site this will deliver to your inbox.</p>
       </form>
 
-      <!-- Details -->
+      <!-- Direct details -->
       <div>
+        <div class="contact-detail">
+          <div class="k">Address</div>
+          <div class="v">30A Ifestou Str., Ano Ilioupolis<br />16345, Athens, Greece</div>
+        </div>
+        <div class="contact-detail">
+          <div class="k">Landline</div>
+          <div class="v"><a href="tel:+302109951917">+30 210 995 1917</a></div>
+        </div>
         <div class="contact-detail">
           <div class="k">Email</div>
           <div class="v"><a href="mailto:email@nymamar.com">email@nymamar.com</a></div>
         </div>
         <div class="contact-detail">
-          <div class="k">Location</div>
-          <div class="v">Greece</div>
-        </div>
-        <div class="contact-detail">
           <div class="k">LinkedIn</div>
-          <div class="v">To be confirmed</div>
+          <div class="v">To be provided</div>
         </div>
-        <hr class="rule" style="margin-block:2rem;" />
-        <p style="color:#666;">For urgent technical or operational matters concerning a managed vessel, please use the direct contacts provided in your management agreement.</p>
+        <hr class="rule" style="margin-block:1.8rem;" />
+        <p style="color:var(--muted); font-style:italic;">We typically respond within one business day.</p>
       </div>
 
     </div>
@@ -86,30 +101,40 @@
       <div class="footer-top">
         <div class="footer-col">
           <img class="logo" src="assets/logo.svg" alt="NymaMar" />
-          <p class="footer-note">Maritime ship management and representation, delivered with technical rigour and human care.</p>
+          <p class="footer-note">A team of Greek maritime professionals — a stepping stone for the people and organisations who shape shipping.</p>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="who-we-are.html">Who We Are</a></li>
-            <li><a href="what-we-do.html">What We Do</a></li>
+            <li><a href="who-we-are.html">About</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#mentoring">Mentoring &amp; Coaching</a></li>
+            <li><a href="services.html#technical">Technical Management</a></li>
+            <li><a href="services.html#environmental">Environmental &amp; Decarbonization</a></li>
+            <li><a href="services.html#academic">Academic &amp; Training</a></li>
+            <li><a href="services.html#representations">Representations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
           <h4>Contact</h4>
           <ul>
+            <li>30A Ifestou Str., Ano Ilioupolis</li>
+            <li>16345, Athens, Greece</li>
+            <li><a href="tel:+302109951917">+30 210 995 1917</a></li>
             <li><a href="mailto:email@nymamar.com">email@nymamar.com</a></li>
-            <li>Greece</li>
-            <li><a href="#" aria-disabled="true">LinkedIn</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> NymaMar. All rights reserved.</span>
-        <span>Built with care · Athens, Greece</span>
+        <span>Athens, Greece</span>
       </div>
     </div>
   </footer>

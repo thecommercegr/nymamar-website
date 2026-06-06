@@ -4,98 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services — NymaMar</title>
-  <meta name="description" content="NymaMar's maritime services in detail: technical management, crew management, environmental & decarbonization advisory, and owner representation." />
+  <meta name="description" content="NymaMar services: mentoring & coaching, academic & industry engagement, environmental & decarbonization, representations, and third-party technical management." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/logo.svg" />
 </head>
 <body>
 
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="NymaMar home">
-      <img class="logo logo--default" src="assets/logo.svg" alt="NymaMar" />
-    </a>
+    <a class="brand" href="index.html" aria-label="NymaMar home"><img class="logo logo--default" src="assets/logo.svg" alt="NymaMar" /></a>
     <nav class="nav" aria-label="Primary">
       <a href="index.html">Home</a>
-      <a href="who-we-are.html">Who We Are</a>
-      <a href="what-we-do.html">What We Do</a>
+      <a href="who-we-are.html">About</a>
       <a href="services.html" class="active">Services</a>
       <a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn btn-secondary">Get in touch</a>
     </nav>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
+  <!-- Page hero -->
   <section class="page-hero" data-dark-zone>
-    <div class="page-hero__media">
-      <img src="https://images.unsplash.com/photo-1590496793907-4d66e2994b4d?q=80&w=2200&auto=format&fit=crop" alt="Aerial of a busy shipping port" fetchpriority="high" />
-    </div>
+    <div class="page-hero__media"><img src="https://images.unsplash.com/photo-1561702469-c4239ced3f47?q=80&w=2200&auto=format&fit=crop" alt="Port terminal at work" fetchpriority="high" /></div>
     <div class="wrap">
-      <span class="eyebrow on-dark">Services</span>
-      <h1>Comprehensive management, discipline by discipline.</h1>
+      <span class="eyebrow on-dark">Our services</span>
+      <h1>Our Services</h1>
+      <p class="lede">We operate at the intersection of technical excellence, human development, and environmental responsibility — creating focused value across the shipping ecosystem.</p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--paper">
     <div class="wrap">
 
-      <!-- Technical -->
-      <div id="technical" class="reveal" style="max-width:64ch;">
-        <span class="eyebrow">01 — Service</span>
-        <h2>Technical Management</h2>
-        <p class="lede" style="margin:1rem 0 1.25rem; color:#444;">We take full responsibility for the technical operation of the vessel, keeping it safe, reliable and compliant throughout its trading life.</p>
-        <p style="color:#666;">Our superintendents attend ships in person, maintain rigorous planned-maintenance regimes, manage spares and budgets transparently, and plan dry-dockings to minimise off-hire. Class and statutory compliance is treated as a baseline, not a target.</p>
-      </div>
-      <hr class="rule" />
+      <!-- 01 Mentoring & Coaching -->
+      <article id="mentoring" class="feature reveal">
+        <div class="feature__media"><img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?q=80&w=1400&auto=format&fit=crop" alt="Mentoring session" loading="lazy" /></div>
+        <div class="feature__content">
+          <div class="feature__num">01 — Service</div>
+          <h2>Mentoring &amp; Coaching</h2>
+          <p style="color:var(--muted); margin-bottom:1.1rem;">Shipping is built by people, and sustained by knowledge. We support professionals at every stage of their maritime career — strengthening technical and operational competencies (technical management, operational performance, compliance, and environmental &amp; sustainability management), while addressing the human dimension: leadership presence, communication, decision-making under pressure, and professional resilience.</p>
+          <p style="font-weight:600; margin-bottom:.5rem;">Who we work with</p>
+          <ul>
+            <li>Early career — bridging academic training and real-life shipping operations</li>
+            <li>Ship-to-shore transitions — during and after the move from sea to shore roles</li>
+            <li>Career pivots — when professional growth requires exposure to new business segments</li>
+          </ul>
+          <p style="color:var(--muted); margin-top:1rem;">We can work on specific cases with specific individuals, support entire departments, or act as an on-call partner whenever your team needs us.</p>
+        </div>
+      </article>
 
-      <!-- Crew -->
-      <div id="crew" class="reveal" style="max-width:64ch;">
-        <span class="eyebrow">02 — Service</span>
-        <h2>Crew Management</h2>
-        <p class="lede" style="margin:1rem 0 1.25rem; color:#444;">A safe ship begins with a good crew. We recruit, train and look after seafarers who are competent and committed.</p>
-        <p style="color:#666;">From manning and certification to payroll, welfare and retention, we handle the full crewing cycle in line with MLC and ISM requirements — because how a crew is treated shows in how a ship is run.</p>
-      </div>
-      <hr class="rule" />
+      <!-- 02 Academic & Industry Engagement -->
+      <article id="academic" class="feature reveal">
+        <div class="feature__media"><img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?q=80&w=1400&auto=format&fit=crop" alt="Lecture hall" loading="lazy" /></div>
+        <div class="feature__content">
+          <div class="feature__num">02 — Service</div>
+          <h2>Academic &amp; Industry Engagement</h2>
+          <!-- NOTE (client): approved copy references "Business College of Athens (BCA)" and its MSc in Marine Engineering Management, but BCA name/logo use is pending BCA's confirmation. Using a generic reference until confirmed, then swap back. -->
+          <p style="color:var(--muted); margin-bottom:1.1rem;">We actively contribute to educating the next generation of maritime professionals. In collaboration with a leading Athens-based business college and its MSc in Marine Engineering Management, our team has delivered specialized lectures grounded in real-world case studies:</p>
+          <ul>
+            <li>Project Management — New Construction &amp; Dry Docking <em style="color:var(--blue);">· Fall 2024–2025</em></li>
+            <li>Maintenance &amp; Inspections Management <em style="color:var(--blue);">· Spring 2024–2025</em></li>
+          </ul>
+          <p style="color:var(--muted); margin-top:1rem;">Through interactive sessions, students gain practical exposure to the standards, challenges, and management approaches they will face in their careers.</p>
+        </div>
+      </article>
 
-      <!-- Environmental -->
-      <div id="environmental" class="reveal" style="max-width:64ch;">
-        <span class="eyebrow">03 — Service</span>
-        <h2>Environmental &amp; Decarbonization</h2>
-        <p class="lede" style="margin:1rem 0 1.25rem; color:#444;">We turn environmental regulation into operational advantage and chart a credible course to a lower-carbon fleet.</p>
-        <p style="color:#666;">Our team monitors CII performance, prepares owners for EU ETS and FuelEU Maritime, optimises fuel consumption and voyage performance, and builds practical decarbonization roadmaps tailored to each vessel and trade.</p>
-      </div>
-      <hr class="rule" />
+      <!-- 03 Environmental & Decarbonization -->
+      <article id="environmental" class="feature reveal">
+        <div class="feature__media"><img src="https://images.unsplash.com/photo-1606185540834-d6e7483ee1a4?q=80&w=1400&auto=format&fit=crop" alt="Cargo vessel under way" loading="lazy" /></div>
+        <div class="feature__content">
+          <div class="feature__num">03 — Service</div>
+          <!-- NOTE (client): in Notion this section's heading reads "Efficient Management Representations" but its content is Environmental & Decarbonization (a likely copy/paste error). Using the content-accurate heading; please confirm. -->
+          <h2>Environmental &amp; Decarbonization</h2>
+          <p style="color:var(--muted); margin-bottom:1.1rem;">We are committed to contributing to a more sustainable maritime industry, bringing forward innovative and actionable solutions focused on:</p>
+          <ul>
+            <li>Emissions reduction and decarbonization strategies</li>
+            <li>Energy efficiency assessment and optimization</li>
+            <li>Feasibility studies for new technologies and vessel modifications</li>
+            <li>Evaluation and integration of emerging technologies</li>
+          </ul>
+          <p style="color:var(--muted); margin-top:1rem;">We combine practical operational experience with forward-thinking engineering approaches — assessing what is viable, what is scalable, and what genuinely supports greener seaborne trade.</p>
+        </div>
+      </article>
 
-      <!-- Representations -->
-      <div id="representations" class="reveal" style="max-width:64ch;">
-        <span class="eyebrow">04 — Service</span>
-        <h2>Representations</h2>
-        <p class="lede" style="margin:1rem 0 1.25rem; color:#444;">As your trusted representative, we protect your interests wherever your ships are built, bought or trading.</p>
-        <p style="color:#666;">We provide owner's representation, newbuilding and conversion supervision, pre-purchase and condition inspections, and local liaison — acting as your eyes, ears and judgement on the ground.</p>
-      </div>
+      <!-- 04 Representations -->
+      <article id="representations" class="feature reveal">
+        <div class="feature__media"><img src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&w=1400&auto=format&fit=crop" alt="Shipping containers at port" loading="lazy" /></div>
+        <div class="feature__content">
+          <div class="feature__num">04 — Service</div>
+          <h2>Representations</h2>
+          <p style="color:var(--muted); margin-bottom:1.1rem;">We represent a selected group of niche companies offering specialized services to the maritime industry. Each partner is chosen for depth of expertise and quality of delivery.</p>
+          <p style="font-weight:600; margin-bottom:.5rem;">A trusted network of vetted partners</p>
+          <ul>
+            <li>HSQE — Third-party compliance and Safety Management System (SMS) specialists</li>
+            <li>Crewing — Manning agents and seafarer placement</li>
+          </ul>
+          <!-- TODO (client): provide for each represented company — company name, service area / specialty, 2–3 sentence description, optional website URL or logo. -->
+          <p style="color:var(--muted); margin-top:1rem;">Full partner profiles will be added here as they are confirmed.</p>
+        </div>
+      </article>
+
+      <!-- 05 Technical Management -->
+      <article id="technical" class="feature reveal">
+        <div class="feature__media"><img src="https://images.unsplash.com/photo-1652837135894-cd1d7f74588a?q=80&w=1400&auto=format&fit=crop" alt="Ship engine room" loading="lazy" /></div>
+        <div class="feature__content">
+          <div class="feature__num">05 — Service</div>
+          <h2>Technical Management</h2>
+          <p style="color:var(--muted); margin-bottom:1.1rem;">We assume third-party technical management services — partial or complete — depending on fleet size and operational needs. By bringing together the right specialized expertise, we help shipowners and managers:</p>
+          <ul>
+            <li>Optimize operational resources and reduce overhead</li>
+            <li>Improve efficiency, reliability, and regulatory compliance</li>
+            <li>Strengthen internal quality frameworks</li>
+            <li>Deliver measurable performance results</li>
+          </ul>
+          <p style="color:var(--muted); margin-top:1rem;">Our model is flexible: from full technical management support to targeted ad-hoc projects. We work alongside your existing structure, or step in where expertise is needed most.</p>
+        </div>
+      </article>
 
     </div>
   </section>
 
-  <!-- Representations partners (placeholder per build log) -->
-  <section class="section section--white">
-    <div class="wrap reveal" style="max-width:64ch;">
-      <span class="eyebrow">Our network</span>
-      <h2>Representation partners</h2>
-      <p class="lede" style="margin-top:1rem; color:#555;">NymaMar represents and partners with selected organisations across the maritime sector. Partner names, descriptions and logos will be added here once confirmed.</p>
-      <!-- TODO (client): provide partner company names, short descriptions and optional logos. -->
-      <!-- NOTE: BCA logo/name to be used only after written confirmation from BCA. -->
-    </div>
-  </section>
-
+  <!-- CTA -->
   <section class="section section--navy cta-banner" data-dark-zone>
     <div class="wrap reveal">
-      <span class="eyebrow on-dark">Get started</span>
-      <h2>Build a management plan around your fleet.</h2>
-      <p>Choose one service or all four — we'll tailor the scope and the standard stays the same.</p>
+      <span class="eyebrow on-dark center">Let's talk</span>
+      <h2>Not sure which service fits your needs?</h2>
+      <p>Let's have a conversation. We'll help you identify the right approach for your organization.</p>
       <div class="btn-row" style="justify-content:center;">
-        <a href="contact.html" class="btn btn-ghost">Request a proposal</a>
+        <a href="contact.html" class="btn btn-primary">Contact us <span class="arw">→</span></a>
       </div>
     </div>
   </section>
@@ -105,30 +143,40 @@
       <div class="footer-top">
         <div class="footer-col">
           <img class="logo" src="assets/logo.svg" alt="NymaMar" />
-          <p class="footer-note">Maritime ship management and representation, delivered with technical rigour and human care.</p>
+          <p class="footer-note">A team of Greek maritime professionals — a stepping stone for the people and organisations who shape shipping.</p>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="who-we-are.html">Who We Are</a></li>
-            <li><a href="what-we-do.html">What We Do</a></li>
+            <li><a href="who-we-are.html">About</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#mentoring">Mentoring &amp; Coaching</a></li>
+            <li><a href="services.html#technical">Technical Management</a></li>
+            <li><a href="services.html#environmental">Environmental &amp; Decarbonization</a></li>
+            <li><a href="services.html#academic">Academic &amp; Training</a></li>
+            <li><a href="services.html#representations">Representations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
           <h4>Contact</h4>
           <ul>
+            <li>30A Ifestou Str., Ano Ilioupolis</li>
+            <li>16345, Athens, Greece</li>
+            <li><a href="tel:+302109951917">+30 210 995 1917</a></li>
             <li><a href="mailto:email@nymamar.com">email@nymamar.com</a></li>
-            <li>Greece</li>
-            <li><a href="#" aria-disabled="true">LinkedIn</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> NymaMar. All rights reserved.</span>
-        <span>Built with care · Athens, Greece</span>
+        <span>Athens, Greece</span>
       </div>
     </div>
   </footer>

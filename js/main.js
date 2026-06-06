@@ -93,6 +93,31 @@
   onScrollHeader();
   onScrollIndicator();
 
+  /* ---- Animated stat counters ----------------------------------------- */
+  var counters = document.querySelectorAll("[data-count]");
+  if ("IntersectionObserver" in window && counters.length) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        cio.unobserve(el);
+        var target = parseFloat(el.getAttribute("data-count"));
+        var suffix = el.getAttribute("data-suffix") || "";
+        var dur = 1400, start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var val = Math.round(target * eased);
+          el.innerHTML = val + (suffix ? '<span class="suffix">' + suffix + "</span>" : "");
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { cio.observe(el); });
+  }
+
   /* ---- Footer year ---------------------------------------------------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();

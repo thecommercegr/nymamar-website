@@ -3,52 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Who We Are — NymaMar</title>
-  <meta name="description" content="NymaMar is a Greek maritime company built on technical excellence, environmental responsibility and philotimo — the duty to do right by ship, crew and sea." />
+  <title>About — NymaMar</title>
+  <meta name="description" content="NymaMar is a squad of Greek shipping professionals united by purpose — a deliberate transition from institutional to agile, built on respect, empathy, trust, dependability and determination." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/logo.svg" />
 </head>
 <body>
 
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="NymaMar home">
-      <img class="logo logo--default" src="assets/logo.svg" alt="NymaMar" />
-    </a>
+    <a class="brand" href="index.html" aria-label="NymaMar home"><img class="logo logo--default" src="assets/logo.svg" alt="NymaMar" /></a>
     <nav class="nav" aria-label="Primary">
       <a href="index.html">Home</a>
-      <a href="who-we-are.html" class="active">Who We Are</a>
-      <a href="what-we-do.html">What We Do</a>
+      <a href="who-we-are.html" class="active">About</a>
       <a href="services.html">Services</a>
       <a href="contact.html">Contact</a>
+      <a href="contact.html" class="btn btn-secondary">Get in touch</a>
     </nav>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
   <!-- Page hero -->
   <section class="page-hero" data-dark-zone>
-    <div class="page-hero__media">
-      <img src="https://images.unsplash.com/photo-1562892302-97faedd66f1c?q=80&w=2200&auto=format&fit=crop" alt="Container ship and port at dusk" fetchpriority="high" />
-    </div>
+    <div class="page-hero__media"><img src="https://images.unsplash.com/photo-1562892302-97faedd66f1c?q=80&w=2200&auto=format&fit=crop" alt="Container ship and port at dusk" fetchpriority="high" /></div>
     <div class="wrap">
-      <span class="eyebrow on-dark">Who we are</span>
-      <h1>A steady hand on the world's oldest trade.</h1>
+      <span class="eyebrow on-dark">About NymaMar</span>
+      <h1>Who We Are</h1>
+      <p class="lede">A squad of shipping professionals united by purpose — and by a shared belief that maritime excellence starts with people.</p>
     </div>
   </section>
 
-  <!-- Intro -->
-  <section class="section section--white">
+  <!-- Our story -->
+  <section class="section section--paper">
     <div class="wrap split">
       <div class="split__content reveal">
         <span class="eyebrow">Our story</span>
-        <h2>Founded by mariners, run for owners.</h2>
-        <p class="lede" style="margin-bottom:1.5rem;">NymaMar was created by people who have stood on the bridge and in the engine room — and who believe ship management should feel like a partnership, not a transaction.</p>
-        <p style="color:#555;">From our home in Greece, a nation that has carried the world's cargo for millennia, we manage vessels with the discipline of class rules and the conscience of seafarers. Every decision is weighed against three questions: is it safe, is it right, and would we accept it for our own ship?</p>
+        <h2>How we got here</h2>
+        <p class="lede" style="margin:1.3rem 0;">We are a team born from within the industry — professionals who spent years inside traditional shipping management structures and chose, at a certain point, to do things differently.</p>
+        <p style="color:var(--muted);">NymaMar represents a deliberate transition: from employment to entrepreneurship, from institutional to agile, from doing what's expected to doing what's right. We took the expertise we'd built — technical management, human element, operations, compliance — and rebuilt it into something leaner, sharper, and more purposeful.</p>
       </div>
-      <div class="split__media reveal">
-        <img src="https://images.unsplash.com/photo-1590496793907-4d66e2994b4d?q=80&w=1600&auto=format&fit=crop" alt="Cranes over a shipping terminal" loading="lazy" />
+      <div class="split__media reveal d1">
+        <img src="https://images.unsplash.com/photo-1530890448995-4d82724f702c?q=80&w=1400&auto=format&fit=crop" alt="Maritime professional onboard a vessel" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-bleed statement band -->
+  <section class="fullbleed" style="position:relative; min-height:46vh; display:flex; align-items:center; justify-content:center; overflow:hidden; text-align:center;" data-dark-zone>
+    <img src="https://images.unsplash.com/photo-1590496793907-4d66e2994b4d?q=80&w=2200&auto=format&fit=crop" alt="Cranes over a shipping terminal" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2;" />
+    <div style="position:absolute; inset:0; background:rgba(8,20,34,0.62); z-index:-1;"></div>
+    <div class="wrap reveal">
+      <blockquote style="font-family:var(--serif); font-weight:500; color:#fff; font-size:clamp(1.9rem,4.5vw,3.2rem); line-height:1.14; max-width:20ch; margin-inline:auto; letter-spacing:-0.015em;">Our background is Greek shipping. Our outlook is global.</blockquote>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section section--sand">
+    <div class="wrap split" style="align-items:flex-start;">
+      <div class="reveal">
+        <span class="eyebrow">Mission</span>
+        <h3 style="margin-bottom:1rem;">Empower growth. Elevate standards.</h3>
+        <p style="color:var(--muted); margin-bottom:1rem;">We aspire to be a stepping stone within the shipping industry, for organizations and for the people who shape it. Rooted in the <em>philotimo</em> that defined previous generations of Greek shipping, we combine integrity, responsibility, and dedication with innovative and transformative management practices.</p>
+        <p style="color:var(--muted);">Our mission is to empower growth. To elevate standards. To create lasting value for companies, professionals, and the maritime community as a whole.</p>
+      </div>
+      <div class="reveal d1">
+        <span class="eyebrow">Vision</span>
+        <h3 style="margin-bottom:1rem;">Connect the elements.</h3>
+        <p style="color:var(--muted); margin-bottom:1rem;">We connect the elements — people, expertise, processes, and technology — and enable their full potential.</p>
+        <p style="color:var(--muted);">By creating strong bonds between specialized knowledge and operational execution, we unlock synergies that lead to sustainable performance, transparency, and long-term success.</p>
       </div>
     </div>
   </section>
@@ -56,71 +80,38 @@
   <!-- Values -->
   <section class="section">
     <div class="wrap">
-      <div class="reveal" style="max-width:46ch; margin-bottom:clamp(2.5rem,5vw,3.5rem);">
-        <span class="eyebrow">What guides us</span>
-        <h2>Principles we don't trade away.</h2>
+      <div class="section-head reveal">
+        <span class="eyebrow">Our values</span>
+        <h2>Principles that guide every decision.</h2>
+        <p class="lede" style="margin-top:1rem;">Our foundation is built on principles that guide every decision and every partnership.</p>
       </div>
-      <div class="cards reveal">
-        <div class="card">
-          <span class="card__num">01</span>
-          <h3>Safety first</h3>
-          <p>The safety of crew, cargo and vessel is never balanced against cost or schedule.</p>
-        </div>
-        <div class="card">
-          <span class="card__num">02</span>
-          <h3>Transparency</h3>
-          <p>Owners see what we see. Honest reporting, clear budgets, no surprises in port.</p>
-        </div>
-        <div class="card">
-          <span class="card__num">03</span>
-          <h3>Stewardship</h3>
-          <p>We protect the asset and the ocean it sails on, today and for the long term.</p>
-        </div>
-        <div class="card">
-          <span class="card__num">04</span>
-          <h3>Philotimo</h3>
-          <p>The quiet duty to do right by ship, crew and sea — even when no one is watching.</p>
-        </div>
+      <div class="values reveal">
+        <div class="value"><span class="value__k">01</span><h4>Respect</h4><p>We value people, relationships, and professional integrity.</p></div>
+        <div class="value"><span class="value__k">02</span><h4>Empathy</h4><p>We understand the challenges of the industry and act with awareness.</p></div>
+        <div class="value"><span class="value__k">03</span><h4>Trust</h4><p>We build transparent, honest, long-term collaborations.</p></div>
+        <div class="value"><span class="value__k">04</span><h4>Dependability</h4><p>We deliver consistently, responsibly, and with precision.</p></div>
+        <div class="value"><span class="value__k">05</span><h4>Determination</h4><p>We pursue excellence with resilience and commitment.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="section section--white">
-    <div class="wrap stats reveal">
-      <div class="stat">
-        <div class="stat__num">24/7</div>
-        <div class="stat__label">Technical &amp; emergency support</div>
-      </div>
-      <div class="stat">
-        <div class="stat__num">100%</div>
-        <div class="stat__label">Class &amp; flag compliance focus</div>
-      </div>
-      <div class="stat">
-        <div class="stat__num">Hands-on</div>
-        <div class="stat__label">Superintendents who attend the ship</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team (placeholder per build log — bios skipped for v1) -->
-  <section class="section">
+  <!-- Team (placeholder per content — bios optional for v1) -->
+  <section class="section section--paper">
     <div class="wrap reveal" style="max-width:60ch;">
-      <span class="eyebrow">Our people</span>
+      <span class="eyebrow">The team</span>
       <h2>Experience that has been to sea.</h2>
-      <p class="lede" style="margin-top:1rem; color:#555;">Our management team brings together master mariners, chief engineers and commercial specialists. Full biographies will be added here as the team profiles are finalised.</p>
-      <!-- TODO (client): provide names, roles and short bios for the leadership team. -->
+      <p class="lede" style="margin-top:1rem; color:var(--muted);">Our team brings together specialists in technical management, the human element, operations and compliance. Individual profiles will be added here as they are finalised.</p>
+      <!-- TODO (client): provide per team member — full name, title/role, short bio (3–5 sentences), professional photo. Skip for v1 if not ready. -->
     </div>
   </section>
 
   <!-- CTA -->
   <section class="section section--navy cta-banner" data-dark-zone>
     <div class="wrap reveal">
-      <span class="eyebrow on-dark">Work with us</span>
-      <h2>Let's protect what you've built.</h2>
-      <p>Tell us about your vessel and your priorities — we'll tell you honestly how we can help.</p>
+      <span class="eyebrow on-dark center">Get in touch</span>
+      <h2>Want to know more or work together?</h2>
       <div class="btn-row" style="justify-content:center;">
-        <a href="contact.html" class="btn btn-ghost">Contact NymaMar</a>
+        <a href="contact.html" class="btn btn-primary">Get in touch <span class="arw">→</span></a>
       </div>
     </div>
   </section>
@@ -130,30 +121,40 @@
       <div class="footer-top">
         <div class="footer-col">
           <img class="logo" src="assets/logo.svg" alt="NymaMar" />
-          <p class="footer-note">Maritime ship management and representation, delivered with technical rigour and human care.</p>
+          <p class="footer-note">A team of Greek maritime professionals — a stepping stone for the people and organisations who shape shipping.</p>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="who-we-are.html">Who We Are</a></li>
-            <li><a href="what-we-do.html">What We Do</a></li>
+            <li><a href="who-we-are.html">About</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html">Mentoring &amp; Coaching</a></li>
+            <li><a href="services.html">Technical Management</a></li>
+            <li><a href="services.html">Environmental &amp; Decarbonization</a></li>
+            <li><a href="services.html">Academic &amp; Training</a></li>
+            <li><a href="services.html">Representations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
           <h4>Contact</h4>
           <ul>
+            <li>30A Ifestou Str., Ano Ilioupolis</li>
+            <li>16345, Athens, Greece</li>
+            <li><a href="tel:+302109951917">+30 210 995 1917</a></li>
             <li><a href="mailto:email@nymamar.com">email@nymamar.com</a></li>
-            <li>Greece</li>
-            <li><a href="#" aria-disabled="true">LinkedIn</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> NymaMar. All rights reserved.</span>
-        <span>Built with care · Athens, Greece</span>
+        <span>Athens, Greece</span>
       </div>
     </div>
   </footer>
