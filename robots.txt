@@ -1,5 +1,4 @@
+# This repository is a private design preview, not the production website.
+# Keep the whole preview out of search engines.
 User-agent: *
-Allow: /
-Disallow: /ai-context.html
-
-# Sitemap: https://www.nymamar.com/sitemap.xml
+Disallow: /
