@@ -364,6 +364,8 @@ body.nav-open .nav-toggle span:nth-child(3){ transform: translateY(-8px) rotate(
 
 /* ----- Accessibility ----------------------------------------------------- */
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.skip-link { position: fixed; top: -120px; left: 1rem; z-index: 200; background: var(--blue); color: #fff; padding: 0.75rem 1.2rem; font-weight: 600; font-size: 0.9rem; box-shadow: var(--shadow); transition: top .25s var(--ease); }
+.skip-link:focus { top: 1rem; outline: 2px solid #fff; outline-offset: 2px; }
 
 /* ----- Responsive -------------------------------------------------------- */
 @media (max-width: 900px) { .pcards { grid-template-columns: 1fr; } }
