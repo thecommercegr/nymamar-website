@@ -45,6 +45,37 @@
     revealEls.forEach(function (el) { el.classList.add("is-in"); });
   }
 
+  /* ---- Auto-stagger children ------------------------------------------ */
+  document.querySelectorAll("[data-stagger]").forEach(function (group) {
+    var i = 0;
+    Array.prototype.forEach.call(group.children, function (child) {
+      child.style.setProperty("--i", i++);
+    });
+  });
+
+  /* ---- Scroll progress bar -------------------------------------------- */
+  var progress = document.querySelector(".scroll-progress");
+  function updateProgress() {
+    if (!progress) return;
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var p = max > 0 ? window.scrollY / max : 0;
+    progress.style.transform = "scaleX(" + p.toFixed(4) + ")";
+  }
+
+  /* ---- Parallax -------------------------------------------------------- */
+  var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var parallaxEls = prefersReduced ? [] : Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  function updateParallax() {
+    if (!parallaxEls.length) return;
+    parallaxEls.forEach(function (el) {
+      var speed = parseFloat(el.getAttribute("data-parallax")) || 0.18;
+      var rect = el.getBoundingClientRect();
+      var offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -speed;
+      el.style.transform = "translate3d(0," + offset.toFixed(1) + "px,0)";
+    });
+  }
+
   /* ---- Scroll indicator ----------------------------------------------- */
   var indicator = document.querySelector(".scroll-indicator");
   var darkZones = Array.prototype.slice.call(document.querySelectorAll("[data-dark-zone]"));
@@ -85,13 +116,39 @@
     window.requestAnimationFrame(function () {
       onScrollHeader();
       onScrollIndicator();
+      updateProgress();
+      updateParallax();
       ticking = false;
     });
   }
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScrollIndicator, { passive: true });
+  window.addEventListener("resize", function () { onScrollIndicator(); updateProgress(); updateParallax(); }, { passive: true });
   onScrollHeader();
   onScrollIndicator();
+  updateProgress();
+  updateParallax();
+
+  /* ---- Services sub-nav: highlight the section in view ---------------- */
+  var subnavLinks = document.querySelectorAll(".subnav a");
+  if ("IntersectionObserver" in window && subnavLinks.length) {
+    var linkFor = {};
+    subnavLinks.forEach(function (a) {
+      var id = a.getAttribute("href");
+      if (id && id.charAt(0) === "#") linkFor[id.slice(1)] = a;
+    });
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        subnavLinks.forEach(function (a) { a.classList.remove("active"); });
+        var a = linkFor[e.target.id];
+        if (a) a.classList.add("active");
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    Object.keys(linkFor).forEach(function (id) {
+      var sec = document.getElementById(id);
+      if (sec) sio.observe(sec);
+    });
+  }
 
   /* ---- Animated stat counters ----------------------------------------- */
   var counters = document.querySelectorAll("[data-count]");
