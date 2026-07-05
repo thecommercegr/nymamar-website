@@ -1,6 +1,6 @@
 /* ==========================================================================
    NymaMar — Design System  ·  "Connect the elements"
-   Display: Lexend Giga (self-hosted variable) · Body/UI: DM Sans
+   Display: Archivo (Google Fonts) · Body/UI: DM Sans
    Mobile-first: base rules are the phone layout; min-width media queries
    enhance upward. Quadrant pillar colours are exposed as --pillar accents.
    Squarespace-portable: standard CSS, one small IIFE, no libraries.
@@ -269,7 +269,13 @@ body.nav-open { overflow: hidden; }
 .split { display: grid; gap: clamp(1.75rem, 5vw, 5rem); grid-template-columns: 1fr; align-items: center; }
 .split__content { min-width: 0; }
 .split__media { position: relative; min-width: 0; }
-.split__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; box-shadow: var(--shadow); }
+/* Framed, height-capped photo — contained so it never towers on wide screens.
+   .split__frame clips (for the parallax scale headroom); the offset accent line
+   and pillar tab live on the un-clipped .split__media so they can peek out. */
+.split__frame { position: relative; z-index: 1; overflow: hidden; isolation: isolate; box-shadow: var(--shadow-lg); }
+.split__frame img { width: 100%; aspect-ratio: 4 / 5; max-height: 560px; object-fit: cover; transform: scale(1.08); will-change: transform; }
+.split__frame::before { content: ""; position: absolute; z-index: 2; left: 0; top: 0; width: 3px; height: 4rem; background: var(--pillar); }
+.split__media::before { content: ""; position: absolute; z-index: 0; inset: 24px -18px -18px 24px; border: 1.5px solid var(--pillar); opacity: 0.38; pointer-events: none; }
 
 /* ----- Values grid ------------------------------------------------------- */
 .values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
@@ -288,8 +294,8 @@ body.nav-open { overflow: hidden; }
 .feature { display: grid; grid-template-columns: 1fr; gap: clamp(1.5rem, 5vw, 4.5rem); align-items: center; }
 .feature + .feature { margin-top: clamp(3rem, 7vw, 6rem); }
 .feature__content { min-width: 0; }
-.feature__media { position: relative; min-width: 0; }
-.feature__media img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; box-shadow: var(--shadow); }
+.feature__media { position: relative; min-width: 0; overflow: hidden; isolation: isolate; box-shadow: var(--shadow); }
+.feature__media img { width: 100%; aspect-ratio: 5 / 4; max-height: 560px; object-fit: cover; transform: scale(1.08); will-change: transform; }
 .feature__media::before { content: ""; position: absolute; left: 0; top: 0; width: 3px; height: 3.5rem; background: var(--pillar); z-index: 2; }
 .feature__num { font-family: var(--brand-font); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; color: var(--pillar-text); }
 .feature h2 { margin: 0.4rem 0 1rem; }
@@ -601,7 +607,8 @@ html.js .page-hero .lede { animation: introUp 0.9s var(--ease-out) 0.28s both; }
   html.js .course__path { stroke-dashoffset: 0 !important; transition: none; }
   html.js .hero__media, html.js .page-hero__media { animation: none; transform: none; }
   html.js .page-hero h1, html.js .page-hero .eyebrow, html.js .page-hero .lede { animation: none; clip-path: none; opacity: 1; transform: none; }
-  .hero__media img, .page-hero__media img { transform: none; }
+  .hero__media img, .page-hero__media img,
+  .split__frame img, .feature__media img { transform: none; }
   .marquee__track { animation: none; transform: none; flex-wrap: wrap; justify-content: center; }
   .scroll-progress { display: none; }
   .btn, .qtile, .scard, .pcard, .value { transition: none !important; }

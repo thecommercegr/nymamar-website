@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=2" />
   <link rel="icon" href="assets/logo-mark.svg" />
 </head>
 <body>
@@ -54,14 +54,16 @@
   <!-- Our story -->
   <section class="section section--paper">
     <div class="wrap split split--offset">
-      <div class="split__content reveal">
+      <div class="split__content reveal" data-stagger>
         <span class="eyebrow">Our story</span>
         <h2>How we got here</h2>
         <p class="lede" style="margin:1.3rem 0;">We are a team born from within the industry, professionals who spent years inside traditional shipping management structures and chose, at a certain point, to do things differently.</p>
         <p style="color:var(--muted);">NymaMar represents a deliberate transition: from employment to entrepreneurship, from institutional to agile, from doing what's expected to doing what's right. We took the expertise we'd built across technical management, human element, operations and compliance, and rebuilt it into something leaner, sharper, and more purposeful.</p>
       </div>
       <div class="split__media reveal d1">
-        <img src="assets/img/academy-explorer-maps.jpg" srcset="assets/img/academy-explorer-maps-480.jpg 480w, assets/img/academy-explorer-maps.jpg 597w" sizes="(min-width: 900px) 50vw, 100vw" alt="Illustrated voyage maps of historic maritime explorers" width="597" height="1280" loading="lazy" decoding="async" />
+        <div class="split__frame">
+          <img src="assets/img/academy-explorer-maps.jpg" srcset="assets/img/academy-explorer-maps-480.jpg 480w, assets/img/academy-explorer-maps.jpg 597w" sizes="(min-width: 900px) 42vw, 100vw" alt="Illustrated voyage maps of historic maritime explorers" width="597" height="1280" loading="lazy" decoding="async" data-parallax="0.07" data-parallax-scale="1.08" />
+        </div>
       </div>
     </div>
   </section>
@@ -101,7 +103,7 @@
         <h2>Principles that guide every decision.</h2>
         <p class="lede">Our foundation is built on principles that guide every decision and every partnership.</p>
       </div>
-      <div class="values reveal">
+      <div class="values reveal" data-stagger>
         <div class="value" data-pillar="maritime"><span class="value__k">01</span><h4>Respect</h4><p>We value people, relationships, and professional integrity.</p></div>
         <div class="value" data-pillar="sky"><span class="value__k">02</span><h4>Empathy</h4><p>We understand the challenges of the industry and act with awareness.</p></div>
         <div class="value" data-pillar="propulsion"><span class="value__k">03</span><h4>Trust</h4><p>We build transparent, honest, long-term collaborations.</p></div>
@@ -174,6 +176,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

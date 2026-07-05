@@ -40,15 +40,15 @@ Goal: move the mockup from "generic editorial template" to a distinctive, contem
 
 ### T1.1 Font roles
 **Files:** all six HTML `<head>`s, `css/styles.css`
-- **Display (h1, h2, key numerals): Lexend Giga** (already self-hosted variable font, `assets/fonts/LexendGiga-Variable.ttf`). It is wide, so use it tight and heavy: weight 550–650, `letter-spacing: -0.03em`, `line-height: 0.98–1.05`, sentence case.
+- **Display (h1, h2, key numerals): Archivo** (now loaded from Google Fonts). It is wide, so use it tight and heavy: weight 550–650, `letter-spacing: -0.03em`, `line-height: 0.98–1.05`, sentence case.
 - **Body/UI: DM Sans** (kept).
 - **Cormorant Garamond: removed from the type system.** Optionally keep italic only for the single pull-quote block; if kept, subset the Google Fonts request to italic 500 only. Otherwise delete the family from all `<head>`s.
 - Update the Google Fonts `<link>` in all six files (DM Sans only, or DM Sans + Cormorant italic subset).
-- **Acceptance:** headings across the site render in Lexend Giga; total webfont transfer < 200KB; no page requests unused font weights.
+- **Acceptance:** headings across the site render in Archivo; total webfont transfer < 200KB; no page requests unused font weights.
 
 ### T1.2 Mobile-first type scale
 **File:** `css/styles.css`
-- Lexend Giga runs wide; sizes must be tested against real headlines ("We connect the elements.") at 360px. Starting values:
+- Archivo runs wide; sizes must be tested against real headlines ("We connect the elements.") at 360px. Starting values:
   - `--fs-display: clamp(2rem, 8.5vw, 5rem);` (h1 / hero)
   - `--fs-h2: clamp(1.55rem, 5vw, 3rem);`
   - `--fs-h3: clamp(1.2rem, 3vw, 1.7rem);`
@@ -111,7 +111,7 @@ Goal: move the mockup from "generic editorial template" to a distinctive, contem
 ### T3.4 Section rhythm and asymmetry
 **Files:** all page HTML, `css/styles.css`
 - Introduce two deliberate scale/composition breaks per page so the layout is not a uniform centered stack, within Fluid Engine limits:
-  - Stats band: numerals at display size (Lexend Giga, `clamp(3rem, 10vw, 5.5rem)`), 2×2 on mobile.
+  - Stats band: numerals at display size (Archivo, `clamp(3rem, 10vw, 5.5rem)`), 2×2 on mobile.
   - One offset split section per page: text column starts higher than the image (simple `margin-top` offset from 900px; stacked normally on mobile).
 - Fix the homepage navy band where the "See all partnerships" button renders **above** its paragraph: order must be heading → paragraph → button in the DOM (also fixes screen-reader order).
 - **Acceptance:** DOM order = visual order everywhere; at 360px every section is a clean single column with consistent `--section-y` rhythm.

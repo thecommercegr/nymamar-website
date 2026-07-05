@@ -34,8 +34,8 @@ People- and expertise-led maritime company. Five service areas: **Mentoring & Co
 
 ## Design system — "Bold Modern Maritime"
 
-- **Headings:** Cormorant Garamond (500)  ·  **Body/UI:** DM Sans (400/500/600/700)
-- **Accent:** strong maritime blue `#0C5FA6` (buttons, labels, links)
+- **Headings:** Archivo (700/800, tight tracking)  ·  **Body/UI:** DM Sans (400/500/600/700)
+- **Accent:** brand blue `#034A9A` from the NYMA logo (buttons, labels, links)
 - **Palette:** bg `#F4F6F9` · paper `#FFFFFF` · ink `#15202B` · navy `#112A43` · rule `#DCE2E8`
 - **Buttons:** bold, square corners, blue fill / outline / ghost variants
 - **Type-led, uppercase section labels** with an accent rule

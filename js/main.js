@@ -43,12 +43,14 @@
       var rect = el.getBoundingClientRect();
       if (rect.bottom < -240 || rect.top > vh + 240) continue;
       var speed = parseFloat(el.getAttribute("data-parallax")) || 0.12;
-      var scale = el.getAttribute("data-parallax-scale") || "1";
+      var scaleNum = parseFloat(el.getAttribute("data-parallax-scale")) || 1;
       var mid = rect.top + rect.height / 2;
-      var head = rect.height * 0.08;             /* stay inside the scale headroom */
+      // True headroom of a scaled cover image is ((S-1)/2S) of its rendered
+      // height; 0.9 keeps a safety margin so the image edges never show.
+      var head = rect.height * Math.max(0, (scaleNum - 1) / (2 * scaleNum)) * 0.9;
       var raw = (mid - vh / 2) * -speed;
       var offset = Math.max(-head, Math.min(head, raw));
-      el.style.transform = "translate3d(0," + offset.toFixed(1) + "px,0) scale(" + scale + ")";
+      el.style.transform = "translate3d(0," + offset.toFixed(1) + "px,0) scale(" + scaleNum + ")";
     }
   }
 
