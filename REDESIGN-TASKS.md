@@ -1,5 +1,13 @@
 # NymaMar Redesign — Developer Task List
 
+> **⚠️ SUPERSEDED / HISTORICAL — do not follow this doc.**
+> This is the task list for the earlier "mobile-first rebuild" redesign, which has
+> shipped and has since been revised. Parts now **contradict the live, client-approved
+> design**: the display face is **Archivo** (not Lexend Giga), and the `.marquee` +
+> `.scroll-progress` bar + image parallax are **intentional** motion (this doc planned
+> to remove them). Treat **`CLAUDE.md`** and **`README.md`** as the source of truth.
+> Retained only for historical reference; safe to delete.
+
 Goal: move the mockup from "generic editorial template" to a distinctive, contemporary site built around the NYMA quadrant identity ("we connect the elements"), **mobile-first**, and still Squarespace-portable.
 
 ## Global rules (apply to every task)
