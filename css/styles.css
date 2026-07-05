@@ -205,8 +205,10 @@ body.nav-open { overflow: hidden; }
   font-family: var(--brand-font); font-weight: 550; font-size: 1.4rem; letter-spacing: -0.02em;
   color: var(--ink); border-bottom: 1px solid var(--rule);
 }
-.nav a[aria-current="page"] { color: var(--blue); }
-.nav a[aria-current="page"]::before { content: ""; width: 0.6rem; height: 2px; background: var(--blue); margin-right: 0.6rem; }
+/* Current-page marker applies to text links only — the "Get in touch" button
+   can carry aria-current (on contact.html) without gaining a dot/color override. */
+.nav a:not(.btn)[aria-current="page"] { color: var(--blue); }
+.nav a:not(.btn)[aria-current="page"]::before { content: ""; width: 0.6rem; height: 2px; background: var(--blue); margin-right: 0.6rem; }
 .nav .btn { margin-top: 1.4rem; border-bottom: 0; font-family: var(--sans); font-size: 1rem; }
 .nav .btn-secondary { color: var(--blue); border-color: var(--blue); }
 
@@ -482,8 +484,8 @@ html.js .reveal-clip.d2 { transition-delay: 0.24s; }
   .site-header:not(.is-solid) .nav a { color: #fff; }
   .nav a:not(.btn)::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--blue); transition: width .3s var(--ease); }
   .nav a[aria-current="page"]::before { display: none; }
-  .nav a:not(.btn):hover::after, .nav a[aria-current="page"]::after { width: 100%; }
-  .site-header:not(.is-solid) .nav a[aria-current="page"]::after { background: #fff; }
+  .nav a:not(.btn):hover::after, .nav a:not(.btn)[aria-current="page"]::after { width: 100%; }
+  .site-header:not(.is-solid) .nav a:not(.btn)[aria-current="page"]::after { background: #fff; }
   .nav .btn { margin-top: 0; width: auto; min-height: auto; padding: 0.65rem 1.35rem; font-size: 0.86rem; }
   .site-header:not(.is-solid) .nav .btn-secondary { color: #fff; border-color: rgba(255,255,255,0.7); }
   .nav-toggle { display: none; }
