@@ -20,12 +20,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/logo-mark.svg" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <!-- ===== Header ===== -->
   <header class="site-header">
@@ -42,19 +43,20 @@
   </header>
 
   <!-- ===== Hero ===== -->
-  <section id="main" class="hero scrim-b">
+  <section id="main" class="hero">
     <div class="hero__media">
-      <img src="assets/img/sea-fire-monitor-trial.jpg" srcset="assets/img/sea-fire-monitor-trial-480.jpg 480w, assets/img/sea-fire-monitor-trial.jpg 960w" sizes="100vw" alt="Deck crew running a fire-monitor sea trial aboard a vessel" width="960" height="1280" fetchpriority="high" decoding="async" />
+      <img src="assets/img/sea-fire-monitor-trial.jpg" srcset="assets/img/sea-fire-monitor-trial-480.jpg 480w, assets/img/sea-fire-monitor-trial.jpg 960w" sizes="100vw" alt="Deck crew running a fire-monitor sea trial aboard a vessel" width="960" height="1280" fetchpriority="high" decoding="async" data-parallax="0.12" data-parallax-scale="1.14" />
     </div>
     <div class="wrap hero__inner">
-      <span class="eyebrow on-dark">Maritime professionals · Athens, Greece</span>
-      <h1>We connect the elements. And enable their full potential.</h1>
-      <p class="lede">A team of active and diverse maritime professionals, offering a transformative learning journey to marine engineering mastering and ocean stewardship for the next generation.</p>
-      <div class="btn-row">
+      <span class="eyebrow on-dark reveal">Maritime professionals · Athens, Greece</span>
+      <h1 class="reveal-clip d1">We connect the elements. And enable their full potential.</h1>
+      <p class="lede reveal d2">A team of active and diverse maritime professionals, offering a transformative learning journey to marine engineering mastering and ocean stewardship for the next generation.</p>
+      <div class="btn-row reveal d3">
         <a href="services.html" class="btn btn-primary">Explore our services <span class="arw">→</span></a>
         <a href="contact.html" class="btn btn-ghost">Get in touch</a>
       </div>
     </div>
+    <div class="scroll-cue" aria-hidden="true">Scroll<span class="scroll-cue__line"></span></div>
   </section>
 
   <!-- ===== Quadrant motif — the four elements we connect ===== -->
@@ -64,10 +66,10 @@
         <span class="eyebrow">What we do</span>
         <h2>Focused value across the shipping ecosystem.</h2>
       </div>
-      <div class="quad reveal">
+      <div class="quad reveal" data-stagger>
         <a class="qtile" data-pillar="maritime" href="services.html#technical">
           <span class="qtile__icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="4" y="4" width="3.2" height="16"/><rect x="16.8" y="4" width="3.2" height="16"/><polygon points="4,4 7.2,4 20,20 16.8,20"/></svg></span>
-          <span class="qtile__title">Technical Manage&shy;ment</span>
+          <span class="qtile__title">Technical Management</span>
           <span class="qtile__link">Explore <span class="arw">→</span></span>
         </a>
         <a class="qtile" data-pillar="sky" href="services.html#academic">
@@ -77,7 +79,7 @@
         </a>
         <a class="qtile" data-pillar="propulsion" href="services.html#environmental">
           <span class="qtile__icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><g transform="translate(12 12)"><path d="M0 0 A9 9 0 0 1 0 -18 Z"/><path d="M0 0 A9 9 0 0 1 0 -18 Z" transform="rotate(90)"/><path d="M0 0 A9 9 0 0 1 0 -18 Z" transform="rotate(180)"/><path d="M0 0 A9 9 0 0 1 0 -18 Z" transform="rotate(270)"/></g></svg></span>
-          <span class="qtile__title">Environ&shy;mental &amp; Decarbon&shy;ization</span>
+          <span class="qtile__title">Environmental &amp; Decarbonization</span>
           <span class="qtile__link">Explore <span class="arw">→</span></span>
         </a>
         <a class="qtile" data-pillar="people" href="services.html#mentoring">
@@ -124,10 +126,21 @@
         <p class="lede" style="max-width:60ch;">We represent a vetted group of niche maritime specialists, from propulsion and steering-gear components to compliance and crewing.</p>
         <a href="partnerships.html" class="btn btn-ghost">See all partnerships <span class="arw">→</span></a>
       </div>
-      <div class="partner-row partner-row--dark reveal">
-        <span class="partner-row__item">Supersoar Marine <span class="tag">Propulsion</span></span>
-        <span class="partner-row__item">HSQE Partner <span class="tag">Compliance</span></span>
-        <span class="partner-row__item">Crewing Partner <span class="tag">Manning</span></span>
+      <div class="marquee reveal" aria-hidden="true">
+        <div class="marquee__track">
+          <span class="marquee__item">Supersoar Marine <span class="tag">Propulsion</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">HSQE <span class="tag">Compliance</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">Crewing <span class="tag">Manning</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">Supersoar Marine <span class="tag">Propulsion</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">HSQE <span class="tag">Compliance</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">Crewing <span class="tag">Manning</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">Supersoar Marine <span class="tag">Propulsion</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">HSQE <span class="tag">Compliance</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">Crewing <span class="tag">Manning</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">Supersoar Marine <span class="tag">Propulsion</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">HSQE <span class="tag">Compliance</span></span><span class="marquee__sep"></span>
+          <span class="marquee__item">Crewing <span class="tag">Manning</span></span><span class="marquee__sep"></span>
+        </div>
       </div>
     </div>
   </section>
@@ -139,7 +152,7 @@
         <span class="eyebrow">In our world</span>
         <h2>Greek shipping, reimagined.</h2>
       </div>
-      <div class="scards reveal">
+      <div class="scards reveal" data-stagger>
         <a class="scard" data-pillar="maritime" href="who-we-are.html">
           <div class="scard__media"><img src="assets/img/sea-fire-spray-rainbow.jpg" srcset="assets/img/sea-fire-spray-rainbow-480.jpg 480w, assets/img/sea-fire-spray-rainbow.jpg 960w" sizes="(min-width: 600px) 50vw, 100vw" alt="Fire-monitor spray arcing over the sea during a drill" width="960" height="1280" loading="lazy" decoding="async" /></div>
           <div class="scard__body">

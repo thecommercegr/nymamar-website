@@ -20,12 +20,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/logo-mark.svg" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="42" height="30" /><span class="brand__word">NYMA</span></a>
@@ -41,8 +42,8 @@
   </header>
 
   <!-- Page hero -->
-  <section id="main" class="page-hero scrim-b">
-    <div class="page-hero__media"><img src="assets/img/port-icebreakers-moody.jpg" srcset="assets/img/port-icebreakers-moody-480.jpg 480w, assets/img/port-icebreakers-moody.jpg 960w" sizes="100vw" alt="Vessels moored under a dramatic, clouded sky" width="960" height="1280" fetchpriority="high" decoding="async" /></div>
+  <section id="main" class="page-hero">
+    <div class="page-hero__media"><img data-parallax="0.10" data-parallax-scale="1.14" src="assets/img/port-icebreakers-moody.jpg" srcset="assets/img/port-icebreakers-moody-480.jpg 480w, assets/img/port-icebreakers-moody.jpg 960w" sizes="100vw" alt="Vessels moored under a dramatic, clouded sky" width="960" height="1280" fetchpriority="high" decoding="async" /></div>
     <div class="wrap">
       <span class="eyebrow on-dark">About NymaMar</span>
       <h1>Who We Are</h1>

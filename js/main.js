@@ -13,12 +13,43 @@
 
   var header = document.querySelector(".site-header");
   var body = document.body;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---- Sticky / solid header ------------------------------------------ */
   function onScrollHeader() {
     if (!header) return;
     if (window.scrollY > 40) header.classList.add("is-solid");
     else header.classList.remove("is-solid");
+  }
+
+  /* ---- Scroll progress bar -------------------------------------------- */
+  var progressBar = document.querySelector(".scroll-progress");
+  function updateProgress() {
+    if (!progressBar) return;
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var p = max > 0 ? window.scrollY / max : 0;
+    progressBar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+  }
+
+  /* ---- Parallax (transform-only, clamped so image edges never show) --- */
+  var parallaxEls = reduceMotion ? [] :
+    Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  function updateParallax() {
+    if (!parallaxEls.length) return;
+    var vh = window.innerHeight;
+    for (var i = 0; i < parallaxEls.length; i++) {
+      var el = parallaxEls[i];
+      var rect = el.getBoundingClientRect();
+      if (rect.bottom < -240 || rect.top > vh + 240) continue;
+      var speed = parseFloat(el.getAttribute("data-parallax")) || 0.12;
+      var scale = el.getAttribute("data-parallax-scale") || "1";
+      var mid = rect.top + rect.height / 2;
+      var head = rect.height * 0.08;             /* stay inside the scale headroom */
+      var raw = (mid - vh / 2) * -speed;
+      var offset = Math.max(-head, Math.min(head, raw));
+      el.style.transform = "translate3d(0," + offset.toFixed(1) + "px,0) scale(" + scale + ")";
+    }
   }
 
   /* ---- Mobile nav ------------------------------------------------------ */
@@ -70,14 +101,22 @@
   }
 
   /* ---- Reveal on scroll (+ course-line draw) -------------------------- */
-  var revealEls = document.querySelectorAll(".reveal, .course");
+  var revealEls = document.querySelectorAll(".reveal, .reveal-clip, .course");
   if ("IntersectionObserver" in window && revealEls.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
       });
-    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
     revealEls.forEach(function (el) { io.observe(el); });
+    // Above-the-fold hero content must reveal on load regardless of the
+    // intersection threshold (on mobile the bottom-aligned hero can leave the
+    // big headline just under the observer margin while the photo settles).
+    requestAnimationFrame(function () {
+      document.querySelectorAll(
+        ".hero .reveal, .hero .reveal-clip, .page-hero .reveal, .page-hero .reveal-clip"
+      ).forEach(function (el) { el.classList.add("is-in"); io.unobserve(el); });
+    });
   } else {
     revealEls.forEach(function (el) { el.classList.add("is-in"); });
   }
@@ -95,10 +134,13 @@
   function onScroll() {
     if (ticking) return;
     ticking = true;
-    window.requestAnimationFrame(function () { onScrollHeader(); ticking = false; });
+    window.requestAnimationFrame(function () {
+      onScrollHeader(); updateProgress(); updateParallax(); ticking = false;
+    });
   }
   window.addEventListener("scroll", onScroll, { passive: true });
-  onScrollHeader();
+  window.addEventListener("resize", function () { updateProgress(); updateParallax(); }, { passive: true });
+  onScrollHeader(); updateProgress(); updateParallax();
 
   /* ---- Services sub-nav: active section + auto-scroll into view ------- */
   var subnav = document.querySelector(".subnav__inner");

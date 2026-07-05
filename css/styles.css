@@ -6,13 +6,10 @@
    Squarespace-portable: standard CSS, one small IIFE, no libraries.
    ========================================================================== */
 
-/* ----- Display font (self-hosted) --------------------------------------- */
-@font-face {
-  font-family: "Lexend Giga";
-  src: url("../assets/fonts/LexendGiga-Variable.woff2") format("woff2"),
-       url("../assets/fonts/LexendGiga-Variable.ttf") format("truetype");
-  font-weight: 100 900; font-display: swap;
-}
+/* ----- Display font -----------------------------------------------------
+   Display: Archivo (engineered industrial grotesk) — loaded via the Google
+   Fonts <link> in each page <head>, alongside DM Sans for body/UI.
+   Replaces the earlier Lexend Giga, which read too soft/wide at display size. */
 
 /* ----- Tokens ------------------------------------------------------------ */
 :root {
@@ -45,12 +42,12 @@
 
   /* Fonts */
   --sans:  "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --brand-font: "Lexend Giga", "DM Sans", sans-serif;
+  --brand-font: "Archivo", "DM Sans", sans-serif;
 
   /* Fluid type scale (edited in one place) */
-  --fs-display: clamp(2rem, 8.5vw, 5rem);
-  --fs-h2:      clamp(1.55rem, 5vw, 3rem);
-  --fs-h3:      clamp(1.2rem, 3vw, 1.7rem);
+  --fs-display: clamp(2.6rem, 9vw, 6.5rem);
+  --fs-h2:      clamp(1.75rem, 5.2vw, 3.4rem);
+  --fs-h3:      clamp(1.25rem, 3vw, 1.8rem);
   --fs-h4:      clamp(1.1rem, 2.2vw, 1.35rem);
   --fs-body:    1rem;
   --fs-small:   0.72rem;
@@ -60,7 +57,12 @@
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --section-y: clamp(3.5rem, 9vw, 9rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);   /* long, cinematic deceleration */
   --shadow: 0 18px 50px -22px rgba(12, 36, 64, 0.45);
+  --shadow-lg: 0 40px 90px -40px rgba(8, 24, 44, 0.6);
+
+  /* Motion accent (bright, for dark backgrounds + interactive cues) */
+  --cyan: #7FD1E8;
 
   /* Sticky stack heights (mobile). Upgraded at 900px below. */
   --header-h: 58px;
@@ -89,14 +91,14 @@ ul { list-style: none; padding: 0; }
 
 /* ----- Typography (mobile-first) ---------------------------------------- */
 h1, h2, h3, h4 {
-  font-family: var(--brand-font); font-weight: 600;
-  letter-spacing: -0.03em; line-height: 1.02; color: var(--ink);
+  font-family: var(--brand-font); font-weight: 800;
+  letter-spacing: -0.035em; line-height: 1.02; color: var(--ink);
   text-wrap: balance;
 }
-h1 { font-size: var(--fs-display); line-height: 1.0; }
-h2 { font-size: var(--fs-h2); line-height: 1.04; }
-h3 { font-size: var(--fs-h3); line-height: 1.08; }
-h4 { font-size: var(--fs-h4); }
+h1 { font-size: var(--fs-display); line-height: 0.96; letter-spacing: -0.045em; }
+h2 { font-size: var(--fs-h2); line-height: 1.0; letter-spacing: -0.04em; }
+h3 { font-size: var(--fs-h3); line-height: 1.08; font-weight: 700; }
+h4 { font-size: var(--fs-h4); font-weight: 700; letter-spacing: -0.02em; }
 p  { font-size: var(--fs-body); }
 
 .eyebrow {
@@ -208,20 +210,42 @@ body.nav-open { overflow: hidden; }
 .nav .btn { margin-top: 1.4rem; border-bottom: 0; font-family: var(--sans); font-size: 1rem; }
 .nav .btn-secondary { color: var(--blue); border-color: var(--blue); }
 
-/* ----- Hero (mobile-first) ---------------------------------------------- */
-.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
-.hero__media { position: absolute; inset: 0; z-index: -2; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; }
-.hero__inner { padding-block: clamp(6rem, 18vh, 10rem); max-width: 60rem; }
-.hero h1 { color: #fff; margin-bottom: 1.2rem; }
-.hero .lede { margin-bottom: 1.8rem; }
+/* ----- Hero (mobile-first) ----------------------------------------------
+   isolation:isolate gives the hero its own stacking context so the media layer
+   (z-index:0) paints inside the hero rather than behind the opaque page bg. */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; color: #fff; overflow: hidden; isolation: isolate; }
+.hero__media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+/* Cinematic directional wash: darker toward the lower-left where text sits. */
+.hero__media::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(8,20,34,0.15) 0%, rgba(8,20,34,0.30) 45%, rgba(8,20,34,0.86) 100%),
+    linear-gradient(75deg, rgba(6,16,30,0.72) 0%, rgba(6,16,30,0.20) 52%, rgba(6,16,30,0) 78%);
+}
+.hero__inner { position: relative; z-index: 2; padding-block: clamp(5.5rem, 16vh, 9rem); max-width: 64rem; }
+.hero h1 { color: #fff; margin-bottom: 1.3rem; }
+.hero .lede { margin-bottom: 2rem; }
 .hero .btn-row .btn { width: 100%; }
 
-.page-hero { position: relative; color: #fff; min-height: 40svh; display: flex; align-items: flex-end; overflow: hidden; }
-.page-hero__media { position: absolute; inset: 0; z-index: -2; }
-.page-hero__media img { width: 100%; height: 100%; object-fit: cover; }
-.page-hero .wrap { padding-block: clamp(2.5rem, 6vh, 4rem); }
-.page-hero .wrap { padding-top: clamp(6rem, 14vh, 8rem); }
+/* Scroll cue at the hero base */
+.scroll-cue { position: absolute; z-index: 2; left: 50%; bottom: clamp(1.1rem, 3vh, 2rem); transform: translateX(-50%);
+  display: none; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+.scroll-cue__line { width: 1px; height: 44px; background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0)); position: relative; overflow: hidden; }
+.scroll-cue__line::after { content: ""; position: absolute; top: -50%; left: 0; width: 100%; height: 50%; background: var(--cyan); animation: cueDrop 2.1s var(--ease-out) infinite; }
+@keyframes cueDrop { 0% { transform: translateY(-100%); } 60%,100% { transform: translateY(300%); } }
+
+.page-hero { position: relative; color: #fff; min-height: 46svh; display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; }
+.page-hero__media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.page-hero__media img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.page-hero__media::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(8,20,34,0.25) 0%, rgba(8,20,34,0.35) 50%, rgba(8,20,34,0.85) 100%),
+    linear-gradient(75deg, rgba(6,16,30,0.68) 0%, rgba(6,16,30,0.15) 60%, rgba(6,16,30,0) 82%);
+}
+.page-hero .wrap { position: relative; z-index: 2; padding-block: clamp(2.5rem, 6vh, 4rem); padding-top: clamp(6rem, 14vh, 8rem); }
 .page-hero h1 { color: #fff; margin-bottom: 1rem; }
 
 /* ----- Quadrant motif — "we connect the elements" ----------------------- */
@@ -407,12 +431,20 @@ html.js .course.is-in .course__path { stroke-dashoffset: 0; }
    NOTE: the .is-in overrides are also scoped to html.js so they out-specify the
    hidden rule above; without this they'd lose the cascade and content would be
    stuck at opacity:0 on browsers that are NOT in prefers-reduced-motion. */
-html.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+html.js .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
 html.js .reveal.is-in { opacity: 1; transform: none; }
-html.js .reveal.d1 { transition-delay: 0.08s; }
-html.js .reveal.d2 { transition-delay: 0.16s; }
-html.js [data-stagger] > * { opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
-html.js [data-stagger].is-in > * { opacity: 1; transform: none; transition-delay: calc(min(var(--i, 0), 2) * 0.08s); }
+html.js .reveal.d1 { transition-delay: 0.10s; }
+html.js .reveal.d2 { transition-delay: 0.20s; }
+html.js .reveal.d3 { transition-delay: 0.30s; }
+html.js [data-stagger] > * { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+html.js [data-stagger].is-in > * { opacity: 1; transform: none; transition-delay: calc(min(var(--i, 0), 6) * 0.09s); }
+
+/* Clip-wipe reveal — headings rise out from behind a mask (no line-splitting). */
+html.js .reveal-clip { clip-path: inset(0 0 100% 0); transform: translateY(0.4em); opacity: 0.001;
+  transition: clip-path .95s var(--ease-out), transform .95s var(--ease-out), opacity .6s linear; }
+html.js .reveal-clip.is-in { clip-path: inset(0 0 -0.12em 0); transform: none; opacity: 1; }
+html.js .reveal-clip.d1 { transition-delay: 0.12s; }
+html.js .reveal-clip.d2 { transition-delay: 0.24s; }
 
 /* ----- Accessibility ----------------------------------------------------- */
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
@@ -476,11 +508,101 @@ html.js [data-stagger].is-in > * { opacity: 1; transform: none; transition-delay
   .pcards { grid-template-columns: repeat(3, 1fr); }
 }
 
+@media (min-width: 900px) {
+  .scroll-cue { display: flex; }
+}
+
+/* ==========================================================================
+   Motion & atmosphere — the "alive" layer. All Squarespace-portable
+   (standard CSS + the one IIFE); every piece degrades under reduced-motion.
+   ========================================================================== */
+
+:root {
+  /* Fine film grain, generated once, reused as a texture on dark surfaces. */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Scroll progress bar (JS drives scaleX) --------------------------- */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 200;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--brand-sky) 55%, var(--cyan) 100%);
+  pointer-events: none; will-change: transform;
+}
+
+/* ---- Cinematic dark sections: brand glow + film grain ----------------- */
+.section--navy {
+  position: relative; isolation: isolate;
+  background:
+    radial-gradient(85% 120% at 12% -15%, rgba(3,74,154,0.42) 0%, rgba(3,74,154,0) 55%),
+    radial-gradient(70% 90% at 100% 0%, rgba(120,180,226,0.14) 0%, rgba(120,180,226,0) 50%),
+    linear-gradient(158deg, #123350 0%, #0F2B45 45%, #0B1E33 100%);
+}
+.section--navy > * { position: relative; z-index: 1; }
+.section--navy::after,
+.site-footer::after,
+.hero__media::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: var(--noise); background-size: 160px 160px;
+  opacity: 0.045; mix-blend-mode: overlay;
+}
+.hero__media::before { z-index: 2; opacity: 0.06; }
+.site-footer { position: relative; isolation: isolate; }
+.site-footer > * { position: relative; z-index: 1; }
+
+/* ---- Hero photo: one-time cinematic settle on load -------------------- */
+html.js .hero__media,
+html.js .page-hero__media { animation: heroSettle 1.7s var(--ease-out) both; }
+@keyframes heroSettle { from { transform: scale(1.08); opacity: 0.4; } to { transform: scale(1); opacity: 1; } }
+/* Base scale gives the JS parallax vertical headroom without exposing edges. */
+.hero__media img, .page-hero__media img { transform: scale(1.14); }
+
+/* Inner-page hero headings wipe up on load (above the fold, so pure CSS). */
+html.js .page-hero h1 { animation: introClip 1s var(--ease-out) 0.15s both; }
+html.js .page-hero .eyebrow { animation: introUp 0.8s var(--ease-out) 0.05s both; }
+html.js .page-hero .lede { animation: introUp 0.9s var(--ease-out) 0.28s both; }
+@keyframes introClip {
+  from { clip-path: inset(0 0 100% 0); transform: translateY(0.35em); opacity: 0.001; }
+  to   { clip-path: inset(0 0 -0.12em 0); transform: none; opacity: 1; }
+}
+@keyframes introUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+/* ---- Partner marquee — a slow, living band of the network ------------- */
+.marquee { position: relative; overflow: hidden; width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.marquee__track { display: flex; align-items: center; width: max-content; gap: clamp(2rem, 5vw, 4rem);
+  animation: marquee 34s linear infinite; will-change: transform; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee__item { display: inline-flex; align-items: baseline; gap: 0.55rem; flex: none;
+  font-family: var(--brand-font); font-weight: 700; letter-spacing: -0.02em;
+  font-size: clamp(1.4rem, 3.4vw, 2.3rem); color: #fff; }
+.marquee__item .tag { font-family: var(--sans); font-weight: 600; font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--brand-sky); align-self: center; }
+.marquee__sep { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); opacity: 0.9; }
+
+/* ---- Magnetic arrow links + subtle button sheen ---------------------- */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after {
+  content: ""; position: absolute; top: 0; left: -40%; width: 40%; height: 100%; z-index: 0;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: skewX(-18deg); transition: left .6s var(--ease-out);
+}
+.btn-primary > * { position: relative; z-index: 1; }
+@media (hover: hover) { .btn-primary:hover::after { left: 120%; } }
+
 /* ----- Reduced motion ---------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; scroll-behavior: auto !important; }
   html.js .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .reveal-clip { clip-path: none; opacity: 1; transform: none; transition: none; }
   html.js [data-stagger] > * { opacity: 1; transform: none; transition: none; }
   html.js .course__path { stroke-dashoffset: 0 !important; transition: none; }
+  html.js .hero__media, html.js .page-hero__media { animation: none; transform: none; }
+  html.js .page-hero h1, html.js .page-hero .eyebrow, html.js .page-hero .lede { animation: none; clip-path: none; opacity: 1; transform: none; }
+  .hero__media img, .page-hero__media img { transform: none; }
+  .marquee__track { animation: none; transform: none; flex-wrap: wrap; justify-content: center; }
+  .scroll-progress { display: none; }
   .btn, .qtile, .scard, .pcard, .value { transition: none !important; }
 }
