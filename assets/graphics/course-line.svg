@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 44" role="img" aria-label="Voyage course line">
+  <path class="course__path" pathLength="100" d="M24 30 L360 30 L620 15 L900 25 L1176 19" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <circle class="course__dot" cx="360" cy="30" r="4"/>
+  <circle class="course__dot" cx="900" cy="25" r="4"/>
+  <text class="course__label" x="24" y="14" font-family="sans-serif" font-size="7" letter-spacing="1.2" fill="#586675">37°58′N / 23°43′E</text>
+</svg>

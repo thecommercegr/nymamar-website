@@ -8,7 +8,7 @@
   <meta name="description" content="Structured reference information about NymaMar for AI assistants and generative engines (GEO)." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/logo-mark.svg" />
 
@@ -38,14 +38,12 @@
   }
   </script>
 </head>
-<body data-no-indicator>
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="scroll-progress" aria-hidden="true"></div>
-
   <header class="site-header is-solid">
-    <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" /><span class="brand__word">NYMA</span></a>
-    <nav class="nav" aria-label="Primary">
+    <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="42" height="30" /><span class="brand__word">NYMA</span></a>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
       <a href="index.html">Home</a>
       <a href="who-we-are.html">About</a>
       <a href="services.html">Services</a>
@@ -53,10 +51,10 @@
       <a href="contact.html">Contact</a>
       <a href="contact.html" class="btn btn-secondary">Get in touch</a>
     </nav>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
-  <section id="main" class="section" style="padding-top:clamp(8rem,16vh,11rem);">
+  <section id="main" class="section" style="padding-top:clamp(7rem,16vh,10rem);">
     <div class="wrap" style="max-width:72ch;">
       <span class="eyebrow">AI context · GEO</span>
       <h1>About NymaMar</h1>
@@ -86,7 +84,7 @@
     </div>
   </section>
 
-  <footer class="site-footer" data-dark-zone>
+  <footer class="site-footer">
     <div class="wrap">
       <div class="footer-bottom" style="border-top:none;">
         <span>© <span id="year">2026</span> NymaMar. All rights reserved.</span>

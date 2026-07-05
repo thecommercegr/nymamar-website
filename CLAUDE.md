@@ -22,23 +22,25 @@ git push origin main                  # GitHub Pages auto-rebuilds in ~1–2 min
 
 ## Architecture
 
-**No templating — every page is a complete, standalone HTML document.** `index.html`, `who-we-are.html` (the "About" page), `services.html`, `contact.html`, and `ai-context.html` each duplicate the full `<head>`, `<header>` nav, and `<footer>`.
-→ **Any change to the nav or footer must be made in all five files.** Likewise the Google Fonts `<link>` and stylesheet link are repeated per page.
+**No templating — every page is a complete, standalone HTML document.** `index.html`, `who-we-are.html` (the "About" page), `services.html`, `partnerships.html`, `contact.html`, and `ai-context.html` each duplicate the full `<head>`, `<header>` nav, and `<footer>`.
+→ **Any change to the nav or footer must be made in all six files.** Likewise the Google Fonts `<link>` and stylesheet link are repeated per page. The `<head>`, header, and footer are byte-identical across the six files (except the per-page `<title>`/meta and the `aria-current="page"` nav marker).
 
-- **`css/styles.css`** is the single source of design truth. All design tokens are CSS custom properties under `:root` (palette, fonts, spacing, easing). Change a token there to restyle the whole site. Component classes are namespaced and commented in sections (hero, `.scards` image cards, `.feature` rows, `.values`, `.showcase`, footer, etc.).
-- **`js/main.js`** is one IIFE handling everything: sticky/solid header, mobile nav toggle, `.reveal` scroll-in (IntersectionObserver), the scroll indicator, `[data-count]` stat counters, footer year, and the mockup contact form. No dependencies.
-- **`assets/logo.svg`** is a placeholder wordmark (real logo pending from client).
+- **`css/styles.css`** is the single source of design truth and is **mobile-first**: base rules are the phone layout, enhanced upward with `@media (min-width: 600px | 900px | 1200px)`. No `max-width` queries except `prefers-reduced-motion`. All design tokens are CSS custom properties under `:root` (palette, quadrant pillar colors, fonts, fluid type scale, spacing, `--header-h`/`--subnav-h`). Component classes are namespaced and commented in sections (hero, `.quad` motif, `.scard` image cards, `.feature` rows, `.values`, `.pcard` partner cards, course line, footer, etc.).
+- **Quadrant pillar system:** the four NYMA logo colors are exposed as `[data-pillar="maritime|sky|propulsion|people"]` which switch `--pillar` / `--pillar-text` (text-safe variants). Card accents, feature numbers, eyebrow rules, and list markers use `var(--pillar)`. Pillar-to-service mapping is intentionally behind data attributes so it can be remapped in one place (awaiting a final client/PM confirmation).
+- **`js/main.js`** is one IIFE: adds `html.js` first (so no-JS/pre-JS content stays visible), sticky/solid header, mobile nav (scroll-lock, Escape, focus trap, `aria-expanded`), `.reveal` scroll-in + the voyage course-line draw (shared IntersectionObserver), services sub-nav active state + auto-scroll, footer year, and the mockup contact form. No dependencies.
+- **`assets/logo-mark.svg`** is the official 2×2 NYMA quadrant mark (navy/sky/green/red). Its four glyphs (N, waves, pinwheel, person) are re-drawn as small `currentColor` SVGs in `assets/graphics/` and inlined into the homepage quadrant tiles.
 
 ### Page-level conventions (wired up by `js/main.js` / CSS)
-- `data-dark-zone` on any section over dark imagery → the scroll indicator switches to its light variant while over it.
-- `<body data-no-indicator>` → hides the scroll indicator on that page (used on Contact & AI-Context).
-- `.reveal` (+ optional `.d1`…`.d4` delay classes) → fades/slides element in on scroll.
-- `.fullbleed` → breaks an element out to full viewport width. **It must stay transform-free** (`margin-inline: calc(50% - 50vw)`); using a `transform` here collides with `.reveal`'s transform and breaks the layout.
+- `.reveal` (+ optional `.d1`/`.d2` delay classes) → fades element in on scroll. **The hidden state and the `.is-in` reveal are both scoped to `html.js`** so JS-off shows everything AND `.is-in` out-specifies the hidden rule (do not drop the `html.js` prefix from `.is-in`, or content stays at `opacity:0`).
+- `data-pillar` on a section/card/tile → sets that block's accent color (see quadrant pillar system above).
+- `.course` (voyage course line) draws on scroll via the same observer; static under `prefers-reduced-motion` and no-JS.
+- `.fullbleed` → breaks an element out to full viewport width. **It must stay transform-free** (`margin-inline: calc(50% - 50vw)`); a `transform` here collides with `.reveal`'s transform and breaks the layout.
+- The mobile nav panel is a `position:fixed` descendant of the header — **do not put `backdrop-filter`/`filter`/`transform` on `.site-header`**, or it becomes the nav's containing block and the full-screen panel collapses to header height.
 - `ai-context.html` is intentionally **unlinked from nav and `noindex`** — a GEO/AI-readability page with JSON-LD. Keep it out of the nav.
 
 ## Content & copy rules
 
-- **All page copy is client-approved** content from the Notion "Website Content — Pages for NymaMar Review" pages. The visual design system (Cormorant Garamond + DM Sans, palette) traces to the Notion "Squarespace Build Log — NymaMar". **Do not invent body copy** — pull approved text; flag gaps.
+- **All page copy is client-approved** content from the Notion "Website Content — Pages for NymaMar Review" pages. The visual design system (**Lexend Giga** display + **DM Sans** body, quadrant palette) traces to the Notion "Squarespace Build Log — NymaMar" and the official logo. **Do not invent body copy** — pull approved text; flag gaps. (Note: there is no numeric stats band — a display-size stats band was intentionally skipped because no client-approved figures exist yet.)
 - **No em-dashes (—) in body copy** — the client finds them "AI-feeling." Use commas/colons/rewording instead. Exceptions kept on purpose: page `<title>` tags, the `01 — Service` labels, and date ranges (`2024–2025`, en-dash). Do not strip hyphens in real words (`third-party`, `ship-to-shore`).
 - **"Business College of Athens (BCA)"** name/logo is withheld pending BCA's written confirmation — currently rendered as "a leading Athens-based business college."
 - On the Services page, the section whose Notion heading reads *"Efficient Management Representations"* is rendered with its content-accurate heading **"Environmental & Decarbonization"** (the Notion heading is a known copy/paste error).

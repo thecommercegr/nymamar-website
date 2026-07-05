@@ -17,33 +17,32 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="NymaMar — Greek maritime professionals" />
   <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/logo-mark.svg" />
 </head>
-<body data-no-indicator>
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="scroll-progress" aria-hidden="true"></div>
-
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" /><span class="brand__word">NYMA</span></a>
-    <nav class="nav" aria-label="Primary">
+    <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="42" height="30" /><span class="brand__word">NYMA</span></a>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
       <a href="index.html">Home</a>
       <a href="who-we-are.html">About</a>
       <a href="services.html">Services</a>
       <a href="partnerships.html">Partnerships</a>
-      <a href="contact.html" class="active">Contact</a>
+      <a href="contact.html" aria-current="page">Contact</a>
       <a href="contact.html" class="btn btn-secondary">Get in touch</a>
     </nav>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
   <!-- Page hero -->
-  <section id="main" class="page-hero" data-dark-zone style="min-height:48vh;">
-    <div class="page-hero__media"><img src="assets/img/port-icebreakers-voima.jpg" alt="Vessels berthed on a bright, clear day" fetchpriority="high" /></div>
+  <section id="main" class="page-hero scrim-b">
+    <div class="page-hero__media"><img src="assets/img/port-icebreakers-voima.jpg" srcset="assets/img/port-icebreakers-voima-480.jpg 480w, assets/img/port-icebreakers-voima-960.jpg 960w, assets/img/port-icebreakers-voima.jpg 1280w" sizes="100vw" alt="Vessels berthed on a bright, clear day" width="1280" height="720" fetchpriority="high" decoding="async" /></div>
     <div class="wrap">
       <span class="eyebrow on-dark">Contact</span>
       <h1>Let's talk.</h1>
@@ -65,7 +64,11 @@
         </div>
         <div class="field">
           <label for="email">Email *</label>
-          <input type="email" id="email" name="email" autocomplete="email" required />
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone (optional)</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" />
         </div>
         <div class="field">
           <label for="subject">Subject</label>
@@ -111,12 +114,13 @@
     </div>
   </section>
 
-  <footer class="site-footer" data-dark-zone>
+  <footer class="site-footer">
     <div class="wrap">
       <div class="footer-top">
         <div class="footer-col">
-          <a class="brand brand--footer" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" /><span class="brand__stack"><span class="brand__word">NYMA</span><span class="brand__tag">Maritime Enablers</span></span></a>
+          <a class="brand brand--footer" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="56" height="40" /><span class="brand__stack"><span class="brand__word">NYMA</span><span class="brand__tag">Maritime Enablers</span></span></a>
           <p class="footer-note">A team of Greek maritime professionals, a stepping stone for the people and organisations who shape shipping.</p>
+          <p class="footer-coords">37°58′N / 23°43′E · Athens, Greece</p>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
@@ -135,7 +139,7 @@
             <li><a href="services.html#technical">Technical Management</a></li>
             <li><a href="services.html#environmental">Environmental &amp; Decarbonization</a></li>
             <li><a href="services.html#academic">Academic &amp; Training</a></li>
-            <li><a href="services.html#representations">Representations</a></li>
+            <li><a href="partnerships.html">Representations</a></li>
           </ul>
         </div>
         <div class="footer-col">

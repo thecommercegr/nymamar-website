@@ -17,33 +17,32 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="NymaMar — Greek maritime professionals" />
   <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" href="assets/logo-mark.svg" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="scroll-progress" aria-hidden="true"></div>
-
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" /><span class="brand__word">NYMA</span></a>
-    <nav class="nav" aria-label="Primary">
+    <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="42" height="30" /><span class="brand__word">NYMA</span></a>
+    <nav class="nav" id="primary-nav" aria-label="Primary">
       <a href="index.html">Home</a>
-      <a href="who-we-are.html" class="active">About</a>
+      <a href="who-we-are.html" aria-current="page">About</a>
       <a href="services.html">Services</a>
       <a href="partnerships.html">Partnerships</a>
       <a href="contact.html">Contact</a>
       <a href="contact.html" class="btn btn-secondary">Get in touch</a>
     </nav>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
   <!-- Page hero -->
-  <section id="main" class="page-hero" data-dark-zone>
-    <div class="page-hero__media"><img src="assets/img/port-icebreakers-moody.jpg" alt="Vessels moored under a dramatic, clouded sky" fetchpriority="high" /></div>
+  <section id="main" class="page-hero scrim-b">
+    <div class="page-hero__media"><img src="assets/img/port-icebreakers-moody.jpg" srcset="assets/img/port-icebreakers-moody-480.jpg 480w, assets/img/port-icebreakers-moody.jpg 960w" sizes="100vw" alt="Vessels moored under a dramatic, clouded sky" width="960" height="1280" fetchpriority="high" decoding="async" /></div>
     <div class="wrap">
       <span class="eyebrow on-dark">About NymaMar</span>
       <h1>Who We Are</h1>
@@ -53,7 +52,7 @@
 
   <!-- Our story -->
   <section class="section section--paper">
-    <div class="wrap split">
+    <div class="wrap split split--offset">
       <div class="split__content reveal">
         <span class="eyebrow">Our story</span>
         <h2>How we got here</h2>
@@ -61,30 +60,30 @@
         <p style="color:var(--muted);">NymaMar represents a deliberate transition: from employment to entrepreneurship, from institutional to agile, from doing what's expected to doing what's right. We took the expertise we'd built across technical management, human element, operations and compliance, and rebuilt it into something leaner, sharper, and more purposeful.</p>
       </div>
       <div class="split__media reveal d1">
-        <img src="assets/img/academy-explorer-maps.jpg" alt="Illustrated voyage maps of historic maritime explorers" loading="lazy" />
+        <img src="assets/img/academy-explorer-maps.jpg" srcset="assets/img/academy-explorer-maps-480.jpg 480w, assets/img/academy-explorer-maps.jpg 597w" sizes="(min-width: 900px) 50vw, 100vw" alt="Illustrated voyage maps of historic maritime explorers" width="597" height="1280" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
 
   <!-- Full-bleed statement band -->
-  <section class="fullbleed" style="position:relative; min-height:46vh; display:flex; align-items:center; justify-content:center; overflow:hidden; text-align:center;" data-dark-zone>
-    <img src="assets/img/port-icebreakers-panorama.jpg" alt="A fleet of vessels berthed along the shoreline" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2;" />
-    <div style="position:absolute; inset:0; background:rgba(8,20,34,0.62); z-index:-1;"></div>
+  <section class="fullbleed" style="position:relative; min-height:46vh; display:flex; align-items:center; justify-content:center; overflow:hidden; text-align:center;">
+    <img src="assets/img/port-icebreakers-panorama.jpg" srcset="assets/img/port-icebreakers-panorama-480.jpg 480w, assets/img/port-icebreakers-panorama-960.jpg 960w, assets/img/port-icebreakers-panorama.jpg 1280w" sizes="100vw" alt="A fleet of vessels berthed along the shoreline" width="1280" height="720" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2;" />
+    <div style="position:absolute; inset:0; background:rgba(8,20,34,0.55); z-index:-1;"></div>
     <div class="wrap reveal">
-      <blockquote style="font-family:var(--serif); font-weight:500; color:#fff; font-size:clamp(1.9rem,4.5vw,3.2rem); line-height:1.14; max-width:20ch; margin-inline:auto; letter-spacing:-0.015em;">Our background is Greek shipping. Our outlook is global.</blockquote>
+      <blockquote style="font-family:var(--brand-font); font-weight:550; letter-spacing:-0.03em; color:#fff; font-size:clamp(1.7rem,4.5vw,3.1rem); line-height:1.1; max-width:20ch; margin-inline:auto;">Our background is Greek shipping. Our outlook is global.</blockquote>
     </div>
   </section>
 
   <!-- Mission & Vision -->
   <section class="section section--sand">
     <div class="wrap split" style="align-items:flex-start;">
-      <div class="reveal">
+      <div class="reveal" data-pillar="people">
         <span class="eyebrow">Mission</span>
         <h3 style="margin-bottom:1rem;">Empower growth. Elevate standards.</h3>
         <p style="color:var(--muted); margin-bottom:1rem;">We aspire to be a stepping stone within the shipping industry, for organizations and for the people who shape it. Rooted in the <em>philotimo</em> that defined previous generations of Greek shipping, we combine integrity, responsibility, and dedication with innovative and transformative management practices.</p>
         <p style="color:var(--muted);">Our mission is to empower growth. To elevate standards. To create lasting value for companies, professionals, and the maritime community as a whole.</p>
       </div>
-      <div class="reveal d1">
+      <div class="reveal d1" data-pillar="sky">
         <span class="eyebrow">Vision</span>
         <h3 style="margin-bottom:1rem;">Connect the elements.</h3>
         <p style="color:var(--muted); margin-bottom:1rem;">We connect the elements of people, expertise, processes and technology, enabling their full potential.</p>
@@ -99,14 +98,14 @@
       <div class="section-head reveal">
         <span class="eyebrow">Our values</span>
         <h2>Principles that guide every decision.</h2>
-        <p class="lede" style="margin-top:1rem;">Our foundation is built on principles that guide every decision and every partnership.</p>
+        <p class="lede">Our foundation is built on principles that guide every decision and every partnership.</p>
       </div>
       <div class="values reveal">
-        <div class="value"><span class="value__k">01</span><h4>Respect</h4><p>We value people, relationships, and professional integrity.</p></div>
-        <div class="value"><span class="value__k">02</span><h4>Empathy</h4><p>We understand the challenges of the industry and act with awareness.</p></div>
-        <div class="value"><span class="value__k">03</span><h4>Trust</h4><p>We build transparent, honest, long-term collaborations.</p></div>
-        <div class="value"><span class="value__k">04</span><h4>Dependability</h4><p>We deliver consistently, responsibly, and with precision.</p></div>
-        <div class="value"><span class="value__k">05</span><h4>Determination</h4><p>We pursue excellence with resilience and commitment.</p></div>
+        <div class="value" data-pillar="maritime"><span class="value__k">01</span><h4>Respect</h4><p>We value people, relationships, and professional integrity.</p></div>
+        <div class="value" data-pillar="sky"><span class="value__k">02</span><h4>Empathy</h4><p>We understand the challenges of the industry and act with awareness.</p></div>
+        <div class="value" data-pillar="propulsion"><span class="value__k">03</span><h4>Trust</h4><p>We build transparent, honest, long-term collaborations.</p></div>
+        <div class="value" data-pillar="people"><span class="value__k">04</span><h4>Dependability</h4><p>We deliver consistently, responsibly, and with precision.</p></div>
+        <div class="value" data-pillar="maritime"><span class="value__k">05</span><h4>Determination</h4><p>We pursue excellence with resilience and commitment.</p></div>
       </div>
     </div>
   </section>
@@ -120,22 +119,22 @@
   </section>
 
   <!-- CTA -->
-  <section class="section section--navy cta-banner" data-dark-zone>
+  <section class="section section--navy cta-banner">
     <div class="wrap reveal">
-      <span class="eyebrow on-dark center">Get in touch</span>
       <h2>Want to know more or work together?</h2>
-      <div class="btn-row" style="justify-content:center;">
+      <div class="btn-row">
         <a href="contact.html" class="btn btn-primary">Get in touch <span class="arw">→</span></a>
       </div>
     </div>
   </section>
 
-  <footer class="site-footer" data-dark-zone>
+  <footer class="site-footer">
     <div class="wrap">
       <div class="footer-top">
         <div class="footer-col">
-          <a class="brand brand--footer" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" /><span class="brand__stack"><span class="brand__word">NYMA</span><span class="brand__tag">Maritime Enablers</span></span></a>
+          <a class="brand brand--footer" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="56" height="40" /><span class="brand__stack"><span class="brand__word">NYMA</span><span class="brand__tag">Maritime Enablers</span></span></a>
           <p class="footer-note">A team of Greek maritime professionals, a stepping stone for the people and organisations who shape shipping.</p>
+          <p class="footer-coords">37°58′N / 23°43′E · Athens, Greece</p>
         </div>
         <div class="footer-col">
           <h4>Navigate</h4>
@@ -150,11 +149,11 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
-            <li><a href="services.html">Mentoring &amp; Coaching</a></li>
-            <li><a href="services.html">Technical Management</a></li>
-            <li><a href="services.html">Environmental &amp; Decarbonization</a></li>
-            <li><a href="services.html">Academic &amp; Training</a></li>
-            <li><a href="services.html">Representations</a></li>
+            <li><a href="services.html#mentoring">Mentoring &amp; Coaching</a></li>
+            <li><a href="services.html#technical">Technical Management</a></li>
+            <li><a href="services.html#environmental">Environmental &amp; Decarbonization</a></li>
+            <li><a href="services.html#academic">Academic &amp; Training</a></li>
+            <li><a href="partnerships.html">Representations</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -173,11 +172,6 @@
       </div>
     </div>
   </footer>
-
-  <div class="scroll-indicator" aria-hidden="true">
-    <span class="scroll-indicator__label">Scroll</span>
-    <div class="scroll-indicator__track"><div class="scroll-indicator__bead"></div></div>
-  </div>
 
   <script src="js/main.js"></script>
 </body>
