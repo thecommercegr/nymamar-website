@@ -4,174 +4,214 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services — NymaMar</title>
-  <meta name="description" content="NymaMar services: mentoring & coaching, academic & industry engagement, environmental & decarbonization, representations, and third-party technical management." />
+  <meta name="description" content="NymaMar services: mentoring &amp; coaching, academic &amp; industry engagement, environmental &amp; decarbonization, representations, and third-party technical management." />
+  <meta name="theme-color" content="#06111F" />
 
   <!-- Social share -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="NymaMar" />
   <meta property="og:title" content="Services — NymaMar" />
-  <meta property="og:description" content="Mentoring & coaching, academic engagement, environmental & decarbonization, representations, and third-party technical management." />
+  <meta property="og:description" content="Mentoring &amp; coaching, academic engagement, environmental &amp; decarbonization, representations, and third-party technical management." />
   <meta property="og:url" content="https://thecommercegr.github.io/nymamar-website/services.html" />
   <meta property="og:image" content="https://thecommercegr.github.io/nymamar-website/assets/img/og-cover.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="NymaMar — Greek maritime professionals" />
+  <meta property="og:image:alt" content="NymaMar, Greek maritime professionals" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Flag JS early (no flash of hidden content); un-flag if main.js never boots. -->
+  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__nymaBooted)document.documentElement.classList.remove("js")},3000);</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=3" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=4" />
   <link rel="icon" href="assets/logo-mark.svg" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress" aria-hidden="true"></div>
 
+  <!-- ===== Header ===== -->
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="42" height="30" /><span class="brand__word">NYMA</span></a>
     <nav class="nav" id="primary-nav" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="who-we-are.html">About</a>
-      <a href="services.html" aria-current="page">Services</a>
-      <a href="partnerships.html">Partnerships</a>
-      <a href="contact.html" class="btn btn-secondary">Get in touch</a>
+      <a class="nav__link nav__link--home" href="index.html"><span class="nav__num" aria-hidden="true">01</span>Home</a>
+      <a class="nav__link" href="who-we-are.html"><span class="nav__num" aria-hidden="true">02</span>About</a>
+      <a class="nav__link" href="services.html" aria-current="page"><span class="nav__num" aria-hidden="true">03</span>Services</a>
+      <a class="nav__link" href="partnerships.html"><span class="nav__num" aria-hidden="true">04</span>Partnerships</a>
+      <span class="nav__clock mono" aria-hidden="true"><span class="pulse"></span>ATH <span data-clock>--:--</span></span>
+      <a class="btn nav__cta" href="contact.html">Get in touch <span class="btn__arw"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5"/></svg></span></a>
+      <div class="nav__meta">
+        <span class="label">Athens, Greece</span>
+        <a href="tel:+302109951917">+30 210 995 1917</a>
+        <a href="mailto:email@nymamar.com">email@nymamar.com</a>
+      </div>
     </nav>
-    <button class="nav-toggle" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false"><span>Menu</span><span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i></span></button>
   </header>
 
-  <!-- Page hero -->
-  <section id="main" class="page-hero">
-    <div class="page-hero__media"><img data-parallax="0.10" data-parallax-scale="1.14" src="assets/img/academy-simulator-container-view.jpg" srcset="assets/img/academy-simulator-container-view-480.jpg 480w, assets/img/academy-simulator-container-view-960.jpg 960w, assets/img/academy-simulator-container-view.jpg 1280w" sizes="100vw" alt="Immersive ship-bridge simulator with a container-ship view" width="1280" height="597" fetchpriority="high" decoding="async" /></div>
-    <div class="wrap">
-      <span class="eyebrow on-dark">Our services</span>
-      <h1>Our Services</h1>
-      <p class="lede">We operate at the intersection of technical excellence, human development, and environmental responsibility, creating focused value across the shipping ecosystem.</p>
+  <!-- ===== Page hero ===== -->
+  <section id="main" class="phero">
+    <div class="wrap phero__inner">
+      <p class="phero__kicker intro" style="--d:.15s"><span class="quad-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="label">Our services</span></p>
+      <div class="phero__grid">
+        <h1 class="phero__title" data-split>Our Services</h1>
+        <p class="lede phero__lede intro" style="--d:.75s">We operate at the intersection of technical excellence, human development, and environmental responsibility, creating focused value across the shipping ecosystem.</p>
+      </div>
     </div>
+    <div class="phero__window" data-expand><img src="assets/img/academy-simulator-container-view.jpg" srcset="assets/img/academy-simulator-container-view-480.jpg 480w, assets/img/academy-simulator-container-view-960.jpg 960w, assets/img/academy-simulator-container-view.jpg 1280w" sizes="100vw" alt="Immersive ship-bridge simulator with a container-ship view" width="1280" height="597" decoding="async" data-parallax="0.08" data-parallax-scale="1.14" /><p class="phero__caption mono">Fig. 01 &middot; Bridge simulation</p></div>
   </section>
 
-  <!-- On-page sub-nav -->
+  <!-- ===== On-page sub-nav ===== -->
   <nav class="subnav" aria-label="Services sections">
     <div class="wrap subnav__inner">
-      <a href="#mentoring" class="active">Mentoring &amp; Coaching</a>
-      <a href="#academic">Academic &amp; Industry</a>
-      <a href="#environmental">Environmental &amp; Decarbonization</a>
-      <a href="#representations">Representations</a>
-      <a href="#technical">Technical Management</a>
+      <a href="#mentoring" data-pillar="people" class="active">Mentoring &amp; Coaching</a>
+      <a href="#academic" data-pillar="sky">Academic &amp; Industry</a>
+      <a href="#environmental" data-pillar="propulsion">Environmental &amp; Decarbonization</a>
+      <a href="#representations" data-pillar="propulsion">Representations</a>
+      <a href="#technical" data-pillar="maritime">Technical Management</a>
     </div>
   </nav>
 
-  <section class="section section--paper">
+  <!-- ===== Services ===== -->
+  <section class="section section--bone section--flush-top">
     <div class="wrap">
-
-      <!-- 01 Mentoring & Coaching -->
-      <article id="mentoring" class="feature" data-pillar="people">
-        <div class="feature__media reveal"><img data-parallax="0.08" data-parallax-scale="1.08" src="assets/img/academy-bridge-simulator-01.jpg" srcset="assets/img/academy-bridge-simulator-01-480.jpg 480w, assets/img/academy-bridge-simulator-01-960.jpg 960w, assets/img/academy-bridge-simulator-01.jpg 1280w" sizes="(min-width: 900px) 50vw, 100vw" alt="Ship-bridge simulator station" width="1280" height="597" loading="lazy" decoding="async" /></div>
-        <div class="feature__content reveal" data-stagger>
-          <div class="feature__num">01 — Service</div>
-          <h2>Mentoring &amp; Coaching</h2>
-          <p style="color:var(--muted); margin-bottom:1.1rem;">Shipping is built by people, and sustained by knowledge. We support professionals at every stage of their maritime career, strengthening technical and operational competencies (technical management, operational performance, compliance, and environmental &amp; sustainability management), while addressing the human dimension: leadership presence, communication, decision-making under pressure, and professional resilience.</p>
-          <p style="font-weight:600; margin-bottom:.5rem;">Who we work with</p>
-          <ul>
-            <li>Early career, bridging academic training and real-life shipping operations</li>
-            <li>Ship-to-shore transitions, during and after the move from sea to shore roles</li>
-            <li>Career pivots, when professional growth requires exposure to new business segments</li>
-          </ul>
-          <p style="color:var(--muted); margin-top:1rem;">We can work on specific cases with specific individuals, support entire departments, or act as an on-call partner whenever your team needs us.</p>
+      <article id="mentoring" class="svc" data-pillar="people">
+        <div class="svc__head">
+          <span class="svc__num" aria-hidden="true">01</span>
+          <div>
+            <p class="label svc__label">01 — Service</p>
+            <h2 data-split>Mentoring &amp; Coaching</h2>
+          </div>
         </div>
-      </article>
-
-      <!-- 02 Academic & Industry Engagement -->
-      <article id="academic" class="feature feature--media-right" data-pillar="sky">
-        <div class="feature__media reveal"><img data-parallax="0.08" data-parallax-scale="1.08" src="assets/img/academy-library-shelves.jpg" srcset="assets/img/academy-library-shelves-480.jpg 480w, assets/img/academy-library-shelves-960.jpg 960w, assets/img/academy-library-shelves.jpg 1280w" sizes="(min-width: 900px) 50vw, 100vw" alt="Maritime library shelves of SOLAS, STCW and MARPOL references" width="1280" height="597" loading="lazy" decoding="async" /></div>
-        <div class="feature__content reveal" data-stagger>
-          <div class="feature__num">02 — Service</div>
-          <h2>Academic &amp; Industry Engagement</h2>
-          <p style="color:var(--muted); margin-bottom:1.1rem;">We actively contribute to educating the next generation of maritime professionals. In collaboration with a leading Athens-based business college and its MSc in Marine Engineering Management, our team has delivered specialized lectures grounded in real-world case studies:</p>
-          <ul>
-            <li>Project Management: New Construction &amp; Dry Docking <em style="color:var(--pillar-text);">· Fall 2024–2025</em></li>
-            <li>Maintenance &amp; Inspections Management <em style="color:var(--pillar-text);">· Spring 2024–2025</em></li>
-          </ul>
-          <p style="color:var(--muted); margin-top:1rem;">Through interactive sessions, students gain practical exposure to the standards, challenges, and management approaches they will face in their careers.</p>
-        </div>
-      </article>
-
-      <!-- 03 Environmental & Decarbonization -->
-      <article id="environmental" class="feature" data-pillar="propulsion">
-        <div class="feature__media reveal"><img data-parallax="0.08" data-parallax-scale="1.08" src="assets/img/port-research-vessel.jpg" srcset="assets/img/port-research-vessel-480.jpg 480w, assets/img/port-research-vessel-960.jpg 960w, assets/img/port-research-vessel.jpg 1280w" sizes="(min-width: 900px) 50vw, 100vw" alt="Modern purpose-built support vessel at berth" width="1280" height="720" loading="lazy" decoding="async" /></div>
-        <div class="feature__content reveal" data-stagger>
-          <div class="feature__num">03 — Service</div>
-          <h2>Environmental &amp; Decarbonization</h2>
-          <p style="color:var(--muted); margin-bottom:1.1rem;">We are committed to contributing to a more sustainable maritime industry, bringing forward innovative and actionable solutions focused on:</p>
-          <ul>
-            <li>Emissions reduction and decarbonization strategies</li>
-            <li>Energy efficiency assessment and optimization</li>
-            <li>Feasibility studies for new technologies and vessel modifications</li>
-            <li>Evaluation and integration of emerging technologies</li>
-          </ul>
-          <p style="color:var(--muted); margin-top:1rem;">We combine practical operational experience with forward-thinking engineering approaches, assessing what is viable, what is scalable, and what genuinely supports greener seaborne trade.</p>
-        </div>
-      </article>
-
-      <!-- 04 Representations -->
-      <article id="representations" class="feature feature--media-right" data-pillar="propulsion">
-        <div class="feature__media reveal"><img data-parallax="0.08" data-parallax-scale="1.08" src="assets/img/drydock-twin-propellers-rudders.jpg" srcset="assets/img/drydock-twin-propellers-rudders-480.jpg 480w, assets/img/drydock-twin-propellers-rudders-960.jpg 960w, assets/img/drydock-twin-propellers-rudders.jpg 1280w" sizes="(min-width: 900px) 50vw, 100vw" alt="Twin propellers and rudders of a vessel in drydock" width="1280" height="960" loading="lazy" decoding="async" /></div>
-        <div class="feature__content reveal" data-stagger>
-          <div class="feature__num">04 — Service</div>
-          <h2>Representations</h2>
-          <p style="color:var(--muted); margin-bottom:1.1rem;">We represent a selected group of niche companies offering specialized services to the maritime industry. Each partner is chosen for depth of expertise and quality of delivery.</p>
-          <p style="font-weight:600; margin-bottom:.5rem;">A trusted network of vetted partners</p>
-          <ul>
-            <li>Supersoar Marine: propulsion and steering-gear components (China)</li>
-            <li>HSQE: Third-party compliance and Safety Management System (SMS) specialists</li>
-            <li>Crewing: Manning agents and seafarer placement</li>
-          </ul>
-          <div class="btn-row" style="margin-top:1.4rem;">
-            <a href="partnerships.html" class="btn btn-secondary">See all partnerships <span class="arw">→</span></a>
+        <div class="svc__body">
+          <figure class="frame svc__media reveal-img"><img src="assets/img/academy-bridge-simulator-01.jpg" srcset="assets/img/academy-bridge-simulator-01-480.jpg 480w, assets/img/academy-bridge-simulator-01-960.jpg 960w, assets/img/academy-bridge-simulator-01.jpg 1280w" sizes="(min-width: 900px) 46vw, 100vw" alt="Ship-bridge simulator station" width="1280" height="597" loading="lazy" decoding="async" data-parallax="0.06" data-parallax-scale="1.1" /></figure>
+          <div class="svc__content reveal" data-stagger>
+            <p class="lede">Shipping is built by people, and sustained by knowledge.</p>
+            <p>We support professionals at every stage of their maritime career, strengthening technical and operational competencies (technical management, operational performance, compliance, and environmental &amp; sustainability management), while addressing the human dimension: leadership presence, communication, decision-making under pressure, and professional resilience.</p>
+            <p class="label svc__sub">Who we work with</p>
+            <ul class="spec">
+              <li><span class="idx">a.</span><span>Early career, bridging academic training and real-life shipping operations</span></li>
+              <li><span class="idx">b.</span><span>Ship-to-shore transitions, during and after the move from sea to shore roles</span></li>
+              <li><span class="idx">c.</span><span>Career pivots, when professional growth requires exposure to new business segments</span></li>
+            </ul>
+            <p>We can work on specific cases with specific individuals, support entire departments, or act as an on-call partner whenever your team needs us.</p>
           </div>
         </div>
       </article>
-
-      <!-- 05 Technical Management -->
-      <article id="technical" class="feature" data-pillar="maritime">
-        <div class="feature__media reveal"><img data-parallax="0.08" data-parallax-scale="1.08" src="assets/img/drydock-tank-interior-03.jpg" srcset="assets/img/drydock-tank-interior-03-480.jpg 480w, assets/img/drydock-tank-interior-03.jpg 960w" sizes="(min-width: 900px) 50vw, 100vw" alt="Crew inspecting a vessel's internal tank structure" width="960" height="1280" loading="lazy" decoding="async" /></div>
-        <div class="feature__content reveal" data-stagger>
-          <div class="feature__num">05 — Service</div>
-          <h2>Technical Management</h2>
-          <p style="color:var(--muted); margin-bottom:1.1rem;">We assume third-party technical management services, partial or complete, depending on fleet size and operational needs. By bringing together the right specialized expertise, we help shipowners and managers:</p>
-          <ul>
-            <li>Optimize operational resources and reduce overhead</li>
-            <li>Improve efficiency, reliability, and regulatory compliance</li>
-            <li>Strengthen internal quality frameworks</li>
-            <li>Deliver measurable performance results</li>
-          </ul>
-          <p style="color:var(--muted); margin-top:1rem;">Our model is flexible: from full technical management support to targeted ad-hoc projects. We work alongside your existing structure, or step in where expertise is needed most.</p>
+      <article id="academic" class="svc svc--rev" data-pillar="sky">
+        <div class="svc__head">
+          <span class="svc__num" aria-hidden="true">02</span>
+          <div>
+            <p class="label svc__label">02 — Service</p>
+            <h2 data-split>Academic &amp; Industry Engagement</h2>
+          </div>
+        </div>
+        <div class="svc__body">
+          <figure class="frame svc__media reveal-img"><img src="assets/img/academy-library-shelves.jpg" srcset="assets/img/academy-library-shelves-480.jpg 480w, assets/img/academy-library-shelves-960.jpg 960w, assets/img/academy-library-shelves.jpg 1280w" sizes="(min-width: 900px) 46vw, 100vw" alt="Maritime library shelves of SOLAS, STCW and MARPOL references" width="1280" height="597" loading="lazy" decoding="async" data-parallax="0.06" data-parallax-scale="1.1" /></figure>
+          <div class="svc__content reveal" data-stagger>
+            <p class="lede">We actively contribute to educating the next generation of maritime professionals.</p>
+            <p>In collaboration with a leading Athens-based business college and its MSc in Marine Engineering Management, our team has delivered specialized lectures grounded in real-world case studies:</p>
+            <ul class="spec">
+              <li><span class="idx">a.</span><span>Project Management: New Construction &amp; Dry Docking <em>&middot; Fall 2024–2025</em></span></li>
+              <li><span class="idx">b.</span><span>Maintenance &amp; Inspections Management <em>&middot; Spring 2024–2025</em></span></li>
+            </ul>
+            <p>Through interactive sessions, students gain practical exposure to the standards, challenges, and management approaches they will face in their careers.</p>
+          </div>
         </div>
       </article>
-
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section section--navy cta-banner">
-    <div class="wrap reveal">
-      <h2>Not sure which service fits your needs?</h2>
-      <p>Let's have a conversation. We'll help you identify the right approach for your organization.</p>
-      <div class="btn-row">
-        <a href="contact.html" class="btn btn-primary">Get in touch <span class="arw">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-top">
-        <div class="footer-col">
-          <a class="brand brand--footer" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="56" height="40" /><span class="brand__stack"><span class="brand__word">NYMA</span><span class="brand__tag">Maritime Enablers</span></span></a>
-          <p class="footer-note">A team of Greek maritime professionals, a stepping stone for the people and organisations who shape shipping.</p>
-          <p class="footer-coords">37°58′N / 23°43′E · Athens, Greece</p>
+      <article id="environmental" class="svc" data-pillar="propulsion">
+        <div class="svc__head">
+          <span class="svc__num" aria-hidden="true">03</span>
+          <div>
+            <p class="label svc__label">03 — Service</p>
+            <h2 data-split>Environmental &amp; Decarbonization</h2>
+          </div>
         </div>
-        <div class="footer-col">
+        <div class="svc__body">
+          <figure class="frame svc__media reveal-img"><img src="assets/img/port-research-vessel.jpg" srcset="assets/img/port-research-vessel-480.jpg 480w, assets/img/port-research-vessel-960.jpg 960w, assets/img/port-research-vessel.jpg 1280w" sizes="(min-width: 900px) 46vw, 100vw" alt="Modern purpose-built support vessel at berth" width="1280" height="720" loading="lazy" decoding="async" data-parallax="0.06" data-parallax-scale="1.1" /></figure>
+          <div class="svc__content reveal" data-stagger>
+            <p class="lede">We are committed to contributing to a more sustainable maritime industry, bringing forward innovative and actionable solutions focused on:</p>
+            <ul class="spec">
+              <li><span class="idx">a.</span><span>Emissions reduction and decarbonization strategies</span></li>
+              <li><span class="idx">b.</span><span>Energy efficiency assessment and optimization</span></li>
+              <li><span class="idx">c.</span><span>Feasibility studies for new technologies and vessel modifications</span></li>
+              <li><span class="idx">d.</span><span>Evaluation and integration of emerging technologies</span></li>
+            </ul>
+            <p>We combine practical operational experience with forward-thinking engineering approaches, assessing what is viable, what is scalable, and what genuinely supports greener seaborne trade.</p>
+          </div>
+        </div>
+      </article>
+      <article id="representations" class="svc svc--rev" data-pillar="propulsion">
+        <div class="svc__head">
+          <span class="svc__num" aria-hidden="true">04</span>
+          <div>
+            <p class="label svc__label">04 — Service</p>
+            <h2 data-split>Representations</h2>
+          </div>
+        </div>
+        <div class="svc__body">
+          <figure class="frame svc__media reveal-img"><img src="assets/img/drydock-twin-propellers-rudders.jpg" srcset="assets/img/drydock-twin-propellers-rudders-480.jpg 480w, assets/img/drydock-twin-propellers-rudders-960.jpg 960w, assets/img/drydock-twin-propellers-rudders.jpg 1280w" sizes="(min-width: 900px) 46vw, 100vw" alt="Twin propellers and rudders of a vessel in drydock" width="1280" height="960" loading="lazy" decoding="async" data-parallax="0.06" data-parallax-scale="1.1" /></figure>
+          <div class="svc__content reveal" data-stagger>
+            <p class="lede">We represent a selected group of niche companies offering specialized services to the maritime industry. Each partner is chosen for depth of expertise and quality of delivery.</p>
+            <p class="label svc__sub">A trusted network of vetted partners</p>
+            <ul class="spec">
+              <li><span class="idx">a.</span><span>Supersoar Marine: propulsion and steering-gear components (China)</span></li>
+              <li><span class="idx">b.</span><span>HSQE: Third-party compliance and Safety Management System (SMS) specialists</span></li>
+              <li><span class="idx">c.</span><span>Crewing: Manning agents and seafarer placement</span></li>
+            </ul>
+            <div><a href="partnerships.html" class="btn btn--dark">See all partnerships <span class="btn__arw"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5"/></svg></span></a></div>
+          </div>
+        </div>
+      </article>
+      <article id="technical" class="svc" data-pillar="maritime">
+        <div class="svc__head">
+          <span class="svc__num" aria-hidden="true">05</span>
+          <div>
+            <p class="label svc__label">05 — Service</p>
+            <h2 data-split>Technical Management</h2>
+          </div>
+        </div>
+        <div class="svc__body">
+          <figure class="frame svc__media reveal-img"><img src="assets/img/drydock-tank-interior-03.jpg" srcset="assets/img/drydock-tank-interior-03-480.jpg 480w, assets/img/drydock-tank-interior-03.jpg 960w" sizes="(min-width: 900px) 46vw, 100vw" alt="Crew inspecting a vessel's internal tank structure" width="960" height="1280" loading="lazy" decoding="async" data-parallax="0.06" data-parallax-scale="1.1" /></figure>
+          <div class="svc__content reveal" data-stagger>
+            <p class="lede">We assume third-party technical management services, partial or complete, depending on fleet size and operational needs.</p>
+            <p>By bringing together the right specialized expertise, we help shipowners and managers:</p>
+            <ul class="spec">
+              <li><span class="idx">a.</span><span>Optimize operational resources and reduce overhead</span></li>
+              <li><span class="idx">b.</span><span>Improve efficiency, reliability, and regulatory compliance</span></li>
+              <li><span class="idx">c.</span><span>Strengthen internal quality frameworks</span></li>
+              <li><span class="idx">d.</span><span>Deliver measurable performance results</span></li>
+            </ul>
+            <p>Our model is flexible: from full technical management support to targeted ad-hoc projects. We work alongside your existing structure, or step in where expertise is needed most.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta glow">
+    <div class="cta__course" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path class="course__path" d="M0 44 L280 44 L560 16 L880 34 L1200 22"/></svg></div>
+    <div class="wrap cta__inner">
+      <div>
+        <h2 data-split>Not sure which service <span class="l2">fits your needs?</span></h2>
+        <p class="reveal">Let's have a conversation. We'll help you identify the right approach for your organization.</p>
+      </div>
+      <div class="reveal d2"><a class="orb magnetic" data-magnetic="0.35" href="contact.html">Get in<br />touch<svg class="arw" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="quad-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand" href="index.html" aria-label="NYMA Maritime Enablers, home"><img class="brand__mark" src="assets/logo-mark.svg" alt="" width="50" height="36" /><span class="brand__stack"><span class="brand__word">NYMA</span><span class="brand__tag">Maritime Enablers</span></span></a>
+          <p class="footer__note">A team of Greek maritime professionals, a stepping stone for the people and organisations who shape shipping.</p>
+        </div>
+        <div class="footer__col">
           <h4>Navigate</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
@@ -181,17 +221,17 @@
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-        <div class="footer-col">
+        <div class="footer__col">
           <h4>Services</h4>
           <ul>
             <li><a href="services.html#mentoring">Mentoring &amp; Coaching</a></li>
-            <li><a href="services.html#technical">Technical Management</a></li>
+            <li><a href="services.html#academic">Academic &amp; Industry</a></li>
             <li><a href="services.html#environmental">Environmental &amp; Decarbonization</a></li>
-            <li><a href="services.html#academic">Academic &amp; Training</a></li>
-            <li><a href="partnerships.html">Representations</a></li>
+            <li><a href="services.html#representations">Representations</a></li>
+            <li><a href="services.html#technical">Technical Management</a></li>
           </ul>
         </div>
-        <div class="footer-col">
+        <div class="footer__col">
           <h4>Contact</h4>
           <ul>
             <li>30A Ifestou Str., Ano Ilioupolis</li>
@@ -201,13 +241,15 @@
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© <span id="year">2026</span> NymaMar. All rights reserved.</span>
-        <span>Athens, Greece</span>
+      <div class="footer__mega" aria-hidden="true">NYMA</div>
+      <div class="footer__bar">
+        <span>&copy; <span id="year">2026</span> NymaMar. All rights reserved.</span>
+        <span class="mono"><span class="pulse"></span>37&deg;58&prime;N 23&deg;43&prime;E &middot; Athens <span data-clock>--:--</span></span>
+        <a href="#main" class="to-top" data-to-top>Back to top <span aria-hidden="true">&uarr;</span></a>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

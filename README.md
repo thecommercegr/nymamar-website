@@ -32,32 +32,32 @@ Every page is a complete standalone HTML document (no templating — the `<head>
 | `contact.html` | Contact | `/contact` |
 | `ai-context.html` | AI Context (unlinked, `noindex`, JSON-LD for AI/GEO) | `/ai-context` |
 
-Nav: **Home · About · Services · Partnerships · Contact** (plus a "Get in touch" button).
+Nav: **About · Services · Partnerships** + a live Athens clock and a **Get in touch** button (the logo links Home; the mobile menu also lists Home).
 
 ## What NymaMar does (for context)
 
 People- and expertise-led maritime company. Five service areas: **Mentoring & Coaching**, **Academic & Industry Engagement**, **Environmental & Decarbonization**, **Representations**, and **Technical Management**. Values: Respect, Empathy, Trust, Dependability, Determination — rooted in *philotimo*.
 
-## Design system
+## Design system (v3, "Connect the elements")
 
-- **Display / headings:** Archivo (700/800, tight tracking)  ·  **Body / UI:** DM Sans (400/500/600/700). Both load from Google Fonts.
-- **Brand blue:** `#034A9A` (from the NYMA logo) — buttons, labels, links.
-- **Quadrant pillar palette:** the four logo colours drive per-section accents via `data-pillar="maritime|sky|propulsion|people"` → navy `#034A9A`, sky `#78B4E2`, green `#5C8336`, red `#A64043` (text-safe variants used where the accent is type).
-- **Core palette:** bg `#F4F6F9` · paper `#FFFFFF` · sand `#EAEEF2` · ink `#15202B` · navy `#112A43` · rule `#DCE2E8`.
-- **Buttons:** bold, square corners; blue fill / outline / ghost / white variants.
-- **Mobile-first:** base CSS is the phone layout, enhanced upward at 600 / 900 / 1200px. All design tokens live at the top of `css/styles.css` (`:root`).
-- **Official logo:** `assets/logo-mark.svg` — the 2×2 NYMA quadrant mark (navy / sky / green / red).
+- **Mood:** dark, editorial, cinematic. Deep ink canvas (`#06111F`) alternating with warm bone (`#EFEEE9`) light sections; the four NYMA quadrant colours are the only accents.
+- **Type:** **Archivo** variable (weight 100–900, *width 62–125%*): heavy tight headlines, a light-weight sky-blue second line, and **expanded, tracked micro-labels**. **DM Sans** for body/UI. **JetBrains Mono** for coordinates, indices and data. All from Google Fonts.
+- **Quadrant pillar palette:** `data-pillar="maritime|sky|propulsion|people"` → navy `#034A9A`, sky `#78B4E2`, green `#5C8336`, red `#A64043`, each with text-safe light/dark variants (resolved automatically on light vs dark sections).
+- **Signature pieces:** full-screen quadrant intro + pinwheel page transitions; interactive 2×2 "elements" grid with a rotating ring badge at the cross; scroll-lit statement; bento photo gallery; outlined-number service spreads with sticky photos; spec-sheet lists; giant "NYMA" footer wordmark.
+- **Buttons:** square, solid with an arrow tile; fill wipes up on hover. A round **magnetic** "Get in touch" orb closes every page.
+- **Mobile-first:** base CSS is the phone layout, enhanced at 600 / 900 / 1200px. Tokens live at the top of `css/styles.css`.
+- **Official logo:** `assets/logo-mark.svg` (2×2 quadrant mark).
 
 ## Built-in behaviours
 
-Motion is a single dependency-free IIFE (`js/main.js`) plus CSS; **every effect degrades gracefully** under `prefers-reduced-motion` and with JS off.
+One dependency-free IIFE (`js/main.js`) plus CSS. **Every effect degrades** under `prefers-reduced-motion`, and with JS off (or if `main.js` fails to load) all content shows.
 
-- **Cinematic full-bleed hero** — photo settles in on load and parallaxes on scroll, under a directional gradient; the headline wipes up on reveal.
-- **Scroll reveals** — clip-wipe headings + staggered content as sections enter view.
-- **Living partner marquee** on the Home "Representations" band; **scroll-progress bar**; **image service cards** with hover zoom; **framed, height-capped split photos** with a pillar accent and parallax.
-- **Sticky header** (transparent over the hero → solid on scroll) + full-screen mobile menu (scroll-lock, Escape, focus trap).
-- **Full-bleed imagery** across the site, using the client's real maritime photography.
-- Fully responsive (desktop / tablet / mobile), verified **zero horizontal overflow**.
+- **Quadrant curtain:** first page of a session plays a ~1.5s intro (the four brand panels form the mark, glyphs pop in, panels part like the pinwheel). Internal links close the panels, then the next page opens them.
+- **Hero choreography:** photo wipes up and settles, the headline rises word by word, then the lede, buttons and the live HUD (coordinates + Athens time).
+- **Scroll motion:** word-by-word heading reveals, image wipes, staggered groups, a statement that lights up word by word as you scroll, inner-page hero photos that expand from the content column to full-bleed, clamped parallax, services ticker + partner marquee, scroll-progress bar in the four brand colours.
+- **Header:** transparent over the hero, frosted glass after scroll, hides on scroll down and returns on scroll up; full-screen mobile menu (scroll-lock, Escape, focus trap).
+- **Services:** sticky pill tabs with scroll-spy; photos stay pinned while each service's text scrolls.
+- Responsive and verified with zero horizontal overflow at 390px.
 
 ## ⚠️ Open items to confirm with the client
 
@@ -69,8 +69,8 @@ Motion is a single dependency-free IIFE (`js/main.js`) plus CSS; **every effect 
 
 ## Moving this into Squarespace
 
-1. Set fonts (Archivo + DM Sans), colours and heading sizes in *Design → Site Styles*.
-2. Recreate each section with Fluid Engine blocks, using this mockup as the visual target; reproduce the motion with a little Code Injection where needed.
+1. Set fonts (Archivo + DM Sans, optionally JetBrains Mono for labels), colours and heading sizes in *Design → Site Styles*.
+2. Recreate each section with Fluid Engine blocks, using this mockup as the visual target. The motion layer (curtain, word reveals, scroll-lit text, expanding hero) is plain CSS + `js/main.js` and can go in via Code Injection.
 3. Use a **Form Block** for the contact form (Name, Company, Email, Subject dropdown, Message).
 4. Keep `/ai-context` unlinked with a `noindex` tag (already in the HTML).
 
