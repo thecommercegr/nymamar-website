@@ -5,7 +5,8 @@
    - Header: glass after scroll, hides on scroll down / returns on scroll up
    - Mobile nav: scroll-lock, Escape, focus trap, aria-expanded
    - Word-split headings, scroll reveals, image wipes, stagger groups
-   - Scroll-lit statement text, clamped parallax, expanding hero windows
+   - Clamped parallax, expanding hero windows, mobile quick-contact bar
+   - Contact form inline validation
    - Scroll progress, services sub-nav spy, live Athens clock, magnetic CTAs
    Every motion path is skipped under prefers-reduced-motion. */
 (function () {
@@ -47,30 +48,6 @@
     splitNode(el);
     $$(".w", el).forEach(function (w) { w.setAttribute("aria-hidden", "true"); });
   });
-
-  /* Scroll-lit statements: wrap words, light them as the block scrolls past. */
-  var scrubEls = $$("[data-scrub]");
-  scrubEls.forEach(function (el) {
-    var words = el.textContent.trim().split(/\s+/);
-    el.setAttribute("aria-label", words.join(" "));
-    el.innerHTML = words.map(function (w) { return '<span class="sw" aria-hidden="true">' + w + "</span>"; }).join(" ");
-    el._words = $$(".sw", el);
-  });
-  function updateScrub() {
-    if (reduceMotion) return;
-    var vh = window.innerHeight;
-    scrubEls.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > vh) return;
-      var p = (vh * 0.85 - r.top) / (vh * 0.35 + r.height);
-      p = Math.max(0, Math.min(1, p));
-      var n = el._words.length, lit = p * n;
-      for (var i = 0; i < n; i++) {
-        var o = Math.max(0, Math.min(1, lit - i));
-        el._words[i].style.setProperty("--o", (0.16 + o * 0.84).toFixed(3));
-      }
-    });
-  }
 
   /* ---- Header ----------------------------------------------------------- */
   var header = document.querySelector(".site-header");
@@ -125,9 +102,20 @@
   }
   expandEls.forEach(function (el) { el.style.setProperty("--p", "0"); });
 
+  /* ---- Mobile quick-contact bar: shows after the hero, hides at the footer */
+  var bar = document.querySelector(".mbar");
+  var footerEl = document.querySelector(".site-footer");
+  function updateBar() {
+    if (!bar) return;
+    var vh = window.innerHeight;
+    var pastHero = window.scrollY > vh * 0.7;
+    var atFooter = footerEl && footerEl.getBoundingClientRect().top < vh - 40;
+    bar.classList.toggle("is-on", pastHero && !atFooter);
+  }
+
   /* ---- Scroll loop ---------------------------------------------------- */
   var ticking = false;
-  function frame() { updateHeader(); updateProgress(); updateParallax(); updateExpand(); updateScrub(); ticking = false; }
+  function frame() { updateHeader(); updateProgress(); updateParallax(); updateExpand(); updateBar(); ticking = false; }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
@@ -192,8 +180,8 @@
       curtain.classList.remove("no-anim", "is-intro");
       void curtain.offsetWidth;
       curtain.classList.remove("is-cover");
-      setTimeout(playHero, 260);
-      setTimeout(function () { if (curtain) curtain.style.visibility = "hidden"; }, 1100);
+      setTimeout(playHero, 200);
+      setTimeout(function () { if (curtain) curtain.style.visibility = "hidden"; }, 900);
     }, delay);
   }
 
@@ -209,7 +197,7 @@
   } else if (store.get("nyma-intro") !== "1") {
     store.set("nyma-intro", "1");        // first page of the session
     makeCurtain("is-cover is-intro no-anim");
-    openCurtain(950);
+    openCurtain(620);
   } else {
     requestAnimationFrame(playHero);
   }
@@ -230,7 +218,7 @@
       void curtain.offsetWidth;
       curtain.classList.add("is-cover");
       store.set("nyma-nav", "1");
-      setTimeout(function () { location.href = url.href; }, 760);
+      setTimeout(function () { location.href = url.href; }, 520);
     });
   }
   // Back/forward cache: never restore a closed curtain.
@@ -326,8 +314,30 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
   var form = document.querySelector("[data-contact-form]");
   if (form) {
+    // Inline validation: plain-language messages next to the field, focus the first error.
+    var check = function (input) {
+      var field = input.closest(".field");
+      var msg = "";
+      if (input.required && !input.value.trim()) msg = "Please fill in this field.";
+      else if (input.type === "email" && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) msg = "Please enter a valid email address.";
+      var err = field.querySelector(".field__err");
+      if (msg && !err) {
+        err = document.createElement("span"); err.className = "field__err"; err.id = input.id + "-err";
+        field.appendChild(err); input.setAttribute("aria-describedby", err.id);
+      }
+      if (err) err.textContent = msg;
+      field.classList.toggle("is-invalid", !!msg);
+      input.setAttribute("aria-invalid", msg ? "true" : "false");
+      return !msg;
+    };
+    var inputs = $$("input, textarea", form);
+    inputs.forEach(function (i) {
+      i.addEventListener("blur", function () { if (i.value || i.closest(".field").classList.contains("is-invalid")) check(i); });
+    });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      var bad = inputs.filter(function (i) { return !check(i); });
+      if (bad.length) { bad[0].focus(); return; }
       var note = form.querySelector("[data-form-note]");
       if (note) note.hidden = false;
       form.reset();

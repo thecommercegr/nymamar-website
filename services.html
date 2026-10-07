@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&amp;family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=4" />
+  <link rel="stylesheet" href="css/styles.css?v=5" />
   <link rel="icon" href="assets/logo-mark.svg" />
 </head>
 <body>
@@ -53,7 +53,7 @@
   <!-- ===== Page hero ===== -->
   <section id="main" class="phero">
     <div class="wrap phero__inner">
-      <p class="phero__kicker intro" style="--d:.15s"><span class="quad-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="label">Our services</span></p>
+      <nav class="phero__kicker crumbs intro" style="--d:.15s" aria-label="Breadcrumb"><span class="quad-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span><a class="label" href="index.html">Home</a><span class="crumbs__sep" aria-hidden="true">/</span><span class="label" aria-current="page">Services</span></nav>
       <div class="phero__grid">
         <h1 class="phero__title" data-split>Our Services</h1>
         <p class="lede phero__lede intro" style="--d:.75s">We operate at the intersection of technical excellence, human development, and environmental responsibility, creating focused value across the shipping ecosystem.</p>
@@ -62,25 +62,23 @@
     <div class="phero__window" data-expand><img src="assets/img/academy-simulator-container-view.jpg" srcset="assets/img/academy-simulator-container-view-480.jpg 480w, assets/img/academy-simulator-container-view-960.jpg 960w, assets/img/academy-simulator-container-view.jpg 1280w" sizes="100vw" alt="Immersive ship-bridge simulator with a container-ship view" width="1280" height="597" decoding="async" data-parallax="0.08" data-parallax-scale="1.14" /><p class="phero__caption mono">Fig. 01 &middot; Bridge simulation</p></div>
   </section>
 
-  <!-- ===== On-page sub-nav ===== -->
-  <nav class="subnav" aria-label="Services sections">
-    <div class="wrap subnav__inner">
+  <!-- ===== Services (sub-nav is sticky only within this section) ===== -->
+  <section class="section section--bone section--flush-top">
+    <nav class="subnav" aria-label="Services sections">
+      <div class="wrap subnav__inner">
       <a href="#mentoring" data-pillar="people" class="active">Mentoring &amp; Coaching</a>
       <a href="#academic" data-pillar="sky">Academic &amp; Industry</a>
       <a href="#environmental" data-pillar="propulsion">Environmental &amp; Decarbonization</a>
       <a href="#representations" data-pillar="propulsion">Representations</a>
       <a href="#technical" data-pillar="maritime">Technical Management</a>
-    </div>
-  </nav>
-
-  <!-- ===== Services ===== -->
-  <section class="section section--bone section--flush-top">
+      </div>
+    </nav>
     <div class="wrap">
       <article id="mentoring" class="svc" data-pillar="people">
         <div class="svc__head">
           <span class="svc__num" aria-hidden="true">01</span>
           <div>
-            <p class="label svc__label">01 — Service</p>
+            <p class="label svc__label"><span class="svc__label-num">01 — </span>Service</p>
             <h2 data-split>Mentoring &amp; Coaching</h2>
           </div>
         </div>
@@ -103,7 +101,7 @@
         <div class="svc__head">
           <span class="svc__num" aria-hidden="true">02</span>
           <div>
-            <p class="label svc__label">02 — Service</p>
+            <p class="label svc__label"><span class="svc__label-num">02 — </span>Service</p>
             <h2 data-split>Academic &amp; Industry Engagement</h2>
           </div>
         </div>
@@ -124,7 +122,7 @@
         <div class="svc__head">
           <span class="svc__num" aria-hidden="true">03</span>
           <div>
-            <p class="label svc__label">03 — Service</p>
+            <p class="label svc__label"><span class="svc__label-num">03 — </span>Service</p>
             <h2 data-split>Environmental &amp; Decarbonization</h2>
           </div>
         </div>
@@ -146,7 +144,7 @@
         <div class="svc__head">
           <span class="svc__num" aria-hidden="true">04</span>
           <div>
-            <p class="label svc__label">04 — Service</p>
+            <p class="label svc__label"><span class="svc__label-num">04 — </span>Service</p>
             <h2 data-split>Representations</h2>
           </div>
         </div>
@@ -168,7 +166,7 @@
         <div class="svc__head">
           <span class="svc__num" aria-hidden="true">05</span>
           <div>
-            <p class="label svc__label">05 — Service</p>
+            <p class="label svc__label"><span class="svc__label-num">05 — </span>Service</p>
             <h2 data-split>Technical Management</h2>
           </div>
         </div>
@@ -250,6 +248,12 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=4"></script>
+  <!-- Mobile quick-contact bar (thumb zone) -->
+  <div class="mbar" role="region" aria-label="Quick contact">
+    <a class="mbar__call" href="tel:+302109951917"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.5 1.5h2.5l1.2 3.2-1.6 1a8 8 0 0 0 4.7 4.7l1-1.6 3.2 1.2v2.5a1.5 1.5 0 0 1-1.6 1.5A12.5 12.5 0 0 1 2 3.1 1.5 1.5 0 0 1 3.5 1.5z"/></svg>Call</a>
+    <a class="mbar__go" href="contact.html">Get in touch <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+  </div>
+
+  <script src="js/main.js?v=5"></script>
 </body>
 </html>

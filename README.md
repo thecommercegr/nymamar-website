@@ -43,7 +43,7 @@ People- and expertise-led maritime company. Five service areas: **Mentoring & Co
 - **Mood:** dark, editorial, cinematic. Deep ink canvas (`#06111F`) alternating with warm bone (`#EFEEE9`) light sections; the four NYMA quadrant colours are the only accents.
 - **Type:** **Archivo** variable (weight 100–900, *width 62–125%*): heavy tight headlines, a light-weight sky-blue second line, and **expanded, tracked micro-labels**. **DM Sans** for body/UI. **JetBrains Mono** for coordinates, indices and data. All from Google Fonts.
 - **Quadrant pillar palette:** `data-pillar="maritime|sky|propulsion|people"` → navy `#034A9A`, sky `#78B4E2`, green `#5C8336`, red `#A64043`, each with text-safe light/dark variants (resolved automatically on light vs dark sections).
-- **Signature pieces:** full-screen quadrant intro + pinwheel page transitions; interactive 2×2 "elements" grid with a rotating ring badge at the cross; scroll-lit statement; bento photo gallery; outlined-number service spreads with sticky photos; spec-sheet lists; giant "NYMA" footer wordmark.
+- **Signature pieces:** full-screen quadrant intro + pinwheel page transitions; interactive 2×2 "elements" grid with a rotating ring badge at the cross; "bridging the gaps" route with a photo collage; bento photo gallery; outlined-number service spreads with sticky photos; spec-sheet lists; giant "NYMA" footer wordmark.
 - **Buttons:** square, solid with an arrow tile; fill wipes up on hover. A round **magnetic** "Get in touch" orb closes every page.
 - **Mobile-first:** base CSS is the phone layout, enhanced at 600 / 900 / 1200px. Tokens live at the top of `css/styles.css`.
 - **Official logo:** `assets/logo-mark.svg` (2×2 quadrant mark).
@@ -52,12 +52,13 @@ People- and expertise-led maritime company. Five service areas: **Mentoring & Co
 
 One dependency-free IIFE (`js/main.js`) plus CSS. **Every effect degrades** under `prefers-reduced-motion`, and with JS off (or if `main.js` fails to load) all content shows.
 
-- **Quadrant curtain:** first page of a session plays a ~1.5s intro (the four brand panels form the mark, glyphs pop in, panels part like the pinwheel). Internal links close the panels, then the next page opens them.
+- **Quadrant curtain:** first page of a session plays a ~1s intro (the four brand panels form the mark, glyphs pop in, panels part like the pinwheel). Internal links close the panels, then the next page opens them.
 - **Hero choreography:** photo wipes up and settles, the headline rises word by word, then the lede, buttons and the live HUD (coordinates + Athens time).
-- **Scroll motion:** word-by-word heading reveals, image wipes, staggered groups, a statement that lights up word by word as you scroll, inner-page hero photos that expand from the content column to full-bleed, clamped parallax, services ticker + partner marquee, scroll-progress bar in the four brand colours.
+- **Scroll motion:** word-by-word heading reveals, image wipes, staggered groups, inner-page hero photos that expand from the content column to full-bleed, clamped parallax, services ticker + partner marquee, scroll-progress bar in the four brand colours.
 - **Header:** transparent over the hero, frosted glass after scroll, hides on scroll down and returns on scroll up; full-screen mobile menu (scroll-lock, Escape, focus trap).
 - **Services:** sticky pill tabs with scroll-spy; photos stay pinned while each service's text scrolls.
-- Responsive and verified with zero horizontal overflow at 390px.
+- **Built for busy maritime decision makers:** restrained type scale, scannable structured lists, breadcrumbs on inner pages, a phone-only Call / Get in touch bar in the thumb zone, click-to-call and mailto everywhere, inline form validation with plain-language messages, fast (~0.5s) page transitions and a short first-visit intro.
+- Responsive and verified with zero horizontal overflow at 360 / 390 / 430px; all tap targets ≥ 44px.
 
 ## ⚠️ Open items to confirm with the client
 
@@ -70,7 +71,7 @@ One dependency-free IIFE (`js/main.js`) plus CSS. **Every effect degrades** unde
 ## Moving this into Squarespace
 
 1. Set fonts (Archivo + DM Sans, optionally JetBrains Mono for labels), colours and heading sizes in *Design → Site Styles*.
-2. Recreate each section with Fluid Engine blocks, using this mockup as the visual target. The motion layer (curtain, word reveals, scroll-lit text, expanding hero) is plain CSS + `js/main.js` and can go in via Code Injection.
+2. Recreate each section with Fluid Engine blocks, using this mockup as the visual target. The motion layer (curtain, word reveals, expanding hero, mobile contact bar) is plain CSS + `js/main.js` and can go in via Code Injection.
 3. Use a **Form Block** for the contact form (Name, Company, Email, Subject dropdown, Message).
 4. Keep `/ai-context` unlinked with a `noindex` tag (already in the HTML).
 
