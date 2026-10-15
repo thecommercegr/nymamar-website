@@ -585,7 +585,7 @@ body.header-hidden .subnav { top: 0; }
   transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
 }
 .subnav a::before { content: ""; width: 7px; height: 7px; background: var(--pillar); }
-.subnav a:hover { color: var(--text); border-color: rgba(11,22,36,.35); }
+@media (hover: hover) { .subnav a:hover { color: var(--text); border-color: rgba(11,22,36,.35); } }
 .subnav a.active { background: var(--ink); color: #fff; border-color: var(--ink); }
 
 /* Service articles */
@@ -678,8 +678,6 @@ body.header-hidden .subnav { top: 0; }
 .cta__course { position: absolute; left: 0; right: 0; top: clamp(1.5rem, 4vw, 3rem); color: var(--line-dark); pointer-events: none; }
 .cta__course svg { width: 100%; height: auto; }
 .course__path { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 4 6; }
-.course__dot { fill: var(--b-sky); }
-.course__label { font-family: var(--mono); font-size: 8px; letter-spacing: 1px; fill: var(--on-dark-muted); }
 
 /* ----- 18 Footer ----------------------------------------------------------- */
 .site-footer { position: relative; background: var(--ink); color: var(--on-dark-muted); overflow: hidden; }
@@ -812,7 +810,8 @@ html.js body.nav-open .mbar { transform: translateY(110%); }
   .hero__hud .hud-hide { display: inline-flex; }
   .elements__grid { grid-template-columns: 1fr 1fr; }
   .el { min-height: 20rem; }
-  .el__title { margin-top: auto; }
+  .el__title { margin-top: clamp(1.75rem, 4.5vw, 4rem); }  /* fixed, so titles align across a row */
+  .el__go { margin-top: auto; }
   .el:nth-child(1) { --ox: 100%; --oy: 100%; }
   .el:nth-child(2) { --ox: 0%;   --oy: 100%; }
   .el:nth-child(3) { --ox: 100%; --oy: 0%; }
