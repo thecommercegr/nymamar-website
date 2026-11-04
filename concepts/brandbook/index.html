@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NymaMar Identity, Board 1</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=Stack+Sans+Text:wght@300..700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Akt:wght@300..700&display=swap" rel="stylesheet">
+<style>
+/* Tokens. The joint (--j) is the mark's column gutter; rows get twice it, like the mark. */
+:root{
+  color-scheme:light;
+  --ink:#0A1428;--slate:#556173;--mist:#8792A2;--line:#DDE3EA;--cloud:#F3F5F7;--paper:#FFFFFF;
+  --navy:#034A9A;--sky:#78B4E2;--green:#5C8336;--red:#A64043;
+  --j:3px;--cg:16px;--rg:32px;
+  --edge:clamp(16px,4.2vw,64px);
+  --ui:"Stack Sans Text",system-ui,sans-serif;
+  --dis:"Stack Sans Notch",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--ui);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--edge)}
+.sec{padding:clamp(56px,8vw,112px) 0;border-top:1px solid var(--line)}
+.sec__head{display:grid;gap:12px;margin-bottom:clamp(28px,4vw,48px);max-width:760px}
+.lbl{display:flex;align-items:center;gap:10px;font:500 13px/1.3 var(--ui);color:var(--slate)}
+h1,h2,h3{margin:0;font-family:var(--dis);font-weight:600;letter-spacing:-.02em;line-height:1.02}
+h2{font-size:clamp(30px,3.6vw,44px)}
+.sec__head p{margin:0;color:var(--slate);font-size:17px;max-width:62ch}
+
+/* Section marker: the mark in miniature, one tile lit (kept from the live site) */
+.mk{display:inline-grid;grid-template-columns:repeat(2,10px);grid-template-rows:repeat(2,7px);column-gap:1px;row-gap:2px;flex:none}
+.mk i{background:var(--line)}
+.mk[data-on="navy"] i:nth-child(1),.mk[data-on="all"] i:nth-child(1){background:var(--navy)}
+.mk[data-on="sky"] i:nth-child(2),.mk[data-on="all"] i:nth-child(2){background:var(--sky)}
+.mk[data-on="green"] i:nth-child(3),.mk[data-on="all"] i:nth-child(3){background:var(--green)}
+.mk[data-on="red"] i:nth-child(4),.mk[data-on="all"] i:nth-child(4){background:var(--red)}
+
+/* Top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0}
+.top__id{display:flex;align-items:center;gap:14px;font:500 14px/1.2 var(--ui)}
+.top__id img{width:46px;height:auto}
+.top__d{font:400 13px/1.2 var(--ui);color:var(--slate)}
+
+/* Intro */
+.intro{padding:clamp(40px,7vw,104px) 0 clamp(48px,7vw,96px)}
+.intro h1{font-size:clamp(44px,7vw,96px);font-weight:600;max-width:11ch}
+.intro h1 span{display:block;font-weight:250;color:var(--navy)}
+.intro p{margin:28px 0 0;max-width:56ch;font-size:clamp(17px,1.4vw,19px);color:var(--slate)}
+
+/* 1. Mark measured */
+.anat{display:grid;gap:var(--rg) var(--cg)}
+.anat__fig{background:var(--cloud);padding:clamp(20px,4vw,56px);display:grid;place-items:center}
+.anat__fig svg{width:100%;max-width:760px;height:auto}
+.anat__fig text{font:500 7.5px var(--ui);fill:var(--slate)}
+.anat__notes{display:grid;gap:var(--rg) var(--cg);align-content:start}
+.cross{background:var(--cloud);padding:20px;display:grid;place-items:center}
+.cross svg{width:100%;max-width:300px;height:auto}
+.cross text{font:600 1.5px var(--ui);fill:#0A1428}
+dl.spec{margin:0;display:grid;grid-template-columns:auto 1fr;column-gap:20px;row-gap:12px;font-size:15px}
+dl.spec dt{color:var(--slate)}
+dl.spec dd{margin:0;font-weight:500}
+@media(min-width:900px){.anat{grid-template-columns:minmax(0,7fr) minmax(0,4fr)}}
+
+/* 2. Rules */
+.rules{display:grid;gap:var(--rg) var(--cg);list-style:none;margin:0;padding:0}
+.rule{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:start}
+.rule__d{background:var(--cloud);aspect-ratio:10/7;display:grid;place-items:center}
+.rule__d svg{width:72%;height:auto;overflow:visible}
+.rule h3{font-size:22px;margin-bottom:6px}
+.rule p{margin:0;color:var(--slate);font-size:15px;line-height:1.5}
+@media(min-width:600px){.rules{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1200px){.rules{grid-template-columns:repeat(5,minmax(0,1fr))}.rule{grid-template-columns:1fr;gap:16px}}
+
+/* 3. Today vs from the mark */
+.cmp{display:grid;border-top:1px solid var(--line)}
+.cmp__row{display:grid;gap:14px var(--cg);padding:28px 0;border-bottom:1px solid var(--line);align-items:center}
+.cmp__row:last-child{border-bottom:0;padding-bottom:0}
+.cmp__name{font:600 17px/1.3 var(--ui)}
+.cmp__name small{display:block;font-weight:400;font-size:14px;color:var(--slate);margin-top:4px;max-width:30ch}
+.cmp__cell{display:grid;gap:10px;justify-items:start}
+.cmp__tag{font:500 12px/1 var(--ui);color:var(--mist)}
+.cmp__cell--new .cmp__tag{color:var(--navy)}
+.cmp__head{display:none}
+@media(min-width:900px){
+  .cmp__row{grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,4fr);padding:36px 0}
+  .cmp__head{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,4fr);gap:var(--cg);padding:0 0 12px;font:500 13px var(--ui);color:var(--slate)}
+  .cmp__tag{display:none}
+}
+
+/* Today's components (approximation of the live System 2029) */
+.t-btn{display:inline-flex;align-items:center;gap:14px;padding:8px 8px 8px 22px;border-radius:999px;font:600 15px/1 system-ui,sans-serif;color:#fff;text-decoration:none;
+  background:linear-gradient(180deg,rgba(40,98,186,.92),rgba(3,74,154,.96));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(0,0,0,.15),0 10px 26px rgba(3,74,154,.28)}
+.t-btn i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.t-btn--clear{color:var(--ink);background:rgba(255,255,255,.55);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(10,20,40,.08),0 10px 26px rgba(10,20,40,.10)}
+.t-btn--clear i{background:rgba(10,20,40,.06)}
+.t-card{width:min(100%,320px);border-radius:22px;background:#fff;box-shadow:0 18px 40px rgba(10,20,40,.10),0 0 0 1px rgba(10,20,40,.04);padding:12px}
+.t-card img{border-radius:16px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.t-card div{padding:14px 8px 6px;font:600 18px/1.2 system-ui,sans-serif}
+.t-card span{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#E8EEF6;color:var(--navy);margin-bottom:10px}
+.t-field{display:flex;gap:8px;width:min(100%,360px)}
+.t-field span{flex:1;height:50px;border-radius:14px;background:#EEF2F6;display:flex;align-items:center;padding:0 16px;color:var(--mist);font:15px system-ui,sans-serif}
+.t-field b{width:50px;height:50px;border-radius:999px;display:grid;place-items:center;color:#fff;background:linear-gradient(180deg,#2862BA,#034A9A);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 18px rgba(3,74,154,.25)}
+
+/* From the mark: joined button. Plate + tile at 10:7, one joint between. The joint closes on hover, focus and press. */
+.bj{display:inline-flex;gap:var(--j);height:52px;text-decoration:none;font:600 15px/1 var(--ui);color:#fff;transition:gap .18s ease;outline:none}
+.bj__l{display:flex;align-items:center;padding:0 22px;background:var(--navy);white-space:nowrap}
+.bj__t{width:74px;display:grid;place-items:center;background:var(--navy)}
+.bj__t svg{width:22px;height:12px;transition:transform .18s ease}
+.bj:hover,.bj:focus-visible,.bj:active{gap:0}
+.bj:hover .bj__t svg,.bj:focus-visible .bj__t svg{transform:translateX(4px)}
+.bj:focus-visible{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--ink)}
+.bj--line{color:var(--ink)}
+.bj--line .bj__l{background:transparent;box-shadow:inset 0 0 0 1.5px var(--ink)}
+.bj--line .bj__t{background:var(--ink);color:#fff}
+.bj--sm{height:40px;font-size:14px}.bj--sm .bj__l{padding:0 16px}.bj--sm .bj__t{width:57px}
+.f-field{display:grid;gap:8px;width:min(100%,380px)}
+.f-field label{font:500 13px var(--ui);color:var(--slate)}
+.f-field div{display:flex;gap:var(--j);height:52px}
+.f-field input{flex:1;min-width:0;border:0;border-radius:0;background:var(--cloud);font:400 16px var(--ui);color:var(--ink);padding:0 16px;box-shadow:inset 0 -2px 0 var(--ink)}
+.f-field input:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.f-field button{width:74px;border:0;border-radius:0;background:var(--navy);color:#fff;display:grid;place-items:center;cursor:pointer}
+
+/* Frame with the element tile notched into its corner; the joint is the paper around it */
+.nf{position:relative;overflow:hidden;background:var(--cloud)}
+.nf img{width:100%;height:100%;object-fit:cover}
+.nf__t{position:absolute;left:0;top:0;width:clamp(52px,16%,84px);aspect-ratio:10/7;background:var(--pillar,var(--navy));color:#fff;display:grid;place-items:center;
+  box-shadow:var(--j) var(--j) 0 0 var(--paper),0 var(--j) 0 0 var(--paper),var(--j) 0 0 0 var(--paper)}
+.nf__t svg{width:42%;height:auto}
+.n-card{width:min(100%,340px);display:grid;gap:14px}
+.n-card .nf{aspect-ratio:10/7}
+.n-card h4{margin:0;font:600 21px/1.15 var(--dis);letter-spacing:-.01em}
+.n-card p{margin:0;font-size:14px;color:var(--slate)}
+
+/* 4–5. Type directions */
+.dir{display:grid;gap:var(--rg) var(--cg)}
+.dir__top{display:grid;gap:var(--rg) var(--cg);align-items:end}
+.dir__name{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.pick{display:inline-flex;gap:var(--j);font:600 12px/1 var(--ui);color:#fff}
+.pick span{background:var(--navy);padding:7px 10px}
+.pick i{background:var(--navy);width:20px}
+.spec-big{font-size:clamp(42px,6.6vw,92px);line-height:1;letter-spacing:-.025em;margin:0}
+.spec-big span{display:block}
+.dir__why{margin:0;color:var(--slate);font-size:17px;max-width:46ch}
+.dir__why b{color:var(--ink);font-weight:600}
+.ladder{display:grid;border-top:1px solid var(--line)}
+.ladder div{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);overflow:hidden}
+.ladder small{font:500 12px/1.3 var(--ui);color:var(--slate)}
+.ladder div>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zoom{background:var(--cloud);display:grid;place-items:center;padding:clamp(20px,3vw,40px);gap:8px;align-content:center}
+.zoom b{font-size:clamp(150px,22vw,300px);line-height:.8;font-weight:600;letter-spacing:-.04em}
+.zoom small{font:500 13px/1.3 var(--ui);color:var(--slate);text-align:center}
+.dir__grid{display:grid;gap:var(--rg) var(--cg)}
+@media(min-width:900px){
+  .dir__top{grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+  .dir__grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+}
+
+/* Direction fonts */
+.tA{--h:"Stack Sans Notch",system-ui,sans-serif;--b:"Stack Sans Text",system-ui,sans-serif;--hw:600;--hw2:250;--hs:normal;--ls:-.025em}
+.tB{--h:"Newsreader",Georgia,serif;--b:"Akt",system-ui,sans-serif;--hw:500;--hw2:350;--hs:italic;--ls:-.02em}
+.tA .fh,.tB .fh{font-family:var(--h);font-weight:var(--hw);letter-spacing:var(--ls)}
+.tB .fh{font-variation-settings:"opsz" 72}
+.fh .l2{font-weight:var(--hw2);color:var(--navy)}
+.fh .sea{font-style:italic;font-weight:var(--hw2);color:var(--navy)}
+.tA .fb,.tB .fb{font-family:var(--b)}
+
+/* Site sample: a real hero built from the rules. Container queries let one block show desktop and phone. */
+.hs{container-type:inline-size;border:1px solid var(--line);background:var(--paper);overflow:hidden}
+.hs__nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.hs__nav img{width:40px;height:auto}
+.hs__links{display:none;gap:24px;font:500 14px/1 var(--b)}
+.hs__links a{text-decoration:none;display:flex;align-items:center;gap:8px}
+.hs__nav .bj{height:40px;font-family:var(--b)}
+.hs__body{display:grid;gap:24px;padding:18px}
+.hs__media{aspect-ratio:10/7}
+.hs__k{display:flex;align-items:center;gap:10px;font:500 13px/1.3 var(--b);color:var(--slate);margin:0 0 14px}
+.hs__h{margin:0;font-size:clamp(34px,10cqi,40px);line-height:1.02}
+.hs__h .l2{display:block}
+.hs__p{margin:16px 0 22px;font:400 16px/1.55 var(--b);color:var(--slate);max-width:44ch}
+.hs__cta{display:flex;flex-wrap:wrap;gap:12px}
+.hs__cta .bj{font-family:var(--b)}
+.hs .burger{display:inline-grid;grid-template-columns:repeat(2,9px);grid-template-rows:repeat(2,6px);column-gap:1px;row-gap:2px;padding:14px 12px;background:var(--cloud)}
+.hs .burger i{background:var(--ink)}
+@container (min-width:760px){
+  .hs__links{display:flex}
+  .hs .burger{display:none}
+  .hs__nav{padding:18px 28px}
+  .hs__body{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:40px;padding:40px 28px;align-items:center}
+  .hs__media{aspect-ratio:7/10;max-height:560px;width:100%;order:2}
+  .hs__h{font-size:clamp(44px,6.2cqi,76px)}
+  .hs__text{padding:0}
+}
+@container (max-width:759px){.hs__nav .bj{display:none}}
+
+.apps{display:grid;gap:var(--rg) var(--cg)}
+.phone{display:none;width:min(100%,390px)}
+@media(min-width:1200px){.phone{display:block}}
+.phone__cap,.card__cap{font:500 12px/1.3 var(--ui);color:var(--slate);margin-top:10px}
+.cards{display:grid;gap:var(--rg) var(--cg);align-content:start}
+.bc{container-type:inline-size;aspect-ratio:10/7;width:min(100%,420px);background:var(--paper);border:1px solid var(--line);position:relative;overflow:hidden}
+.bc--front{background:var(--ink);border-color:var(--ink);display:grid;place-items:center}
+.bc--front img{width:38%}
+.bc__in{position:absolute;inset:0;padding:8% 8%;display:grid;align-content:space-between}
+.bc__n{font-size:6.2cqi;line-height:1.1;margin:0}
+.bc__r{font:400 3.4cqi/1.3 var(--b);color:var(--slate);margin-top:4px}
+.bc__c{font:400 3.2cqi/1.6 var(--b);color:var(--ink);display:grid}
+.bc__c b{font-weight:600}
+.bc__tile{position:absolute;right:0;top:0;width:18%;aspect-ratio:10/7;background:var(--navy);box-shadow:calc(-1 * var(--j)) var(--j) 0 0 var(--paper),calc(-1 * var(--j)) 0 0 0 var(--paper),0 var(--j) 0 0 var(--paper)}
+@media(min-width:1200px){.apps{grid-template-columns:minmax(0,1fr) 390px;align-items:start}}
+@media(min-width:600px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.bc{width:100%}}
+
+/* Close */
+.close{display:grid;gap:var(--rg) var(--cg)}
+.close h2 span{color:var(--navy)}
+.close ul{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--line)}
+.close li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px}
+.close li small{display:block;color:var(--slate);font-size:14px}
+@media(min-width:900px){.close{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}}
+.foot{padding:28px 0 48px;color:var(--slate);font-size:13px;border-top:1px solid var(--line)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arw" viewBox="0 0 22 12"><path d="M0 6h20M15 1l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="g-n" viewBox="0 0 24 24"><g fill="currentColor"><rect x="4" y="4" width="3.6" height="16"/><rect x="16.4" y="4" width="3.6" height="16"/><polygon points="8.8,5.6 15.2,13.6 15.2,18.4 8.8,10.4"/></g></symbol>
+  <symbol id="g-p" viewBox="0 0 24 24"><g fill="currentColor" transform="translate(12 12)"><path d="M0.5 -10.977A5.5 5.5 0 0 1 3.162 -1H0.5Z"/><path d="M0.5 1H10.908A5.5 5.5 0 0 1 0.5 2.291Z"/><path d="M-0.5 10.977A5.5 5.5 0 0 1 -3.162 1H-0.5Z"/><path d="M-0.5 -1H-10.908A5.5 5.5 0 0 1 -0.5 -2.291Z"/></g></symbol>
+  <symbol id="g-w" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-dasharray="47.5 5 100"><path pathLength="100" d="M2.5 7q3.1-3.2 6.2 0t6.2 0t6.2 0"/><path pathLength="100" d="M2.5 12q3.1-3.2 6.2 0t6.2 0t6.2 0"/><path pathLength="100" d="M2.5 17q3.1-3.2 6.2 0t6.2 0t6.2 0"/></g></symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <div class="top__id"><img src="img/logo-mark.svg" alt="NYMA mark" width="46" height="33"><span>NymaMar identity system<br><span class="top__d">Board 1 of 3: the mark's rules, shapes and type</span></span></div>
+    <span class="top__d">4 November 2026</span>
+  </header>
+
+  <section class="intro">
+    <h1>The gutter is the brand. <span>Everything else follows.</span></h1>
+    <p>Every rule on this board is measured from the official mark: four tiles at 10&nbsp;:&nbsp;7, held apart by a thin gutter. NymaMar connects the elements, so the gap between them is drawn, never hidden.</p>
+  </section>
+
+  <!-- 1. The mark, measured -->
+  <section class="sec" aria-labelledby="s1">
+    <div class="sec__head"><span class="lbl"><span class="mk" data-on="navy"><i></i><i></i><i></i><i></i></span>The mark, measured</span><h2 id="s1">Four tiles, two gutters.</h2></div>
+    <div class="anat">
+      <div class="anat__fig">
+        <svg viewBox="-30 -30 266 210" role="img" aria-label="The NYMA mark with its dimensions: tiles 100 by 70, column gutter 2, row gutter 4">
+          <rect x="0" y="0" width="100" height="70" fill="#034A9A"/><rect x="102" y="0" width="100" height="70" fill="#78B4E2"/>
+          <rect x="0" y="74" width="100" height="70" fill="#5C8336"/><rect x="102" y="74" width="100" height="70" fill="#A64043"/>
+          <g fill="#fff"><rect x="41" y="21" width="6" height="28"/><rect x="53" y="21" width="6" height="28"/><polygon points="41,21 47,21 59,49 53,49"/></g>
+          <g fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"><path d="M137 27 q5 -5 10 0 t10 0 t10 0"/><path d="M137 36 q5 -5 10 0 t10 0 t10 0"/><path d="M137 45 q5 -5 10 0 t10 0 t10 0"/></g>
+          <g fill="#fff" transform="translate(50 109)"><path d="M0 0 A10.5 10.5 0 0 1 0 -21 Z"/><path d="M0 0 A10.5 10.5 0 0 1 0 -21 Z" transform="rotate(90)"/><path d="M0 0 A10.5 10.5 0 0 1 0 -21 Z" transform="rotate(180)"/><path d="M0 0 A10.5 10.5 0 0 1 0 -21 Z" transform="rotate(270)"/></g>
+          <g fill="#fff"><circle cx="152" cy="100" r="7.5"/><path d="M139 122 a13 13 0 0 1 26 0 Z"/></g>
+          <g stroke="#556173" stroke-width=".6" fill="none">
+            <path d="M0 -12H100M0 -16V-8M100 -16V-8"/>
+            <path d="M-12 0V70M-16 0H-8M-16 70H-8"/>
+            <path d="M101 146V158"/>
+            <path d="M204 72H218"/>
+          </g>
+          <text x="50" y="-18" text-anchor="middle">100</text>
+          <text x="-19" y="38" text-anchor="end">70</text>
+          <text x="101" y="167" text-anchor="middle">gutter 2</text>
+          <text x="221" y="75">4</text>
+        </svg>
+      </div>
+      <div class="anat__notes">
+        <div class="cross">
+          <svg viewBox="88 58 28 28" role="img" aria-label="The crossing of the gutters, enlarged: the row gutter is twice the column gutter">
+            <rect x="0" y="0" width="100" height="70" fill="#034A9A"/><rect x="102" y="0" width="100" height="70" fill="#78B4E2"/>
+            <rect x="0" y="74" width="100" height="70" fill="#5C8336"/><rect x="102" y="74" width="100" height="70" fill="#A64043"/>
+            <text x="89" y="72.6">row gutter 4</text>
+            <text transform="translate(101.58 69) rotate(-90)">column gutter 2</text>
+          </svg>
+        </div>
+        <dl class="spec">
+          <dt>Tile</dt><dd>100 × 70, the ratio 10 : 7</dd>
+          <dt>Column gutter</dt><dd>2</dd>
+          <dt>Row gutter</dt><dd>4, the horizon: twice as wide</dd>
+          <dt>Glyphs</dt><dd>White, solid, cut by the gutter</dd>
+          <dt>Colour</dt><dd>One per element, never mixed</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Five rules -->
+  <section class="sec" aria-labelledby="s2">
+    <div class="sec__head"><span class="lbl"><span class="mk" data-on="sky"><i></i><i></i><i></i><i></i></span>Five rules from the mark</span><h2 id="s2">No pills, no glass, no shadows. Tiles and joints.</h2></div>
+    <ul class="rules">
+      <li class="rule"><div class="rule__d"><svg viewBox="0 0 100 70" aria-hidden="true"><rect x="0" y="14" width="60" height="42" fill="#0A1428"/><rect x="63" y="14" width="29.4" height="42" fill="#0A1428"/></svg></div><div><h3>Tile</h3><p>Every frame is 10 : 7, turned 7 : 10, or tiles side by side. Square corners only.</p></div></li>
+      <li class="rule"><div class="rule__d"><svg viewBox="0 0 100 70" aria-hidden="true"><rect x="8" y="4" width="40" height="28" fill="#0A1428"/><rect x="51" y="4" width="40" height="28" fill="#0A1428"/><rect x="8" y="38" width="40" height="28" fill="#0A1428"/><rect x="51" y="38" width="40" height="28" fill="#0A1428"/></svg></div><div><h3>Gutter</h3><p>Columns sit one unit apart, rows two. The same 1 : 2 runs from icons to page grids.</p></div></li>
+      <li class="rule"><div class="rule__d"><svg viewBox="0 0 100 70" aria-hidden="true"><rect x="0" y="23" width="66" height="24" fill="#034A9A"/><rect x="69" y="23" width="31" height="24" fill="#034A9A"/><path d="M78 35h13M87 31l4 4-4 4" stroke="#fff" stroke-width="1.6" fill="none"/></svg></div><div><h3>Join</h3><p>Compound parts are two tiles and a joint: buttons, fields, captions. The joint closes when you act.</p></div></li>
+      <li class="rule"><div class="rule__d"><svg viewBox="0 0 100 70" aria-hidden="true"><circle cx="50" cy="35" r="30" fill="#0A1428"/><rect x="10" y="33" width="80" height="4" fill="#F3F5F7"/><rect x="49" y="0" width="2" height="70" fill="#F3F5F7"/></svg></div><div><h3>Cut</h3><p>Solids are cut by the gutter: the four glyphs, large figures and the headline type.</p></div></li>
+      <li class="rule"><div class="rule__d"><svg viewBox="0 0 100 70" aria-hidden="true"><rect x="0" y="6" width="22" height="15.4" fill="#034A9A"/><rect x="26" y="6" width="22" height="15.4" fill="#78B4E2"/><rect x="52" y="6" width="22" height="15.4" fill="#5C8336"/><rect x="78" y="6" width="22" height="15.4" fill="#A64043"/><rect x="0" y="32" width="100" height="5" fill="#0A1428"/><rect x="0" y="43" width="74" height="5" fill="#0A1428" opacity=".35"/><rect x="0" y="54" width="86" height="5" fill="#0A1428" opacity=".35"/></svg></div><div><h3>Code</h3><p>Colour names an element and nothing else. Text is ink, the page is white.</p></div></li>
+    </ul>
+  </section>
+
+  <!-- 3. Shapes: today vs from the mark -->
+  <section class="sec" aria-labelledby="s3">
+    <div class="sec__head"><span class="lbl"><span class="mk" data-on="green"><i></i><i></i><i></i><i></i></span>Shape language</span><h2 id="s3">What changes, part by part.</h2><p>Left, the live site today. Right, the same part grown from the mark. Hover, tab to or tap the new buttons: the joint closes.</p></div>
+    <div class="cmp">
+      <div class="cmp__head" aria-hidden="true"><span></span><span>Live today</span><span style="color:var(--navy)">From the mark</span></div>
+      <div class="cmp__row">
+        <div class="cmp__name">Main action<small>A label plate and an arrow tile at 10 : 7, one joint apart.</small></div>
+        <div class="cmp__cell"><span class="cmp__tag">Live today</span><a class="t-btn" href="#s3">Get in touch <i><svg width="16" height="10"><use href="#arw"/></svg></i></a></div>
+        <div class="cmp__cell cmp__cell--new"><span class="cmp__tag">From the mark</span><a class="bj" href="#s3"><span class="bj__l">Get in touch</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a></div>
+      </div>
+      <div class="cmp__row">
+        <div class="cmp__name">Second action<small>Same joint, ink line instead of fill.</small></div>
+        <div class="cmp__cell"><span class="cmp__tag">Live today</span><a class="t-btn t-btn--clear" href="#s3">Explore our services <i><svg width="16" height="10"><use href="#arw"/></svg></i></a></div>
+        <div class="cmp__cell cmp__cell--new"><span class="cmp__tag">From the mark</span><a class="bj bj--line" href="#s3"><span class="bj__l">Explore our services</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a></div>
+      </div>
+      <div class="cmp__row">
+        <div class="cmp__name">Service card<small>No card at all: a 10 : 7 photo with its element's tile notched into the corner.</small></div>
+        <div class="cmp__cell"><span class="cmp__tag">Live today</span><div class="t-card"><img src="img/drydock-twin-propellers-rudders.jpg" alt="" loading="lazy"><div><span><svg width="18" height="18"><use href="#g-n"/></svg></span><br>Technical Management</div></div></div>
+        <div class="cmp__cell cmp__cell--new"><span class="cmp__tag">From the mark</span>
+          <div class="n-card tA"><div class="nf" style="--pillar:var(--navy)"><img src="img/drydock-twin-propellers-rudders.jpg" alt="Twin propellers and rudders in drydock" loading="lazy"><span class="nf__t"><svg viewBox="0 0 24 24"><use href="#g-n"/></svg></span></div>
+            <h4>Technical Management</h4><p class="fb">Third-party technical management services, segments or complete, tailored to fleet size and complexity.</p>
+            <a class="bj bj--line bj--sm" href="#s3"><span class="bj__l">Explore</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a></div>
+        </div>
+      </div>
+      <div class="cmp__row">
+        <div class="cmp__name">Form field<small>Square plate with an ink base line; the send tile joins it.</small></div>
+        <div class="cmp__cell"><span class="cmp__tag">Live today</span><div class="t-field"><span>Your email</span><b><svg width="16" height="10"><use href="#arw"/></svg></b></div></div>
+        <div class="cmp__cell cmp__cell--new"><span class="cmp__tag">From the mark</span><form class="f-field" onsubmit="return false"><label for="em">Email</label><div><input id="em" type="email" placeholder="name@company.com"><button type="submit" aria-label="Send"><svg width="22" height="12"><use href="#arw"/></svg></button></div></form></div>
+      </div>
+      <div class="cmp__row">
+        <div class="cmp__name">Section marker<small>Already right. The mark in miniature, one tile lit. It stays.</small></div>
+        <div class="cmp__cell"><span class="cmp__tag">Live today</span><span class="lbl"><span class="mk" data-on="red"><i></i><i></i><i></i><i></i></span>Who we are</span></div>
+        <div class="cmp__cell cmp__cell--new"><span class="cmp__tag">From the mark</span><span class="lbl" style="color:var(--ink)"><span class="mk" data-on="red"><i></i><i></i><i></i><i></i></span>Who we are</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Type A: Notch -->
+  <section class="sec tA" aria-labelledby="s4">
+    <div class="sec__head"><span class="lbl"><span class="mk" data-on="red"><i></i><i></i><i></i><i></i></span>Type direction A</span>
+      <div class="dir__name"><h2 id="s4">Notch</h2><span class="pick" aria-label="Recommended"><span>Recommended</span><i></i></span></div>
+    </div>
+    <div class="dir">
+      <div class="dir__top">
+        <p class="spec-big fh">We connect the elements. <span class="l2">And enable their full potential.</span></p>
+        <p class="dir__why fb"><b>Stack Sans Notch</b> for titles, <b>Stack Sans Text</b> for reading. Its crossbars carry a small cut, the same gutter that cuts the four glyphs. Heavy over light, as the client liked on v3, but with a reason in every letter.</p>
+      </div>
+      <div class="dir__grid">
+        <div class="zoom fh"><b aria-hidden="true">et</b><small>The notch, enlarged: the gutter runs through the letters.</small></div>
+        <div class="ladder">
+          <div><small>Hero, once</small><span class="fh" style="font-size:clamp(34px,4.4vw,64px);line-height:1">Maritime Enablers</span></div>
+          <div><small>Title</small><span class="fh" style="font-size:clamp(26px,2.6vw,40px)">A network we stand behind.</span></div>
+          <div><small>Lead</small><span class="fb" style="font-size:22px">Let's work together.</span></div>
+          <div><small>Body</small><span class="fb" style="font-size:17px;white-space:normal">A team of active and diverse maritime professionals, offering a transformative learning journey.</span></div>
+          <div><small>Label</small><span class="fb" style="font-size:13px;font-weight:500">Mentoring &amp; Coaching</span></div>
+        </div>
+      </div>
+      <div class="apps">
+      <div class="hs hs--d">
+        <div class="hs__nav"><img src="img/logo-mark.svg" alt="NYMA" width="40" height="29"><nav class="hs__links fb" aria-label="Sample"><a href="#s4"><span class="mk" data-on="red"><i></i><i></i><i></i><i></i></span>About</a><a href="#s4"><span class="mk" data-on="navy"><i></i><i></i><i></i><i></i></span>Services</a><a href="#s4"><span class="mk" data-on="sky"><i></i><i></i><i></i><i></i></span>Partnerships</a></nav><a class="bj bj--sm" href="#s4"><span class="bj__l">Get in touch</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a><span class="burger" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+        <div class="hs__body">
+          <figure class="nf hs__media" style="margin:0;--pillar:var(--navy)"><img src="img/port-dawn-mooring.jpg" alt="A vessel moored at dawn" loading="lazy"><span class="nf__t"><svg viewBox="0 0 24 24"><use href="#g-n"/></svg></span></figure>
+          <div class="hs__text">
+            <p class="hs__k"><span class="mk" data-on="all"><i></i><i></i><i></i><i></i></span>Maritime professionals, Athens, Greece</p>
+            <h3 class="hs__h fh">We connect the elements. <span class="l2">And enable their full potential.</span></h3>
+            <p class="hs__p">A team of active and diverse maritime professionals, offering a transformative learning journey to marine engineering mastering and ocean stewardship for the next generation.</p>
+            <div class="hs__cta"><a class="bj" href="#s4"><span class="bj__l">Explore our services</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a><a class="bj bj--line" href="#s4"><span class="bj__l">Get in touch</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a></div>
+          </div>
+        </div>
+      </div>
+        <div class="phone"><div class="hs">
+          <div class="hs__nav"><img src="img/logo-mark.svg" alt="NYMA" width="40" height="29"><span class="burger" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+          <div class="hs__body">
+            <figure class="nf hs__media" style="margin:0;--pillar:var(--navy)"><img src="img/port-dawn-mooring.jpg" alt="" loading="lazy"><span class="nf__t"><svg viewBox="0 0 24 24"><use href="#g-n"/></svg></span></figure>
+            <div class="hs__text">
+              <p class="hs__k"><span class="mk" data-on="all"><i></i><i></i><i></i><i></i></span>Maritime professionals, Athens, Greece</p>
+              <h3 class="hs__h fh">We connect the elements. <span class="l2">And enable their full potential.</span></h3>
+              <div class="hs__cta" style="margin-top:22px"><a class="bj" href="#s4"><span class="bj__l">Explore our services</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a></div>
+            </div>
+          </div>
+        </div><p class="phone__cap">Phone, 390 wide</p></div>
+      </div>
+      <div class="cards">
+          <div><div class="bc bc--front"><img src="img/logo-mark.svg" alt="NYMA mark on the card front"></div><p class="card__cap">Business card, front. The card itself is 10 : 7 (90 × 63 mm).</p></div>
+          <div><div class="bc"><span class="bc__tile"></span><div class="bc__in"><div><p class="bc__n fh">Name Surname</p><p class="bc__r">Role</p></div><div class="bc__c"><span><b>T</b> +30 210 995 1917</span><span><b>E</b> email@nymamar.com</span><span>30A Ifestou Str., Athens</span></div></div></div><p class="card__cap">Back. The navy tile is notched into the corner, one joint from the edge.</p></div>
+        </div>
+    </div>
+  </section>
+
+  <!-- 5. Type B: Chart -->
+  <section class="sec tB" aria-labelledby="s5">
+    <div class="sec__head"><span class="lbl"><span class="mk" data-on="sky"><i></i><i></i><i></i><i></i></span>Type direction B</span><div class="dir__name"><h2 id="s5" style="font-family:var(--h);font-weight:500;font-variation-settings:'opsz' 72">Chart</h2></div></div>
+    <div class="dir">
+      <div class="dir__top">
+        <p class="spec-big fh">Either in office or <span class="sea">onboard.</span></p>
+        <p class="dir__why fb">On nautical charts, whatever lies below the waterline is lettered in italic, everything above it upright. <b>Newsreader</b> keeps that rule: the office upright, the sea in italic. <b>Akt</b> for reading.</p>
+      </div>
+      <div class="dir__grid">
+        <div class="zoom fh"><b aria-hidden="true" style="font-weight:400">a<i style="font-weight:350">a</i></b><small>Upright for land, italic for sea.</small></div>
+        <div class="ladder">
+          <div><small>Hero, once</small><span class="fh" style="font-size:clamp(34px,4.4vw,64px);line-height:1">Maritime Enablers</span></div>
+          <div><small>Title</small><span class="fh" style="font-size:clamp(26px,2.6vw,40px)">A network we stand behind.</span></div>
+          <div><small>Lead</small><span class="fb" style="font-size:22px">Let's work together.</span></div>
+          <div><small>Body</small><span class="fb" style="font-size:17px;white-space:normal">A team of active and diverse maritime professionals, offering a transformative learning journey.</span></div>
+          <div><small>Label</small><span class="fb" style="font-size:13px;font-weight:500">Mentoring &amp; Coaching</span></div>
+        </div>
+      </div>
+      <div class="hs">
+        <div class="hs__nav"><img src="img/logo-mark.svg" alt="NYMA" width="40" height="29"><nav class="hs__links fb" aria-label="Sample"><a href="#s5"><span class="mk" data-on="red"><i></i><i></i><i></i><i></i></span>About</a><a href="#s5"><span class="mk" data-on="navy"><i></i><i></i><i></i><i></i></span>Services</a><a href="#s5"><span class="mk" data-on="sky"><i></i><i></i><i></i><i></i></span>Partnerships</a></nav><a class="bj bj--sm" href="#s5"><span class="bj__l">Get in touch</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a><span class="burger" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+        <div class="hs__body">
+          <figure class="nf hs__media" style="margin:0;--pillar:var(--sky)"><img src="img/port-dawn-mooring.jpg" alt="A vessel moored at dawn" loading="lazy"><span class="nf__t"><svg viewBox="0 0 24 24"><use href="#g-w"/></svg></span></figure>
+          <div class="hs__text">
+            <p class="hs__k"><span class="mk" data-on="all"><i></i><i></i><i></i><i></i></span>Maritime professionals, Athens, Greece</p>
+            <h3 class="hs__h fh">We connect the elements. <span class="l2">And enable their full potential.</span></h3>
+            <p class="hs__p">A team of active and diverse maritime professionals, offering a transformative learning journey to marine engineering mastering and ocean stewardship for the next generation.</p>
+            <div class="hs__cta"><a class="bj" href="#s5"><span class="bj__l">Explore our services</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a><a class="bj bj--line" href="#s5"><span class="bj__l">Get in touch</span><span class="bj__t"><svg><use href="#arw"/></svg></span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Close -->
+  <section class="sec" aria-labelledby="s6">
+    <div class="close">
+      <div class="sec__head" style="margin:0"><span class="lbl"><span class="mk" data-on="all"><i></i><i></i><i></i><i></i></span>Recommendation</span><h2 id="s6">Go with Notch. <span>The joint does the rest.</span></h2>
+        <p>Notch grows from the mark itself, so the type, the buttons, the frames and the icons all share one cut. Chart has a good story, but a serif pulls the brand towards a publication rather than a team of engineers.</p></div>
+      <ul>
+        <li><span class="mk" data-on="navy"><i></i><i></i><i></i><i></i></span><span>Kept<small>The official mark, the four colours, the approved copy, the white page, the section markers.</small></span></li>
+        <li><span class="mk" data-on="red"><i></i><i></i><i></i><i></i></span><span>Retired<small>Glass capsules, the arrow lens, rounded cards and photos, soft shadows, Mona Sans and Schibsted Grotesk.</small></span></li>
+        <li><span class="mk" data-on="sky"><i></i><i></i><i></i><i></i></span><span>Board 2<small>Colour roles and photography: how the four colours and the real photos are used.</small></span></li>
+        <li><span class="mk" data-on="green"><i></i><i></i><i></i><i></i></span><span>Board 3<small>Applications: site pages, LinkedIn, deck cover, email signature, then the site rebuilt from the book.</small></span></li>
+      </ul>
+    </div>
+  </section>
+  <footer class="foot">NymaMar identity system, Board 1. Draft for review, nothing on the live site has changed.</footer>
+</div>
+</body>
+</html>
