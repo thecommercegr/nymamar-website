@@ -43,7 +43,7 @@ People- and expertise-led maritime company. Five service areas: **Mentoring & Co
 - **Mood:** dark, editorial, cinematic. Deep ink canvas (`#06111F`) alternating with warm bone (`#EFEEE9`) light sections; the four NYMA quadrant colours are the only accents.
 - **Type:** **Archivo** variable (weight 100–900, *width 62–125%*): heavy tight headlines, a light-weight sky-blue second line, and **expanded, tracked micro-labels**. **DM Sans** for body/UI and indices (tabular figures). Both from Google Fonts.
 - **Quadrant pillar palette:** `data-pillar="maritime|sky|propulsion|people"` → navy `#034A9A`, sky `#78B4E2`, green `#5C8336`, red `#A64043`, each with text-safe light/dark variants (resolved automatically on light vs dark sections).
-- **Signature pieces:** full-screen quadrant intro (first visit only); interactive 2×2 "elements" grid with a rotating ring badge at the cross; "bridging the gaps" route with a photo collage; outlined-number service spreads with sticky photos; spec-sheet lists.
+- **Signature pieces:** full-screen quadrant intro (first visit only); interactive 2×2 "elements" grid with a rotating ring badge at the cross; "bridging the gaps" route with a photo collage; service chapters that open on a wide photo band with the logo tile, a pinned lede and second photo, and lists as colour-marked grids.
 - **Buttons:** square, solid with an arrow tile; fill wipes up on hover. A large square "Get in touch" button closes every page.
 - **Mobile-first:** base CSS is the phone layout, enhanced at 600 / 900 / 1200px. Tokens live at the top of `css/styles.css`.
 - **Official logo:** `assets/logo-mark.svg` (2×2 quadrant mark).
@@ -56,7 +56,7 @@ One dependency-free IIFE (`js/main.js`) plus CSS. **Every effect degrades** unde
 - **Hero choreography:** photo wipes up and settles, the headline rises word by word, then the lede, buttons and the live HUD (coordinates + Athens time).
 - **Scroll motion:** word-by-word heading reveals, image wipes, staggered groups, inner-page hero photos that expand from the content column to full-bleed, clamped parallax on hero photos.
 - **Header:** transparent over the hero, frosted glass after scroll, hides on scroll down and returns on scroll up; full-screen mobile menu (scroll-lock, Escape, focus trap).
-- **Services:** sticky pill tabs with scroll-spy; photos stay pinned while each service's text scrolls.
+- **Services:** sticky pill tabs with scroll-spy; each service opens on a photo band; its lede and second photo stay pinned while the lists scroll.
 - **Built for busy maritime decision makers:** restrained type scale, scannable structured lists, breadcrumbs on inner pages, a phone-only Call / Get in touch bar in the thumb zone, click-to-call and mailto everywhere, inline form validation with plain-language messages, fast (~0.5s) page transitions and a short first-visit intro.
 - Responsive and verified with zero horizontal overflow at 360 / 390 / 430px; all tap targets ≥ 44px.
 
