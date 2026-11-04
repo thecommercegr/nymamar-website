@@ -560,6 +560,7 @@ body.header-hidden .subnav { top: 0; }
 .svx__cols { display: grid; gap: clamp(2rem, 4vw, 3rem); }
 .svx__side .lede { color: var(--fg); font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.45; }
 .svx__aside { aspect-ratio: 4 / 3; margin-top: 1.75rem; }
+.svx__ask { margin-top: 1rem; }
 .svx__rest > :first-child { margin-top: 0; }
 @media (min-width: 900px) {
   .svx__band { aspect-ratio: 21 / 9; }
@@ -591,6 +592,30 @@ body.header-hidden .subnav { top: 0; }
 .comp { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--rule-c); margin: 1.25rem 0 2.25rem; }
 .comp li { display: grid; grid-template-columns: 2.2rem 1fr; gap: 0.6rem; padding-block: 0.7rem; border-bottom: 1px solid var(--rule-c); color: var(--fg); font-size: 0.98rem; }
 .comp li .idx { color: var(--pillar-fg); }
+/* Supersoar parts: a drawn stern arrangement, each component numbered and linked to the list */
+.parts { margin-top: clamp(3.5rem, 7vw, 6rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--rule-c); display: grid; gap: 2rem; }
+.parts__draw { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.parts__draw::-webkit-scrollbar { display: none; }
+.parts__draw svg { display: block; width: 100%; min-width: 680px; height: auto; }
+.parts .ln { fill: none; stroke: rgba(234,240,246,0.62); stroke-width: 1.4; stroke-linejoin: round; vector-effect: non-scaling-stroke; transition: stroke .3s var(--ease); }
+.parts .ln--thin { stroke: rgba(234,240,246,0.32); stroke-width: 1; }
+.parts .ln--wl { stroke: var(--b-sky); opacity: 0.55; stroke-dasharray: 2 6; }
+.parts .ln--cl { stroke: rgba(234,240,246,0.3); stroke-dasharray: 18 5 3 5; }
+.part .fill { fill: var(--pillar-fg); fill-opacity: 0; transition: fill-opacity .3s var(--ease); }
+.part.is-on .fill { fill-opacity: 0.32; }
+.part.is-on .ln { stroke: var(--pillar-fg); stroke-width: 2.2; }
+.hot { cursor: pointer; outline: none; }
+.hot rect { fill: var(--ink); stroke: var(--pillar-fg); stroke-width: 1.5; vector-effect: non-scaling-stroke; transition: fill .3s var(--ease); }
+.hot text { font: 600 13px var(--sans); fill: var(--pillar-fg); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.hot.is-on rect { fill: var(--pillar-fg); }
+.hot.is-on text { fill: var(--ink); }
+.hot:focus-visible rect { stroke: #fff; stroke-width: 3; }
+.parts__list { margin: 0; }
+.parts__list li { display: block; padding: 0; }
+.parts__list button { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: 2.2rem 1fr; gap: 0.6rem; align-items: baseline; width: 100%; min-height: 44px; padding-block: 0.7rem; color: var(--fg-muted); transition: color .3s var(--ease); }
+.parts__list button[aria-pressed="true"] { color: var(--fg); font-weight: 600; }
+.parts__list button[aria-pressed="true"] .idx { color: var(--fg); }
+.parts__list button:focus-visible { outline: 2px solid var(--b-sky); outline-offset: 2px; }
 .note { margin-top: 1.25rem; font-size: 0.85rem; font-style: italic; color: var(--fg-muted); }
 
 .pcards { display: grid; gap: clamp(1rem, 2vw, 1.5rem); }
@@ -829,6 +854,8 @@ html.js body.nav-open .mbar { transform: translateY(110%); }
 
 
   .flag { grid-template-columns: 1.05fr 1fr; }
+  .parts { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); align-items: center; gap: clamp(2rem, 4vw, 4rem); }
+  .parts__list { grid-template-columns: 1fr; }
   .flag__media { position: sticky; top: calc(var(--header-h) + 2rem); }
   .pcard { grid-template-columns: 1fr; }
 

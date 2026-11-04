@@ -255,6 +255,21 @@
     Object.keys(byId).forEach(function (id) { var s = document.getElementById(id); if (s) sio.observe(s); });
   }
 
+  /* ---- Supersoar parts: the drawing and the list select together ------ */
+  $$("[data-parts]").forEach(function (box) {
+    var pick = function (id) {
+      $$(".part, .hot", box).forEach(function (el) { el.classList.toggle("is-on", el.getAttribute("data-part") === id); });
+      $$("button[data-part]", box).forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-part") === id ? "true" : "false"); });
+    };
+    $$("button[data-part], .hot", box).forEach(function (el) {
+      var id = el.getAttribute("data-part");
+      el.addEventListener("click", function () { pick(id); });
+      if (finePointer) el.addEventListener("mouseenter", function () { pick(id); });
+      if (el.classList.contains("hot")) el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(id); } });
+    });
+    pick("01");
+  });
+
   /* ---- Back to top, footer year, mockup form --------------------------- */
   $$("[data-to-top]").forEach(function (b) {
     b.addEventListener("click", function (e) { e.preventDefault(); window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); });
@@ -263,6 +278,10 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
   var form = document.querySelector("[data-contact-form]");
   if (form) {
+    // Arriving from a service or partner link (?topic=technical): that topic is already chosen.
+    var topic = new URLSearchParams(location.search).get("topic");
+    var subject = form.querySelector("#subject");
+    if (topic && subject && subject.querySelector('option[value="' + topic.replace(/[^a-z]/g, "") + '"]')) subject.value = topic;
     // Inline validation: plain-language messages next to the field, focus the first error.
     var check = function (input) {
       var field = input.closest(".field");
