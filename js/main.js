@@ -1,13 +1,13 @@
 /* NymaMar · interactions v3 (one IIFE, no dependencies)
    - html.js / html.is-ready flags (a <head> snippet adds .js early and removes
      it again if this file never boots, so content can never stay hidden)
-   - Quadrant curtain: first-visit intro + page-to-page transitions
+   - Quadrant curtain: first-visit intro (once per session)
    - Header: glass after scroll, hides on scroll down / returns on scroll up
    - Mobile nav: scroll-lock, Escape, focus trap, aria-expanded
-   - Word-split headings, scroll reveals, image wipes, stagger groups
-   - Clamped parallax, expanding hero windows, mobile quick-contact bar
+   - Word-split page headline, scroll reveals, image wipes, stagger groups
+   - Clamped parallax (hero photos only), expanding hero windows, mobile quick-contact bar
    - Contact form inline validation
-   - Scroll progress, services sub-nav spy, live Athens clock, magnetic CTAs
+   - Services sub-nav spy, live Athens clock
    Every motion path is skipped under prefers-reduced-motion. */
 (function () {
   "use strict";
@@ -43,6 +43,7 @@
     });
   }
   $$("[data-split]").forEach(function (el) {
+    if (!el.closest(".hero, .phero")) { el.removeAttribute("data-split"); el.classList.add("reveal"); return; }
     wordIndex = 0;
     el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
     splitNode(el);
@@ -64,16 +65,8 @@
     lastY = y;
   }
 
-  /* ---- Scroll progress ------------------------------------------------- */
-  var progressBar = document.querySelector(".scroll-progress");
-  function updateProgress() {
-    if (!progressBar) return;
-    var max = root.scrollHeight - root.clientHeight;
-    progressBar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0).toFixed(4) + ")";
-  }
-
   /* ---- Parallax (transform-only, clamped to the scale headroom) ------- */
-  var parallaxEls = reduceMotion ? [] : $$("[data-parallax]");
+  var parallaxEls = reduceMotion ? [] : $$(".hero__media [data-parallax], .phero__window [data-parallax], .band__media [data-parallax]");
   function updateParallax() {
     var vh = window.innerHeight;
     for (var i = 0; i < parallaxEls.length; i++) {
@@ -115,7 +108,7 @@
 
   /* ---- Scroll loop ---------------------------------------------------- */
   var ticking = false;
-  function frame() { updateHeader(); updateProgress(); updateParallax(); updateExpand(); updateBar(); ticking = false; }
+  function frame() { updateHeader(); updateParallax(); updateExpand(); updateBar(); ticking = false; }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll, { passive: true });
@@ -125,7 +118,7 @@
   $$("[data-stagger]").forEach(function (g) {
     Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--i", i); });
   });
-  var revealEls = $$(".reveal, [data-split]").filter(function (el) { return !el.closest(".hero, .phero__inner"); });
+  var revealEls = $$(".reveal, [data-split], [data-stagger]").filter(function (el) { return !el.closest(".hero, .phero__inner"); });
   // A fully clipped element never "intersects", so image wipes are triggered
   // by their parent container instead.
   var wipeParents = [];
@@ -190,10 +183,6 @@
 
   if (reduceMotion) {
     playHero();
-  } else if (store.get("nyma-nav") === "1") {
-    store.set("nyma-nav", "0");          // arriving from an internal link
-    makeCurtain("is-cover no-anim");
-    openCurtain(80);
   } else if (store.get("nyma-intro") !== "1") {
     store.set("nyma-intro", "1");        // first page of the session
     makeCurtain("is-cover is-intro no-anim");
@@ -202,30 +191,11 @@
     requestAnimationFrame(playHero);
   }
 
-  // Outbound: panels close in, then navigate.
-  if (!reduceMotion) {
-    document.addEventListener("click", function (e) {
-      var a = e.target.closest && e.target.closest("a[href]");
-      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      if (a.target === "_blank" || a.hasAttribute("download")) return;
-      var url = new URL(a.href, location.href);
-      if (url.origin !== location.origin || !/\.html$|\/$/.test(url.pathname)) return;
-      if (url.pathname === location.pathname && url.hash) return; // same-page anchor
-      e.preventDefault();
-      if (!curtain) makeCurtain("");
-      curtain.style.visibility = "visible";
-      curtain.classList.remove("is-intro", "no-anim");
-      void curtain.offsetWidth;
-      curtain.classList.add("is-cover");
-      store.set("nyma-nav", "1");
-      setTimeout(function () { location.href = url.href; }, 520);
-    });
-  }
   // Back/forward cache: never restore a closed curtain.
   window.addEventListener("pageshow", function (e) {
     if (e.persisted && curtain) {
       curtain.classList.add("no-anim"); curtain.classList.remove("is-cover");
-      curtain.style.visibility = "hidden"; store.set("nyma-nav", "0"); ready();
+      curtain.style.visibility = "hidden"; ready();
     }
   });
 
@@ -291,19 +261,6 @@
     var fmt = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Athens" });
     var tick = function () { var t = fmt.format(new Date()); clocks.forEach(function (c) { c.textContent = t; }); };
     tick(); setInterval(tick, 15000);
-  }
-
-  /* ---- Magnetic CTAs (fine pointers only) ----------------------------- */
-  if (finePointer && !reduceMotion) {
-    $$(".magnetic").forEach(function (el) {
-      var k = parseFloat(el.getAttribute("data-magnetic")) || 0.3;
-      el.addEventListener("mousemove", function (e) {
-        var r = el.getBoundingClientRect();
-        var x = (e.clientX - r.left - r.width / 2) * k, y = (e.clientY - r.top - r.height / 2) * k;
-        el.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
-      });
-      el.addEventListener("mouseleave", function () { el.style.transform = ""; });
-    });
   }
 
   /* ---- Back to top, footer year, mockup form --------------------------- */
