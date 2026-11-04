@@ -125,6 +125,8 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
 }
 .hero__media::after { display: none; }
 .hero__media .quad-bar { display: none; }
+/* The home photo is a 960px original: keep its zoom small so it stays sharp on desktop. */
+.hero__media img { transform: scale(1.04); }
 .hero__inner { padding-top: 2rem; }
 @media (min-width: 900px) {
   .hero { justify-content: flex-end; min-height: 100svh; padding-bottom: 0; }
@@ -270,10 +272,6 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
 :is(.band, .svx__over) .btn { --g-bg: rgba(255,255,255,0.16); --g-fg: #fff; --g-edge: rgba(255,255,255,0.35);
   --g-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 12px 28px -12px rgba(0,0,0,0.5); --g-lens: rgba(255,255,255,0.18); }
 
-@media (min-width: 900px) {   /* the hero buttons float on the photo panel */
-  .hero .btn--line { --g-bg: rgba(255,255,255,0.16); --g-fg: #fff; --g-edge: rgba(255,255,255,0.4);
-    --g-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 12px 28px -12px rgba(0,0,0,0.5); --g-lens: rgba(255,255,255,0.2); }
-}
 .btn--lg { min-height: 60px; padding-left: 1.6rem; font-size: 1.05rem; }
 .btn--lg .btn__arw { width: 46px; height: 46px; }
 @media (min-width: 900px) { .hq__cta { min-height: 42px; padding: 0 0.3rem 0 1.05rem; font-size: 0.88rem; gap: 0.7rem; } .hq__cta .btn__arw { width: 32px; height: 32px; } }
@@ -306,3 +304,39 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
 .mbar__go { background: linear-gradient(180deg, #2A6FC4 0%, #034A9A 100%); color: #fff; clip-path: none; padding-right: 1.15rem; box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
 
 @media (prefers-reduced-motion: reduce) { .btn, .btn::before, .btn__arw { transition: none; } .btn:hover { transform: none; } }
+
+/* ----- Owner feedback, 4 Nov 2026 ------------------------------------------ */
+@media (min-width: 900px) {
+  /* Hero text starts on the logo's line, so the left and right margins match the photo's. */
+  .hero__inner.wrap { max-width: none; }
+  /* Buttons sit under the text, off the photo. */
+  .hero__foot { grid-template-columns: minmax(0, 1fr); justify-content: start; align-items: start; gap: 1.75rem; margin-top: 2rem; }
+  .hero__foot .btn-row { flex-wrap: nowrap; }
+  /* The ring sits where the four cards meet: keep it clear of "Explore" and the icons. */
+  .ring { width: clamp(92px, 7vw, 104px); height: clamp(92px, 7vw, 104px); }
+  .ring svg.ring__text { inset: 5px; width: calc(100% - 10px); height: calc(100% - 10px); }
+  .ring__mark { width: 36px; }
+}
+/* Below 1200px the cards are too narrow for the ring to clear their text. */
+.elements__badge { display: none; }
+@media (min-width: 1200px) { .elements__badge { display: block; } }
+/* Italic words lean past their mask: give each word room on the right and top. */
+:is(.l2, em) .w, .w:has(> .w__i > :is(.l2, em)) { padding-right: 0.14em; margin-right: -0.14em; padding-top: 0.1em; margin-top: -0.1em; }
+/* About values: numbers and text sit inside the coloured row, not on its edge. */
+.vrow { padding-inline: clamp(0.9rem, 2.4vw, 1.75rem); }
+.vrow::before { border-radius: var(--r-lg); }
+/* Partnerships parts: the drawing runs edge to edge on the logo's line, the ten parts sit
+   under it in two columns of five. The section is a container so the break-out is measured
+   without the scrollbar. */
+.section:has(.parts) { container-type: inline-size; }
+@media (min-width: 900px) {
+  .parts { grid-template-columns: minmax(0, 1fr); margin-inline: calc((min(100cqw, var(--maxw)) - 100cqw) / 2); }
+  .parts__list { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); grid-auto-flow: column; column-gap: clamp(2rem, 4vw, 4rem); }
+}
+/* Footer: the four panels open out to the logo's line on both sides, one row from 1200px. */
+.site-footer > .wrap { max-width: none; }
+@media (min-width: 1200px) { .fq { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+/* Headline weights reversed (owner, 4 Nov 2026: option B): the upright line is light,
+   the italic line or phrase carries the weight. Card titles and h3 keep their weight. */
+html :is(h1, h2, .pq blockquote, .band blockquote):not(.svx__title) { font-weight: 300; }
+html :is(h1, h2, .pq blockquote, .band blockquote) :is(.l2, em) { font-style: italic; font-weight: 640; }

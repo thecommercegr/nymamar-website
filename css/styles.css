@@ -323,6 +323,10 @@ body.quad-open .site-header::before { opacity: 0; }
 .qn__sub { display: none; gap: 0.15rem; font-size: 0.95rem; }
 .qn__sub--always { display: grid; font-size: 0.85rem; }
 .qn__addr { display: none; }
+/* The whole quadrant is the section link (stretched over .qn); sub-links sit above it. */
+.qn__head::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.qn__sub { position: relative; z-index: 2; pointer-events: none; }
+.qn__sub a { pointer-events: auto; }
 .qn__sub a { display: inline-flex; align-items: center; min-height: 36px; }
 .qn__sub a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .qn :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
