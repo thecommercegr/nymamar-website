@@ -3,7 +3,7 @@
      it again if this file never boots, so content can never stay hidden)
    - Quadrant curtain: first-visit intro (once per session)
    - Header: glass after scroll, hides on scroll down / returns on scroll up
-   - Mobile nav: scroll-lock, Escape, focus trap, aria-expanded
+   - Quadrant menu: scroll-lock, Escape, focus trap, aria-expanded
    - Word-split page headline, scroll reveals, image wipes, stagger groups
    - Clamped parallax (hero photos only), expanding hero windows, mobile quick-contact bar
    - Contact form inline validation
@@ -57,7 +57,7 @@
     if (!header) return;
     var y = window.scrollY;
     header.classList.toggle("is-solid", y > 30);
-    var hide = y > lastY && y > 320 && !body.classList.contains("nav-open");
+    var hide = y > lastY && y > 320 && !body.classList.contains("quad-open");
     if (Math.abs(y - lastY) > 4) {
       header.classList.toggle("is-hidden", hide);
       body.classList.toggle("header-hidden", hide);
@@ -153,10 +153,10 @@
 
   /* ---- Quadrant curtain (intro + page transitions) ------------------- */
   var GLYPHS = [
-    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="4" y="4" width="3.2" height="16"/><rect x="16.8" y="4" width="3.2" height="16"/><polygon points="4,4 7.2,4 20,20 16.8,20"/></svg>',
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M3 7 q3 -3 6 0 t6 0 t6 0"/><path d="M3 12 q3 -3 6 0 t6 0 t6 0"/><path d="M3 17 q3 -3 6 0 t6 0 t6 0"/></svg>',
-    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><g transform="translate(12 12)"><path d="M0 0 A9 9 0 0 1 0 -18 Z"/><path d="M0 0 A9 9 0 0 1 0 -18 Z" transform="rotate(90)"/><path d="M0 0 A9 9 0 0 1 0 -18 Z" transform="rotate(180)"/><path d="M0 0 A9 9 0 0 1 0 -18 Z" transform="rotate(270)"/></g></svg>',
-    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4.2"/><path d="M4.5 21 a7.5 7.5 0 0 1 15 0 Z"/></svg>'
+    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="4" y="4" width="3.6" height="16"/><rect x="16.4" y="4" width="3.6" height="16"/><polygon points="8.8,5.6 15.2,13.6 15.2,18.4 8.8,10.4"/></svg>',
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-dasharray="47.5 5 100" aria-hidden="true"><path pathLength="100" d="M2.5 7q3.1-3.2 6.2 0t6.2 0t6.2 0"/><path pathLength="100" d="M2.5 12q3.1-3.2 6.2 0t6.2 0t6.2 0"/><path pathLength="100" d="M2.5 17q3.1-3.2 6.2 0t6.2 0t6.2 0"/></svg>',
+    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><g transform="translate(12 12)"><path d="M0.5 -10.977A5.5 5.5 0 0 1 3.162 -1H0.5Z"/><path d="M0.5 1H10.908A5.5 5.5 0 0 1 0.5 2.291Z"/><path d="M-0.5 10.977A5.5 5.5 0 0 1 -3.162 1H-0.5Z"/><path d="M-0.5 -1H-10.908A5.5 5.5 0 0 1 -0.5 -2.291Z"/></g></svg>',
+    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7.4" r="4.2"/><path d="M4 21V19.4a8 6.4 0 0 1 16 0V21Z"/></svg>'
   ];
   var curtain = null;
   function makeCurtain(cls) {
@@ -199,41 +199,32 @@
     }
   });
 
-  /* ---- Mobile nav ----------------------------------------------------- */
-  var toggle = document.querySelector(".nav-toggle");
-  var nav = document.querySelector(".nav");
-  var navItems = nav ? $$("a", nav) : [];
-  function navIsMobile() { return toggle && getComputedStyle(toggle).display !== "none"; }
-  function openNav() {
-    body.classList.add("nav-open");
-    toggle.setAttribute("aria-expanded", "true");
-    if (header) header.classList.remove("is-hidden");
-    // Focus once the panel is visible (focus() is refused while still hidden).
-    setTimeout(function () { if (navItems[0]) navItems[0].focus(); }, 60);
+  /* ---- Quadrant menu: the mark opens into the four sections ----------- */
+  var menuBtn = document.querySelector(".hq__menu");
+  var quad = document.getElementById("quadnav");
+  function quadOpen() { return body.classList.contains("quad-open"); }
+  function setQuad(open, returnFocus) {
+    if (!menuBtn || !quad) return;
+    quad.hidden = !open;
+    body.classList.toggle("quad-open", open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open) { if (header) header.classList.remove("is-hidden"); var first = quad.querySelector("a"); if (first) first.focus(); }
+    else if (returnFocus) menuBtn.focus();
   }
-  function closeNav(returnFocus) {
-    body.classList.remove("nav-open");
-    toggle.setAttribute("aria-expanded", "false");
-    if (returnFocus) toggle.focus();
-  }
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      if (body.classList.contains("nav-open")) closeNav(false); else openNav();
-    });
+  if (menuBtn && quad) {
+    menuBtn.addEventListener("click", function () { setQuad(!quadOpen(), false); });
+    $$("a", quad).forEach(function (a) { a.addEventListener("click", function () { setQuad(false, false); }); });
     document.addEventListener("keydown", function (e) {
-      if (!body.classList.contains("nav-open")) return;
-      if (e.key === "Escape") { closeNav(true); return; }
-      if (e.key === "Tab" && navIsMobile()) {
-        var f = navItems.concat([toggle]);
+      if (!quadOpen()) return;
+      if (e.key === "Escape") { setQuad(false, true); return; }
+      if (e.key === "Tab") {   // keep focus inside the menu and its button
+        var f = $$("a", quad).concat([menuBtn]);
         var i = f.indexOf(document.activeElement);
         if (i === -1) { e.preventDefault(); f[0].focus(); }
         else if (e.shiftKey && i === 0) { e.preventDefault(); f[f.length - 1].focus(); }
         else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
       }
     });
-    window.addEventListener("resize", function () {
-      if (!navIsMobile() && body.classList.contains("nav-open")) closeNav(false);
-    }, { passive: true });
   }
 
   /* ---- Services sub-nav: active pill + keep it in view --------------- */

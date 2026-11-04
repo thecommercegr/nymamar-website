@@ -32,7 +32,7 @@ Every page is a complete standalone HTML document (no templating — the `<head>
 | `contact.html` | Contact | `/contact` |
 | `ai-context.html` | AI Context (unlinked, `noindex`, JSON-LD for AI/GEO) | `/ai-context` |
 
-Nav: **About · Services · Partnerships** + a **Get in touch** button (the logo links Home; the mobile menu also lists Home).
+Nav: **About · Services · Partnerships** (each with its element's tile) + a **Get in touch** button + a menu button drawn as the logo, which opens a menu laid out as the logo's four quadrants. The footer is the logo opened into four panels.
 
 ## What NymaMar does (for context)
 
