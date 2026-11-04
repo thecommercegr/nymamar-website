@@ -182,6 +182,21 @@ em { font-style: italic; }
 .quad-dots i:nth-child(2) { background: var(--b-sky); }
 .quad-dots i:nth-child(3) { background: var(--b-green); }
 .quad-dots i:nth-child(4) { background: var(--b-red); }
+/* The mark as a system (Nov 2026) */
+/* Section labels: the mark in miniature, the section's own tile lit (data-on: navy | sky | green | red | all) */
+.mk { display: inline-grid; grid-template-columns: repeat(2, 14px); column-gap: 2px; row-gap: 4px; flex: none; }
+.mk i { display: block; width: 14px; height: 9.8px; box-shadow: inset 0 0 0 1px var(--rule-c); }
+.mk i:nth-child(1) { --t: var(--b-navy); }
+.mk i:nth-child(2) { --t: var(--b-sky); }
+.mk i:nth-child(3) { --t: var(--b-green); }
+.mk i:nth-child(4) { --t: var(--b-red); }
+.mk[data-on="all"] i, .mk[data-on="navy"] i:nth-child(1), .mk[data-on="sky"] i:nth-child(2), .mk[data-on="green"] i:nth-child(3), .mk[data-on="red"] i:nth-child(4) { background: var(--t); box-shadow: none; }
+/* Framed photos stand on their element's colour, its tile in the corner */
+.frame:not(.svx__band)::after { content: ""; position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 6px; background: var(--pillar); }
+.ftile { position: absolute; z-index: 3; right: 0; bottom: 6px; display: grid; place-items: center; width: clamp(48px, 5vw, 68px); aspect-ratio: 100 / 70; background: var(--pillar); color: #fff; }
+.ftile svg { width: 44%; height: auto; }
+/* Hero photos stand on all four colours */
+.hero__media > .quad-bar, .phero__window > .quad-bar { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 6px; }
 .quad-bar { display: flex; height: 3px; }
 .quad-bar i { flex: 1; }
 .quad-bar i:nth-child(1) { background: var(--b-navy); }

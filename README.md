@@ -44,6 +44,7 @@ People- and expertise-led maritime company. Five service areas: **Mentoring & Co
 - **Type:** **Archivo** variable (weight 100–900, *width 62–125%*): heavy tight headlines, a light-weight sky-blue second line, and **expanded, tracked micro-labels**. **DM Sans** for body/UI and indices (tabular figures). Both from Google Fonts.
 - **Quadrant pillar palette:** `data-pillar="maritime|sky|propulsion|people"` → navy `#034A9A`, sky `#78B4E2`, green `#5C8336`, red `#A64043`, each with text-safe light/dark variants (resolved automatically on light vs dark sections).
 - **Signature pieces:** full-screen quadrant intro (first visit only); interactive 2×2 "elements" grid with a rotating ring badge at the cross; "bridging the gaps" route with a photo collage; service chapters that open on a wide photo band with the logo tile, a pinned lede and second photo, and lists as colour-marked grids.
+- **Mark system:** section labels carry the logo in miniature with the section's tile lit; photos stand on a bar in their element's colour with its glyph tile; hero photos stand on the four colours.
 - **Buttons:** square, solid with an arrow tile; fill wipes up on hover. A large square "Get in touch" button closes every page.
 - **Mobile-first:** base CSS is the phone layout, enhanced at 600 / 900 / 1200px. Tokens live at the top of `css/styles.css`.
 - **Official logo:** `assets/logo-mark.svg` (2×2 quadrant mark).
