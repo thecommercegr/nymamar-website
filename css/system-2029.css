@@ -307,8 +307,6 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
 
 /* ----- Owner feedback, 4 Nov 2026 ------------------------------------------ */
 @media (min-width: 900px) {
-  /* Hero text starts on the logo's line, so the left and right margins match the photo's. */
-  .hero__inner.wrap { max-width: none; }
   /* Buttons sit under the text, off the photo. */
   .hero__foot { grid-template-columns: minmax(0, 1fr); justify-content: start; align-items: start; gap: 1.75rem; margin-top: 2rem; }
   .hero__foot .btn-row { flex-wrap: nowrap; }
@@ -325,18 +323,20 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
 /* About values: numbers and text sit inside the coloured row, not on its edge. */
 .vrow { padding-inline: clamp(0.9rem, 2.4vw, 1.75rem); }
 .vrow::before { border-radius: var(--r-lg); }
-/* Partnerships parts: the drawing runs edge to edge on the logo's line, the ten parts sit
-   under it in two columns of five. The section is a container so the break-out is measured
-   without the scrollbar. */
-.section:has(.parts) { container-type: inline-size; }
+/* Partnerships parts: the drawing runs the full content width, the ten parts sit under it
+   in two columns of five. */
 @media (min-width: 900px) {
-  .parts { grid-template-columns: minmax(0, 1fr); margin-inline: calc((min(100cqw, var(--maxw)) - 100cqw) / 2); }
+  .parts { grid-template-columns: minmax(0, 1fr); }
   .parts__list { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); grid-auto-flow: column; column-gap: clamp(2rem, 4vw, 4rem); }
 }
-/* Footer: the four panels open out to the logo's line on both sides, one row from 1200px. */
-.site-footer > .wrap { max-width: none; }
+/* Footer: four panels in one row from 1200px. */
 @media (min-width: 1200px) { .fq { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 /* Headline weights reversed (owner, 4 Nov 2026: option B): the upright line is light,
    the italic line or phrase carries the weight. Card titles and h3 keep their weight. */
 html :is(h1, h2, .pq blockquote, .band blockquote):not(.svx__title) { font-weight: 300; }
 html :is(h1, h2, .pq blockquote, .band blockquote) :is(.l2, em) { font-style: italic; font-weight: 640; }
+/* One line for the whole site (owner, 4 Nov 2026): every section starts and ends where the
+   header does, on the logo's line and the menu button's line, at every width. */
+:root { --maxw: 100vw; }
+/* A height-capped photo in the right-hand column keeps to the right-hand line. */
+@media (min-width: 900px) { .split > .split__media:last-child, .split--rev > .split__media { justify-self: end; } }
