@@ -1,0 +1,308 @@
+/* ==========================================================================
+   NymaMar · System 2029 "First light", light edition  (proposal, not live)
+   Load after css/styles.css. Same token names, so it drops into 01 Tokens.
+   Canvas: white and cloud, like daylight on water. The logo tiles unchanged.
+   Type: Mona Sans (display, forward italic light line) + Schibsted Grotesk.
+   Material: Apple-style liquid glass for buttons, nav bar, tabs and the
+   phone contact bar; large continuous corners on photos and cards.
+   Fonts load from the Google Fonts link in each page head.
+   ========================================================================== */
+
+:root {
+  /* Day: the canvas */
+  --white:  #FFFFFF;
+  --bone:   #FFFFFF;   /* page                          */
+  --paper:  #F4F7FA;   /* cloud: alternate bands, cards  */
+  --mist:   #E8EEF4;   /* haze: pressed and hover fills  */
+
+  --text:          #0A1428;   /* 17:1 on white  */
+  --muted:         #556173;   /* 6.3:1 on white */
+  --line:          rgba(10, 20, 40, 0.09);
+
+  /* Night survives only on photography: scrims and text over images */
+  --ink:      #0A1428;
+  --ink-2:    #031030;
+  --ink-3:    #E8EEF4;   /* empty photo frames are light now */
+  --on-dark:       #F4F8FC;
+  --on-dark-muted: #C9D6E3;
+  --line-dark:     rgba(255, 255, 255, 0.22);
+
+  /* The mark, exactly as drawn */
+  --b-navy:  #034A9A;
+  --b-sky:   #78B4E2;
+  --b-green: #5C8336;
+  --b-red:   #A64043;
+  --sig-sky: #99DDFF;   /* light-on-photo accent */
+
+  --pillar:    var(--b-navy);
+  --p-light:   #034A9A;
+  --p-dark:    #034A9A;
+  --pillar-fg: var(--p-light);
+
+  /* Type */
+  --display: "Mona Sans", "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --sans:    "Schibsted Grotesk", "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono:    var(--sans);
+  --fs-hero: clamp(2.1rem, min(5.7vw, 8.6vh), 4.9rem);
+  --fs-h1:   clamp(2rem, min(5.2vw, 8.4vh), 4.3rem);
+  --fs-h2:   clamp(1.6rem, 3.2vw, 2.85rem);
+  --fs-body: 1.0625rem;
+
+  /* Shape and material */
+  --r-xl: 28px;   /* photos, hero panel */
+  --r-lg: 22px;   /* cards              */
+  --r-md: 14px;   /* fields             */
+  --glass:        linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.5));
+  --glass-edge:   rgba(255, 255, 255, 0.85);
+  --glass-shadow: inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -1px 0 rgba(10,20,40,0.05), 0 1px 2px rgba(10,20,40,0.06), 0 10px 28px -10px rgba(10,20,40,0.22);
+  --soft-shadow:  0 1px 2px rgba(10,20,40,0.04), 0 18px 48px -24px rgba(10,20,40,0.22);
+  --shadow-lg:    0 40px 80px -40px rgba(10, 20, 40, 0.35);
+}
+
+[data-pillar="maritime"]   { --pillar: var(--b-navy);  --p-light: #034A9A; --p-dark: #034A9A; --p-ink: #fff; }
+[data-pillar="sky"]        { --pillar: var(--b-sky);   --p-light: #0C5580; --p-dark: #0C5580; --p-ink: var(--ink); }
+[data-pillar="propulsion"] { --pillar: var(--b-green); --p-light: #3D6A25; --p-dark: #3D6A25; --p-ink: #fff; }
+[data-pillar="people"]     { --pillar: var(--b-red);   --p-light: #A64043; --p-dark: #A64043; --p-ink: #fff; }
+
+/* ----- Every surface is daylight now --------------------------------------- */
+body { background: var(--white); color: var(--text); font-family: var(--sans); letter-spacing: -0.003em; }
+.hero, .phero, .section--ink, .section--ink2, .cta, .site-footer,
+:is(.hero, .phero, .section--ink, .section--ink2, .cta, .site-footer) [data-pillar] {
+  --fg: var(--text); --fg-muted: var(--muted); --rule-c: var(--line); --pillar-fg: var(--p-light);
+}
+.hero, .phero, .section--ink, .section--ink2, .cta, .site-footer { color: var(--fg); }
+.hero, .phero, .section--ink, .section--bone { background: var(--white); }
+.section--ink2, .section--paper, .cta, .site-footer { background: var(--paper); }
+.section--ink::after, .section--ink2::after, .cta::after, .site-footer::after, .hero::after, .phero::after, .glow::before { display: none; }
+::selection { background: rgba(3, 74, 154, 0.16); color: var(--text); }
+:focus-visible, .section--bone :focus-visible, .section--paper :focus-visible, .subnav :focus-visible { outline: 2px solid var(--b-navy); outline-offset: 3px; }
+
+/* ----- Type ---------------------------------------------------------------- */
+h1, h2, h3, h4 { font-stretch: 112%; font-weight: 720; letter-spacing: -0.022em; line-height: 1; color: var(--fg); }
+h1 { letter-spacing: -0.026em; }
+h2 { line-height: 1.04; }
+h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
+.hero__title, .phero__title { color: var(--text); letter-spacing: -0.026em; line-height: 0.98; max-width: 14ch; }
+.hero__title .l2, .phero__title .l2, .who__copy h2 .l2, .cta h2 .l2, .pq blockquote em {
+  font-style: italic; font-weight: 300; font-stretch: 112%; letter-spacing: -0.03em; color: var(--b-navy);
+}
+.band blockquote .l2 { font-style: italic; font-weight: 300; font-stretch: 112%; letter-spacing: -0.03em; color: var(--sig-sky); }
+.el__title, .svx__title, .band blockquote, .pq blockquote { font-stretch: 110%; font-weight: 720; letter-spacing: -0.03em; }
+.route__text, .cd__v { font-family: var(--sans); font-weight: 600; letter-spacing: -0.01em; }
+.route__end { font-family: var(--sans); }
+.label, .fq h4, .brand__tag { font-stretch: 110%; font-weight: 600; letter-spacing: 0.14em; }
+@media (min-width: 600px) { .label, .fq h4, .brand__tag { font-stretch: 125%; letter-spacing: 0.16em; } }
+.ring text { font-stretch: 125%; fill: var(--text); }
+.hero__foot .lede, .lede { color: var(--muted); line-height: 1.6; }
+
+/* ----- Header: a glass bar ------------------------------------------------- */
+.site-header { color: var(--text); }
+.site-header::before {
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(10, 20, 40, 0.08);
+}
+.brand__word { color: var(--text); }
+.hq__links a, .hq__links a[aria-current="page"] { color: var(--text); }
+.hq__links a::before { border-radius: 2px; }
+.hq__links a::after { height: 2px; border-radius: 2px; }
+/* Menu button: a small glass capsule holding the mark */
+.hq__menu { border: 1px solid var(--glass-edge); border-radius: 999px; background: var(--glass); box-shadow: var(--glass-shadow); color: var(--text);
+  -webkit-backdrop-filter: blur(14px) saturate(180%); backdrop-filter: blur(14px) saturate(180%); }
+.hq__menu .mk i { border-radius: 2px; }
+/* The quadrant menu opens over frosted daylight; each quadrant is a rounded tile */
+.quadnav { background: rgba(255, 255, 255, 0.82); -webkit-backdrop-filter: blur(28px) saturate(180%); backdrop-filter: blur(28px) saturate(180%); }
+.quadnav__grid { column-gap: 8px; }
+.qn { border-radius: var(--r-lg); box-shadow: var(--soft-shadow); }
+
+/* ----- Home hero: white page, the photo as a rounded panel ----------------- */
+.hero { justify-content: flex-start; min-height: 0; padding-bottom: clamp(2.5rem, 6vw, 4rem); }
+.hero__media {
+  position: relative; inset: auto; z-index: 0;
+  height: clamp(260px, 44svh, 420px);
+  margin: calc(var(--header-h) + 0.5rem) var(--gutter) 0;
+  border-radius: var(--r-xl); box-shadow: var(--soft-shadow);
+}
+.hero__media::after { display: none; }
+.hero__media .quad-bar { display: none; }
+.hero__inner { padding-top: 2rem; }
+@media (min-width: 900px) {
+  .hero { justify-content: flex-end; min-height: 100svh; padding-bottom: 0; }
+  .hero__media {
+    position: absolute; z-index: -2; margin: 0; height: auto;
+    top: calc(var(--header-h) + 1rem); right: var(--gutter); bottom: 2rem; left: 50%;
+  }
+  .hero__media::after { display: none; }
+  .hero__inner { padding-top: calc(var(--header-h) + 3rem); }
+  .hero__title { max-width: 11.5ch; }
+  .hero__foot .lede { max-width: 40ch; }
+}
+
+/* ----- Inner page hero ------------------------------------------------------ */
+.phero__title { color: var(--text); }
+.crumbs a { color: var(--muted); }
+.crumbs a:hover { color: var(--text); }
+.crumbs__sep { color: rgba(10, 20, 40, 0.25); }
+.crumbs [aria-current] { color: var(--b-navy); }
+.phero__window { clip-path: inset(0 calc((1 - var(--p)) * var(--edge)) 0 calc((1 - var(--p)) * var(--edge)) round calc(var(--r-xl) * (1 - var(--p) * 0.6))); }
+.phero__window::after { display: none; }
+
+/* ----- Photos and cards: continuous corners, soft depth ------------------- */
+.frame { border-radius: var(--r-xl); background: var(--mist); }
+.frame__tag { border-radius: 0 0 12px 0; }
+.collage__b { outline-color: var(--white); border-radius: var(--r-lg); }
+.network__media .frame__tag { border-radius: 0 0 0 12px; }
+.route { background: var(--paper); border: 0; border-radius: var(--r-lg); }
+.route__node { box-shadow: 0 0 0 4px var(--paper); border-radius: 4px; }
+.route__end { border-top-color: rgba(10, 20, 40, 0.14); color: var(--b-navy); }
+
+.elements__grid { gap: 14px; background: none; border: 0; }
+.el { background: var(--paper); color: var(--text); border-radius: var(--r-lg); }
+.el::before { display: none; }
+.el__glyph { border-radius: 14px; }
+.el__desc { color: var(--muted); }
+.ring { background: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(16px) saturate(180%); backdrop-filter: blur(16px) saturate(180%); box-shadow: var(--glass-shadow); }
+
+.mv { gap: 14px; background: none; border: 0; }
+.mv__col { background: var(--paper); border-radius: var(--r-lg); }
+.mv__col .label::before { border-radius: 3px; }
+.pcard { background: var(--paper); border: 0; border-radius: var(--r-lg); }
+.pcard__body { border-top: 0; }
+.pcard__tags span { border-radius: 999px; background: var(--white); border-color: transparent; }
+.principal { border-radius: var(--r-lg); border-color: rgba(10, 20, 40, 0.18); }
+.svx__band { border-radius: var(--r-xl); overflow: hidden; }
+.svx__band::before { display: none; }
+.svx__tile { border-radius: 12px; }
+.svx .spec li .idx { border-radius: 3px; }
+.cta__course { color: rgba(10, 20, 40, 0.12); }
+
+/* Photo bands keep a night scrim so white type stays readable */
+.band::after { background: linear-gradient(90deg, rgba(3,16,48,0.82) 0%, rgba(3,16,48,0.55) 45%, rgba(3,16,48,0.2) 100%), linear-gradient(180deg, rgba(3,16,48,0.3), rgba(3,16,48,0) 40%, rgba(3,16,48,0.45)); }
+.svx__band::after { background: linear-gradient(180deg, rgba(3,16,48,0) 40%, rgba(3,16,48,0.82) 100%); }
+
+/* Supersoar parts drawing: ink lines on daylight */
+.parts .ln { stroke: rgba(10, 20, 40, 0.55); }
+.parts .ln--thin { stroke: rgba(10, 20, 40, 0.25); }
+.parts .ln--cl { stroke: rgba(10, 20, 40, 0.28); }
+.hot rect { fill: var(--white); }
+.hot.is-on text { fill: #fff; }
+.hot:focus-visible rect { stroke: var(--text); }
+
+/* ----- Services tabs: a glass segmented control ----------------------------- */
+.subnav { background: rgba(255, 255, 255, 0.72); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); border-bottom-color: rgba(10, 20, 40, 0.08); }
+.subnav__inner { gap: 0.25rem; }
+.subnav a { border: 0; border-radius: 999px; color: var(--muted); }
+.subnav a::before { border-radius: 50%; }
+@media (hover: hover) { .subnav a:hover { color: var(--text); background: rgba(10, 20, 40, 0.05); } }
+.subnav a.active { background: var(--glass); color: var(--text); box-shadow: var(--glass-shadow); }
+
+/* ----- Forms: filled fields ---------------------------------------------- */
+.field input, .field textarea, .field select {
+  background-color: var(--paper); border: 1px solid transparent; border-radius: var(--r-md);
+  padding: 0.85rem 1rem; transition: border-color .3s var(--ease), box-shadow .3s var(--ease), background-color .3s var(--ease);
+}
+.field select { background-position: right 1rem center; }
+.field input:focus, .field textarea:focus, .field select:focus { background-color: var(--white); border-color: var(--b-navy); box-shadow: 0 0 0 4px rgba(3, 74, 154, 0.14); }
+.field.is-invalid input, .field.is-invalid textarea { border-color: var(--b-red); }
+.field__err, .field.is-invalid label { color: var(--b-red); }
+
+/* ----- Footer ------------------------------------------------------------- */
+.site-footer { color: var(--muted); }
+.site-footer a { color: var(--text); }
+.site-footer a:hover { color: var(--b-navy); }
+.brand__tag { color: var(--b-navy); }
+.footer__bar { border-top-color: var(--line); }
+.fq { gap: 12px; }
+.fq__p { background: var(--white); border-top: 0; border-radius: var(--r-lg); box-shadow: var(--soft-shadow); overflow: hidden; }
+.fq__p::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--t); }
+.fq h4 { color: var(--muted); }
+.fq__big a { color: var(--text); }
+.fq__big a:hover { color: var(--b-navy); }
+
+/* ----- Buttons: liquid glass ---------------------------------------------- */
+/* Navy-tinted glass for the main action, clear glass for the second. A
+   specular rim on top, a soft lens shadow below, a sheen that drifts on
+   hover. The arrow sits in its own small glass lens. Hover, focus and tap
+   all respond. */
+.btn {
+  --g-bg: linear-gradient(180deg, #2A6FC4 0%, #034A9A 100%);
+  --g-fg: #fff;
+  --g-edge: rgba(255, 255, 255, 0.28);
+  --g-shadow: inset 0 1px 0 rgba(255,255,255,0.38), inset 0 -1px 0 rgba(0,0,0,0.12), 0 1px 2px rgba(3,74,154,0.25), 0 12px 28px -12px rgba(3,74,154,0.6);
+  --g-lens: rgba(255, 255, 255, 0.2);
+  background: var(--g-bg); color: var(--g-fg);
+  border: 1px solid var(--g-edge); border-radius: 999px; box-shadow: var(--g-shadow);
+  -webkit-backdrop-filter: blur(14px) saturate(180%); backdrop-filter: blur(14px) saturate(180%);
+  min-height: 52px; padding: 0 0.4rem 0 1.4rem; gap: 1.1rem;
+  font-family: var(--sans); font-weight: 600; font-size: 0.98rem; letter-spacing: -0.005em; text-transform: none;
+  overflow: hidden;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
+}
+.btn::before {   /* specular sheen */
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; clip-path: none;
+  background: radial-gradient(120% 140% at 20% -40%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%);
+  transform: none; opacity: 0.9; transition: opacity .35s var(--ease), transform .6s var(--ease);
+}
+.btn::after { content: none; }
+.btn > * { position: relative; z-index: 1; }
+.btn__arw {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--g-lens); color: currentColor; overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+  transition: transform .45s var(--ease), background .35s var(--ease);
+}
+.btn__arw svg { display: none; }
+.btn__arw::after {
+  inset: auto; position: static; width: 16px; height: 16px; transform: none; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 8h12M9.5 3.5 14 8l-4.5 4.5'/%3E%3C/svg%3E") no-repeat center / contain;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 8h12M9.5 3.5 14 8l-4.5 4.5'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+/* Clear glass */
+.btn--line, .btn--line:where(.section--bone *, .section--paper *) {
+  --g-bg: var(--glass); --g-fg: var(--text); --g-edge: var(--glass-edge);
+  --g-shadow: var(--glass-shadow); --g-lens: rgba(10, 20, 40, 0.06);
+}
+/* Ink-tinted glass */
+.btn--dark { --g-bg: linear-gradient(180deg, #1D2A44 0%, #0A1428 100%); --g-fg: #fff; --g-edge: rgba(255,255,255,0.16);
+  --g-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 1px 2px rgba(10,20,40,0.25), 0 12px 28px -12px rgba(10,20,40,0.55); --g-lens: rgba(255,255,255,0.14); }
+.btn--dark .btn__arw { background: var(--g-lens); color: currentColor; }
+/* Glass over photographs */
+:is(.band, .svx__over) .btn { --g-bg: rgba(255,255,255,0.16); --g-fg: #fff; --g-edge: rgba(255,255,255,0.35);
+  --g-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 12px 28px -12px rgba(0,0,0,0.5); --g-lens: rgba(255,255,255,0.18); }
+
+@media (min-width: 900px) {   /* the hero buttons float on the photo panel */
+  .hero .btn--line { --g-bg: rgba(255,255,255,0.16); --g-fg: #fff; --g-edge: rgba(255,255,255,0.4);
+    --g-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 12px 28px -12px rgba(0,0,0,0.5); --g-lens: rgba(255,255,255,0.2); }
+}
+.btn--lg { min-height: 60px; padding-left: 1.6rem; font-size: 1.05rem; }
+.btn--lg .btn__arw { width: 46px; height: 46px; }
+@media (min-width: 900px) { .hq__cta { min-height: 42px; padding: 0 0.3rem 0 1.05rem; font-size: 0.88rem; gap: 0.7rem; } .hq__cta .btn__arw { width: 32px; height: 32px; } }
+
+.btn:focus-visible { outline: 2px solid var(--b-navy); outline-offset: 3px; }
+.btn:focus-visible .btn__arw { transform: translateX(3px); }
+@media (hover: hover) {
+  .btn:hover { color: var(--g-fg); border-color: var(--g-edge); transform: translateY(-1px); box-shadow: var(--g-shadow), 0 18px 36px -18px rgba(10,20,40,0.35); }
+  .btn:hover::before { opacity: 1; transform: translateX(8%); }
+  .btn:hover .btn__arw, .btn--dark:hover .btn__arw { background: var(--g-lens); transform: translateX(3px); }
+  .btn:hover .btn__arw svg { transform: none; }
+}
+.btn:active { transform: scale(0.97); transition-duration: .12s; }
+
+/* Inline link: navy, sentence case, the underline draws in */
+.link { font-family: var(--sans); font-weight: 600; font-size: 0.98rem; letter-spacing: 0; text-transform: none; color: var(--b-navy);
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 8px) / 0 1px no-repeat; }
+@media (hover: hover) { .link:hover { background-size: 100% 1px; background-position: 0 calc(100% - 8px); } }
+.link:focus-visible { background-size: 100% 1px; }
+
+/* Phone contact bar: a floating glass tray */
+.mbar {
+  left: 0.6rem; right: 0.6rem; bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+  padding: 0.4rem; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-edge); box-shadow: var(--glass-shadow);
+}
+.mbar a { border-radius: 999px; min-height: 46px; font-family: var(--sans); font-weight: 600; font-size: 0.92rem; text-transform: none; letter-spacing: 0; }
+.mbar__call { border: 0; color: var(--text); background: rgba(10, 20, 40, 0.05); }
+.mbar__go { background: linear-gradient(180deg, #2A6FC4 0%, #034A9A 100%); color: #fff; clip-path: none; padding-right: 1.15rem; box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+
+@media (prefers-reduced-motion: reduce) { .btn, .btn::before, .btn__arw { transition: none; } .btn:hover { transform: none; } }
