@@ -7,7 +7,7 @@
    - Word-split page headline, scroll reveals, image wipes, stagger groups
    - Clamped parallax (hero photos only), expanding hero windows, mobile quick-contact bar
    - Contact form inline validation
-   - Services sub-nav spy, live Athens clock
+   - Services sub-nav spy
    Every motion path is skipped under prefers-reduced-motion. */
 (function () {
   "use strict";
@@ -253,14 +253,6 @@
       });
     }, { rootMargin: "-40% 0px -55% 0px" });
     Object.keys(byId).forEach(function (id) { var s = document.getElementById(id); if (s) sio.observe(s); });
-  }
-
-  /* ---- Live Athens clock --------------------------------------------- */
-  var clocks = $$("[data-clock]");
-  if (clocks.length && window.Intl) {
-    var fmt = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Athens" });
-    var tick = function () { var t = fmt.format(new Date()); clocks.forEach(function (c) { c.textContent = t; }); };
-    tick(); setInterval(tick, 15000);
   }
 
   /* ---- Back to top, footer year, mockup form --------------------------- */
