@@ -439,3 +439,29 @@ html .close__cta h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.02; 
   .ft__svc { grid-template-columns: 1fr 1fr; column-gap: 1.25rem; }
   .site-footer .ft__svc a { min-height: 40px; line-height: 1.3; }
 }
+
+/* ----- Consistency pass (owner, 5 Nov 2026: "fix all inconsistencies") ------ */
+/* One section rhythm across the site, tighter than before. */
+:root { --section-y: clamp(3.5rem, 7vw, 6rem); }
+/* About statement band: sized to its three lines, not to the screen. */
+.band { min-height: clamp(18rem, 46vh, 26rem); }
+.band blockquote { font-size: clamp(1.75rem, 3.6vw, 3.1rem); max-width: 18ch; }
+/* About values: titles on the site's heading scale, not poster size. */
+.vrow { padding-block: clamp(1rem, 2.2vw, 1.5rem); }
+.vrow__title { font-size: clamp(1.35rem, 2.4vw, 2rem); letter-spacing: -0.025em; }
+/* Home "What we do": no dead gap between the icon and the title. */
+@media (min-width: 600px) {
+  .el { min-height: 0; }
+  .el__title { margin-top: 1.5rem; }
+  .el__desc { margin-top: 0.25rem; }
+  .el__go { margin-top: auto; padding-top: 1.25rem; }
+}
+/* Home collage on phones and tablets: two photos side by side, no overlap. */
+@media (max-width: 899px) {
+  .collage { display: grid; grid-template-columns: 3fr 2fr; gap: 10px; padding-bottom: 0; align-items: end; }
+  .collage__a, .collage__b { position: relative; inset: auto; width: auto; margin: 0; max-height: none; outline: 0; }
+  .collage__a { aspect-ratio: 4 / 5; }
+  .collage__b { aspect-ratio: 3 / 4; }
+}
+/* Two white sections in a row share one gap instead of stacking two. */
+:is(.section--bone, .section--ink) + :is(.section--bone, .section--ink) { padding-top: calc(var(--section-y) * 0.35); }
