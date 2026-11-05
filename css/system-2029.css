@@ -115,29 +115,48 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
 .quadnav__grid { column-gap: 8px; }
 .qn { border-radius: var(--r-lg); box-shadow: var(--soft-shadow); }
 
-/* ----- Home hero: white page, the photo as a rounded panel ----------------- */
-.hero { justify-content: flex-start; min-height: 0; padding-bottom: clamp(2.5rem, 6vw, 4rem); }
-.hero__media {
-  position: relative; inset: auto; z-index: 0;
-  height: clamp(260px, 44svh, 420px);
-  margin: calc(var(--header-h) + 0.5rem) var(--gutter) 0;
-  border-radius: var(--r-xl); box-shadow: var(--soft-shadow);
+/* ----- Home hero: the open sea, edge to edge (owner, 5 Nov 2026) ---------- */
+/* The photo is the client's own, its sea extended to the left (sea-fire-monitor-wide).
+   Phones keep the portrait original; one stack of text sits on the open water. */
+.hero { min-height: 100svh; padding: 0; background: #0B2A5C; color: #fff; justify-content: flex-end; }
+.hero__media { position: absolute; inset: 0; z-index: -2; margin: 0; height: auto; border-radius: 0; box-shadow: none; }
+.hero__media picture { display: block; width: 100%; height: 100%; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%; transform: none; }
+.hero__media::after {
+  display: block; content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(3,16,48,0.1) 0%, rgba(3,16,48,0) 18%, rgba(3,16,48,0.35) 45%, rgba(3,16,48,0.88) 100%);
 }
-.hero__media::after { display: none; }
-.hero__media .quad-bar { display: none; }
-/* The home photo is a 960px original: keep its zoom small so it stays sharp on desktop. */
-.hero__media img { transform: scale(1.04); }
-.hero__inner { padding-top: 2rem; }
-@media (min-width: 900px) {
-  .hero { justify-content: flex-end; min-height: 100svh; padding-bottom: 0; }
-  .hero__media {
-    position: absolute; z-index: -2; margin: 0; height: auto;
-    top: calc(var(--header-h) + 1rem); right: var(--gutter); bottom: 2rem; left: 50%;
+.hero__media .quad-bar { display: flex; height: 6px; }
+.hero__inner { padding-top: calc(var(--header-h) + 2rem); padding-bottom: 2.25rem; }
+.hero .hero__title { color: #fff; max-width: 12ch; }
+.hero .hero__title .l2 { color: var(--sig-sky); }
+.hero__kicker .label { color: rgba(244, 248, 252, 0.92); }
+.hero .hero__foot .lede { color: rgba(240, 246, 252, 0.9); max-width: 40ch; }
+.hero .btn--line { --g-bg: rgba(255,255,255,0.16); --g-fg: #fff; --g-edge: rgba(255,255,255,0.4);
+  --g-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 12px 28px -12px rgba(0,0,0,0.45); --g-lens: rgba(255,255,255,0.18); }
+/* Portrait tablets: the wide photo framed on the bow, the left shaded for the text. */
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero__media img { object-position: 76% 50%; }
+  .hero__media::after {
+    background:
+      linear-gradient(90deg, rgba(3,16,48,0.7) 0%, rgba(3,16,48,0.45) 45%, rgba(3,16,48,0) 75%),
+      linear-gradient(180deg, rgba(3,16,48,0) 40%, rgba(3,16,48,0.7) 100%);
   }
-  .hero__media::after { display: none; }
-  .hero__inner { padding-top: calc(var(--header-h) + 3rem); }
-  .hero__title { max-width: 11.5ch; }
-  .hero__foot .lede { max-width: 40ch; }
+  .hero .hero__title { max-width: 11ch; }
+  .hero .hero__foot .lede { max-width: 34ch; }
+}
+@media (min-width: 900px) {
+  .hero { justify-content: center; }
+  .hero__media { top: 0; right: 0; bottom: 0; left: 0; }
+  .hero__media img { object-position: 100% 50%; }
+  .hero__media::after {
+    background:
+      linear-gradient(90deg, rgba(3,16,48,0.62) 0%, rgba(3,16,48,0.38) 38%, rgba(3,16,48,0) 64%),
+      linear-gradient(180deg, rgba(3,16,48,0) 60%, rgba(3,16,48,0.35) 100%);
+  }
+  .hero__inner { padding-top: var(--header-h); padding-bottom: 0; }
+  .hero .hero__title { max-width: 12ch; }
+  .hero .hero__foot .lede { max-width: 38ch; }
 }
 
 /* ----- Inner page hero ------------------------------------------------------ */
@@ -208,30 +227,44 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
 .field.is-invalid input, .field.is-invalid textarea { border-color: var(--b-red); }
 .field__err, .field.is-invalid label { color: var(--b-red); }
 
-/* ----- Footer ------------------------------------------------------------- */
+/* ----- Footer: two lines (owner, 5 Nov 2026) --------------------------------- */
 .site-footer { color: var(--muted); }
 .site-footer a { color: var(--text); }
 .site-footer a:hover { color: var(--b-navy); }
 .brand__tag { color: var(--b-navy); }
 .footer__bar { border-top-color: var(--line); }
-.fq { gap: 12px; }
-.fq__p { background: var(--white); border-top: 0; border-radius: var(--r-lg); box-shadow: var(--soft-shadow); overflow: hidden; }
-.fq__p::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--t); }
-.fq h4 { color: var(--muted); }
-.fq__big a { color: var(--text); }
-.fq__big a:hover { color: var(--b-navy); }
+.ft__top { display: grid; gap: 1.25rem; padding-block: clamp(2rem, 4vw, 2.75rem) 1.25rem; align-items: center; }
+.ft__nav { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem; }
+.ft__reach { display: grid; gap: 0; }
+@media (min-width: 600px) { .ft__nav, .ft__reach { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; } }
+.ft__nav a, .ft__reach a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+.ft__reach a { font-family: var(--display); font-stretch: 110%; font-weight: 600; font-size: 1.1rem; letter-spacing: -0.015em; }
+.ft__mid { display: grid; gap: 0.5rem 2rem; padding-bottom: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+.ft__svc { display: grid; gap: 0; }
+@media (min-width: 600px) { .ft__svc { display: flex; flex-wrap: wrap; gap: 0 1.25rem; } }
+.site-footer .ft__svc a { display: inline-flex; min-height: 36px; align-items: center; color: var(--muted); font-weight: 500; }
+.site-footer .ft__svc a:hover { color: var(--b-navy); }
+.ft__addr { align-self: center; }
+@media (min-width: 900px) {
+  .ft__top { grid-template-columns: auto 1fr auto; gap: 2rem; }
+  .ft__nav { justify-content: center; flex-wrap: nowrap; gap: 0 1.25rem; }
+  .ft__reach { flex-wrap: nowrap; gap: 0 1.25rem; }
+  .ft__reach a { font-size: clamp(0.98rem, 1.1vw, 1.1rem); }
+  .ft__mid { grid-template-columns: 1fr auto; }
+}
 
 /* ----- Buttons: liquid glass ---------------------------------------------- */
-/* Navy-tinted glass for the main action, clear glass for the second. A
+/* Sky-tinted glass for the main action, clear glass for the second. A
    specular rim on top, a soft lens shadow below, a sheen that drifts on
    hover. The arrow sits in its own small glass lens. Hover, focus and tap
    all respond. */
 .btn {
-  --g-bg: linear-gradient(180deg, #2A6FC4 0%, #034A9A 100%);
-  --g-fg: #fff;
-  --g-edge: rgba(255, 255, 255, 0.28);
-  --g-shadow: inset 0 1px 0 rgba(255,255,255,0.38), inset 0 -1px 0 rgba(0,0,0,0.12), 0 1px 2px rgba(3,74,154,0.25), 0 12px 28px -12px rgba(3,74,154,0.6);
-  --g-lens: rgba(255, 255, 255, 0.2);
+  /* Sky glass: the logo's sky tile, dark text (owner, 5 Nov 2026: "lighter please") */
+  --g-bg: linear-gradient(180deg, #BFE1FA 0%, #86BFE9 100%);
+  --g-fg: #0A1428;
+  --g-edge: rgba(255, 255, 255, 0.7);
+  --g-shadow: inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(12,85,128,0.12), 0 1px 2px rgba(12,85,128,0.18), 0 12px 28px -14px rgba(12,85,128,0.55);
+  --g-lens: rgba(255, 255, 255, 0.45);
   background: var(--g-bg); color: var(--g-fg);
   border: 1px solid var(--g-edge); border-radius: 999px; box-shadow: var(--g-shadow);
   -webkit-backdrop-filter: blur(14px) saturate(180%); backdrop-filter: blur(14px) saturate(180%);
@@ -301,13 +334,13 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
 }
 .mbar a { border-radius: 999px; min-height: 46px; font-family: var(--sans); font-weight: 600; font-size: 0.92rem; text-transform: none; letter-spacing: 0; }
 .mbar__call { border: 0; color: var(--text); background: rgba(10, 20, 40, 0.05); }
-.mbar__go { background: linear-gradient(180deg, #2A6FC4 0%, #034A9A 100%); color: #fff; clip-path: none; padding-right: 1.15rem; box-shadow: inset 0 1px 0 rgba(255,255,255,0.35); }
+.mbar__go { background: linear-gradient(180deg, #BFE1FA 0%, #86BFE9 100%); color: #0A1428; clip-path: none; padding-right: 1.15rem; box-shadow: inset 0 1px 0 rgba(255,255,255,0.85); }
 
 @media (prefers-reduced-motion: reduce) { .btn, .btn::before, .btn__arw { transition: none; } .btn:hover { transform: none; } }
 
 /* ----- Owner feedback, 4 Nov 2026 ------------------------------------------ */
 @media (min-width: 900px) {
-  /* Buttons sit under the text, off the photo. */
+  /* Buttons sit under the text. */
   .hero__foot { grid-template-columns: minmax(0, 1fr); justify-content: start; align-items: start; gap: 1.75rem; margin-top: 2rem; }
   .hero__foot .btn-row { flex-wrap: nowrap; }
   /* The ring sits where the four cards meet: keep it clear of "Explore" and the icons. */
@@ -329,8 +362,6 @@ h3 { font-stretch: 110%; letter-spacing: -0.015em; line-height: 1.08; }
   .parts { grid-template-columns: minmax(0, 1fr); }
   .parts__list { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, auto); grid-auto-flow: column; column-gap: clamp(2rem, 4vw, 4rem); }
 }
-/* Footer: four panels in one row from 1200px. */
-@media (min-width: 1200px) { .fq { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 /* Headline weights reversed (owner, 4 Nov 2026: option B): the upright line is light,
    the italic line or phrase carries the weight. Card titles and h3 keep their weight. */
 html :is(h1, h2, .pq blockquote, .band blockquote):not(.svx__title) { font-weight: 300; }
@@ -340,3 +371,20 @@ html :is(h1, h2, .pq blockquote, .band blockquote) :is(.l2, em) { font-style: it
 :root { --maxw: 100vw; }
 /* A height-capped photo in the right-hand column keeps to the right-hand line. */
 @media (min-width: 900px) { .split > .split__media:last-child, .split--rev > .split__media { justify-self: end; } }
+
+/* ----- Home closing: the quote and the invitation share one band (owner, 5 Nov 2026) */
+.close { padding-block: clamp(3.5rem, 7vw, 6rem); background: var(--white); }
+.close__grid { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: end; }
+.close .quad-dots { display: grid; width: max-content; margin-bottom: 1.25rem; transform: scale(1.3); transform-origin: left top; }
+.close blockquote {
+  font-family: var(--display); font-stretch: 110%; font-weight: 300; letter-spacing: -0.025em;
+  font-size: clamp(1.5rem, 2.6vw, 2.35rem); line-height: 1.12; color: var(--text); max-width: 22ch;
+}
+.close blockquote em { font-style: italic; font-weight: 640; color: var(--b-navy); }
+.close__cite { margin-top: 1.25rem; max-width: 48ch; color: var(--muted); font-size: 1rem; line-height: 1.55; }
+.close__cite em { color: var(--text); }
+.close__cta { background: var(--paper); border-radius: var(--r-lg); padding: clamp(1.5rem, 3vw, 2.5rem); }
+html .close__cta h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.02; letter-spacing: -0.03em; }
+.close__cta h2 .l2 { font-style: italic; color: var(--b-navy); }
+.close__cta p { margin: 0.9rem 0 1.5rem; color: var(--muted); max-width: 40ch; line-height: 1.55; }
+@media (min-width: 900px) { .close__grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
