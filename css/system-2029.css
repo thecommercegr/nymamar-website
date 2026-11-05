@@ -388,3 +388,54 @@ html .close__cta h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.02; 
 .close__cta h2 .l2 { font-style: italic; color: var(--b-navy); }
 .close__cta p { margin: 0.9rem 0 1.5rem; color: var(--muted); max-width: 40ch; line-height: 1.55; }
 @media (min-width: 900px) { .close__grid { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+
+/* ----- Services chapters: one photo, a column beside the text (owner, 5 Nov 2026) */
+.svx { padding-block: clamp(3rem, 6vw, 5rem); }
+.svx:first-child { padding-top: clamp(2rem, 4vw, 3.5rem); }
+.svx__band { aspect-ratio: 4 / 3; max-height: none; }
+.svx__ask { display: inline-flex; margin-top: 1.25rem; }
+@media (min-width: 600px) and (max-width: 899px) { .svx__band { aspect-ratio: 16 / 10; } }
+/* Phones and tablets: the ask follows the text. */
+@media (max-width: 899px) {
+  .svx { display: flex; flex-direction: column; }
+  .svx__cols, .svx__side { display: contents; }
+  .svx__side > .svc__content { margin-bottom: 1.5rem; }
+  .svx__rest { order: 1; }
+  .svx__ask { order: 2; align-self: flex-start; }
+}
+@media (min-width: 900px) {
+  .svx { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto auto auto 1fr; column-gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
+  .svx__cols, .svx__side { display: contents; }
+  .svx__band {
+    grid-column: 1; grid-row: 1 / -1; margin: 0; aspect-ratio: 4 / 5;
+    max-height: calc(100svh - var(--header-h) - var(--subnav-h) - 3rem);
+    position: sticky; top: calc(var(--header-h) + var(--subnav-h) + 1.5rem);
+  }
+  .svx__over { flex-direction: column; align-items: flex-start; gap: 0.9rem; }
+  .svx__title { font-size: clamp(1.7rem, 2.6vw, 2.6rem); }
+  .svx__side > .svc__content { grid-column: 2; grid-row: 1; margin-bottom: 1.25rem; }
+  .svx__rest { grid-column: 2; grid-row: 2; }
+  .svx__ask { grid-column: 2; grid-row: 3; justify-self: start; margin-top: 0.5rem; }
+  .svx__side .lede { font-family: var(--display); font-stretch: 110%; font-weight: 300; font-size: clamp(1.4rem, 2vw, 1.85rem); line-height: 1.18; letter-spacing: -0.02em; }
+}
+/* Wide screens: a square photo keeps short chapters from leaving a tall gap. */
+@media (min-width: 1200px) {
+  .svx { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+  .svx__band { aspect-ratio: 1 / 1; max-height: min(560px, calc(100svh - var(--header-h) - var(--subnav-h) - 3rem)); }
+}
+
+/* ----- Invitation band on inner pages: the home closing card (owner, 5 Nov 2026) */
+.cta { background: var(--white); padding-block: clamp(2.5rem, 5vw, 4rem); }
+.cta h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.02; letter-spacing: -0.03em; max-width: 20ch; }
+.cta p { margin-top: 0.9rem; max-width: 46ch; color: var(--muted); line-height: 1.55; }
+.cta .btn--lg { min-height: 52px; padding-left: 1.4rem; font-size: 0.98rem; }
+.cta .btn--lg .btn__arw { width: 40px; height: 40px; }
+.cta__inner { position: relative; isolation: isolate; gap: 1.5rem; align-items: center;
+  padding: clamp(1.5rem, 3.5vw, 3rem) calc(var(--gutter) + clamp(1.5rem, 3.5vw, 3rem)); }
+.cta__inner::before { content: ""; position: absolute; z-index: -1; inset: 0 var(--gutter); background: var(--paper); border-radius: var(--r-lg); }
+@media (max-width: 599px) {
+  .cta .btn--lg, .close__cta .btn { width: 100%; justify-content: space-between; }
+  /* Phone footer: the services in two columns */
+  .ft__svc { grid-template-columns: 1fr 1fr; column-gap: 1.25rem; }
+  .site-footer .ft__svc a { min-height: 40px; line-height: 1.3; }
+}
